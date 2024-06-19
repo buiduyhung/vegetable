@@ -52,7 +52,7 @@
     .user-avatar-btn label {
         border: 1px solid #e4e4e4;
         width: 100%;
-        padding: 10px 10px; 
+        padding: 10px 10px;
         border-radius: 5px;
         box-shadow: 0 1px 1px 0 rgb(0 0 0 / 3%);
         text-align: center;
@@ -111,14 +111,14 @@
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
-                            
+
                             <div class="form-group mb-4">
                                 <input type="password" class="form-control" name="password" placeholder="Mật khẩu mới">
                                 @error('password')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
-                           
+
                             <div class="form-group mb-5">
                                 <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu">
                             </div>
