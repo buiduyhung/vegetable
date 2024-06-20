@@ -36,8 +36,27 @@ class StoreProductRequest extends FormRequest
         ];
     }
 
-    // public function messages(): array
-    // {
-    //     return;
-    // }
+    public function messages()
+    {
+        return [
+            'required' => ':attribute không được để trống',
+            'min' => ':attribute có độ dài từ :min ký tự',
+            'numeric' => ':attribute phải là số',
+            'string' => ':attribute là ký tự',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'brand_id' => 'Thương hiệu sản phẩm',
+            'category_id' => 'Danh mục sản phẩm',
+            'product_code' => 'Mã sản phẩm',
+            'price' => 'Giá sản phẩm',
+            'quantity' => 'Số lượng sản phẩm',
+            'weight' => 'Trọng lượng sản phẩm',
+            'images' => 'Hình ảnh sản phẩm',
+            'description' => 'Trọng lượng sản phẩm',
+        ];
+    }
 }

@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Klever Fruit - Trang quản trị</title>
-    <link rel="shortcut icon" type="image/png" href="/assets/admin/images/logos/favicon.png" />
+    <title>Nông Sản Việt - Trang quản trị</title>
+    {{-- <link rel="shortcut icon" type="image/png" href="/assets/admin/images/logos/icon.png" /> --}}
     <link rel="stylesheet" href="/assets/admin/css/styles.min.css" />
     {{-- <link rel="stylesheet" href="/assets/admin/libs/summernote/summernote-lite.min.css"> --}}
 </head>
@@ -31,7 +31,7 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Quản lý</span>
+                            <span class="hide-menu">Quản lý website</span>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('admin.dashboard')}}" aria-expanded="false">
@@ -131,9 +131,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                            <a class="nav-link nav-icon-hover" href="{{ route('home') }}">
                                 <i class="ti ti-bell-ringing"></i>
-                                <div class="notification bg-primary rounded-circle"></div>
+                                Trang chủ
                             </a>
                         </li>
                     </ul>

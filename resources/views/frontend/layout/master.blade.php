@@ -3,25 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Klever Fruite">
-    <meta name="keywords" content="Klever Fruite, unica, creative, html">
+    <meta name="description" content="Vegetable">
+    <meta name="keywords" content="Vegetable, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Klever Fruit</title>
+    <title>Nông Sản Việt</title>
 
-    <link rel="shortcut icon" type="image/png" href="/assets/admin/images/logos/favicon.png" />
+    {{-- <link rel="shortcut icon" type="image/png" href="#" /> --}}
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/assets/frontend/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/frontend/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/frontend/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/assets/frontend/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/assets/frontend/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/frontend/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/frontend/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/frontend/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}" type="text/css">
 </head>
 
 <body>
@@ -34,7 +34,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="/assets/frontend/img/logo.png" alt=""></a>
+            <a href="#"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -62,7 +62,7 @@
                          @endforeach   
                     </ul>
                 </li>
-                <li><a href="./blog.html">Bài viết</a></li>
+                <li><a href="#">Bài viết</a></li>
                 <li><a href="{{route('contact')}}">Liên hệ</a></li>
             </ul>
         </nav>
@@ -72,7 +72,7 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> contact@klever.fruit.com</li>
+                <li><i class="fa fa-envelope"></i> vegetable@gmail.com</li>
                 <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 199,000đ</li>
             </ul>
         </div>
@@ -87,7 +87,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> contact@klever.fruit.com</li>
+                                <li><i class="fa fa-envelope"></i> vegetable@gmail.com</li>
                                 <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 199,000đ</li>
                             </ul>
                         </div>
@@ -120,7 +120,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/"><img src="/assets/frontend/img/logo.png" alt=""></a>
+                        <a href="/"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -176,7 +176,7 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="{{route('shop')}}">
-                                <input type="text" name="search" placeholder="Tìm kiếm hoa quả mong muốn" value="{{ request('search') }}">
+                                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm" value="{{ request('search') }}">
                                 <button type="submit" class="site-btn">Tìm kiếm</button>
                             </form>
                         </div>
@@ -185,7 +185,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>0988 888 888</h5>
                                 <span>Hỗ trợ 24/7</span>
                             </div>
                         </div>
@@ -208,9 +208,9 @@
                             <a href="/"><img src="/assets/frontend/img/logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Địa chỉ: 60-49 Road 11378 New York</li>
-                            <li>Số điện thoại: 0972 747 899</li>
-                            <li>Email: contact@klever.fruit.com</li>
+                            <li>Địa chỉ: Mê Linh - Mê Linh - Hà Nội</li>
+                            <li>Số điện thoại: 0988 888 888</li>
+                            <li>Email: nongsanviet@gmail.com</li>
                         </ul>
                     </div>
                 </div>
@@ -236,40 +236,26 @@
                         </form>
                         <div class="footer__widget__social">
                             <a href="https://facebook.com"><i class="fa fa-facebook"></i></a>
-                            <a href="https://instagram.com"><i class="fa fa-instagram"></i></a>
-                            <a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
                             <a href="https://pinterest.com"><i class="fa fa-pinterest"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text">
-                            <p>
-                                Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> All rights reserved 
-                            </p>
-                        </div>
-                        <div class="footer__copyright__payment"><img src="/assets/frontend/img/payment-item.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </footer>
     <!-- Footer Section End -->
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Js Plugins -->
-    <script src="/assets/frontend/js/jquery-3.3.1.min.js"></script>
-    <script src="/assets/frontend/js/bootstrap.min.js"></script>
-    <script src="/assets/frontend/js/jquery.nice-select.min.js"></script>
-    <script src="/assets/frontend/js/jquery-ui.min.js"></script>
-    <script src="/assets/frontend/js/jquery.slicknav.js"></script>
-    <script src="/assets/frontend/js/mixitup.min.js"></script>
-    <script src="/assets/frontend/js/owl.carousel.min.js"></script>
-    <script src="/assets/frontend/js/main.js"></script>
+    <script src="{{ asset('assets/frontend/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 
 </body>
 

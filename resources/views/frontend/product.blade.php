@@ -62,7 +62,7 @@
                             </li>
                             <li><b>Đã bán</b> {{$product->sold}} sản phẩm</li>
                             <li><b>Thương hiệu</b> {{$product->brand->name}}</li>
-                            <li><b>Khối lượng</b>{{$product->weight}}/quả</li>
+                            <li><b>Khối lượng</b>{{$product->weight}}/chùm</li>
                             <li><b>Chính sách giao hàng</b>Nhận hàng trong 4 tiếng - 6 tiếng</li>
                             <li><b>Chia sẻ</b>
                                 <div class="share">

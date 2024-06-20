@@ -28,7 +28,10 @@
                                     <h6 class="fw-semibold mb-0">Tên</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">Giá</h6>
+                                    <h6 class="fw-semibold mb-0">Giá nhập</h6>
+                                </th>
+                                <th class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Giá bán</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Số lượng</h6>

@@ -27,6 +27,10 @@ use App\Http\Controllers\Frontend\AccountController;
 |
 */
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 //Admin
 Route::prefix('admin')->group(function () {
 

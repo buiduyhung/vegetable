@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Models\Price;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Category;
@@ -14,9 +16,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {   
         $product_code = $request->input('product_code');
@@ -29,9 +28,7 @@ class ProductController extends Controller
         return view('admin.product.list', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {   
         $categories = Category::all();
@@ -39,58 +36,66 @@ class ProductController extends Controller
         return view('admin.product.create', compact('categories','brands'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreProductRequest $request)
+    
+    public function store(ProductRequest $request)
     {
         $data = $request->validated();
         $arrimages = $data['images'];
+        $price_import = $data['price_import'];
+        $price_sale = $data['price_sale'];
+
         DB::beginTransaction();
         try {
             unset($data['images']);
+            unset($data['price_import']);
+            unset($data['price_sale']);
+
             $product = Product::create($data);
             $this->createProductImage($product,$arrimages);
+            $this->createPrice($product, $price_import, $price_sale);
             DB::commit();
+
             return redirect()->route('product.show', $product->id)->with('success', 'Thêm sản phẩm thành công.');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
         }
     }
-
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(Product $product)
     {
         return view('admin.product.show', compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Product $product)
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.product.edit', compact('product','categories','brands'));
+        $prices = Price::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->first();
+
+        return view('admin.product.edit', compact('product','categories','brands', 'prices'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateProductRequest $request, Product $product)
+    
+    public function update(ProductRequest $request, Product $product)
     {
         $data = $request->validated();
+        $price_import = $data['price_import'];
+        $price_sale = $data['price_sale'];
         DB::beginTransaction();
         try {
             unset($data['images']);
+            unset($data['price_import']);
+            unset($data['price_sale']);
+
             $product->update($data);
             if($request->file('images')){
                 $arrimages = $request->file('images');
                 $this->createProductImage($product,$arrimages);
             }
+            $this->createPrice($product, $price_import, $price_sale);
+
             DB::commit();
             return redirect()->route('product.show', $product->id)->with('success', 'Cập nhật sản phẩm thành công.');
         } catch (\Throwable $e) {
@@ -99,9 +104,7 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Product $product)
     {
         $product->delete();
@@ -136,6 +139,21 @@ class ProductController extends Controller
             $path = 'products/'. $imageName;
         } 
         return $path;
+    }
 
+    public function createPrice($product, $price_import, $price_sale){
+        DB::beginTransaction();
+        try {
+            $price = new Price();
+            $price->product_id = $product->id;
+            $price->price_import = $price_import;
+            $price->price_sale = $price_sale;
+            $price->save();
+
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 }

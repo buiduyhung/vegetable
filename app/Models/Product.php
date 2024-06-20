@@ -12,6 +12,10 @@ class Product extends Model
 
     protected $guarded = [];
 
+    public function prices(){
+        return $this->hasMany(Price::class);
+    }
+
     public function images()
     {
         return $this->hasMany(ProductImage::class);
