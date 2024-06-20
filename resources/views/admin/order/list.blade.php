@@ -3,11 +3,15 @@
 @section('content')
 
 <div class="container-fluid">
+    <h1 class="mt-4">Danh sách đơn hàng</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Danh sách đơn hàng</li>
+    </ol>
+
     <div class="row">
         <div class="card w-100">
             <div class="card-body p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h5 class="card-title fw-semibold">Đơn hàng</h5>
                     <form class="product-search d-flex">
                         <input type="text" class="border border-1 border-primary rounded px-2" value="{{request('order_id')}}"
                         placeholder="Nhập mã đơn hàng" name="order_id" style="margin-right: 10px">

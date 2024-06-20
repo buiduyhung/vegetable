@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nông Sản Việt - Trang quản trị</title>
+    <title>Trang quản trị</title>
     {{-- <link rel="shortcut icon" type="image/png" href="/assets/admin/images/logos/icon.png" /> --}}
-    <link rel="stylesheet" href="/assets/admin/css/styles.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/styles.min.css') }}" />
     {{-- <link rel="stylesheet" href="/assets/admin/libs/summernote/summernote-lite.min.css"> --}}
 </head>
 
@@ -15,7 +15,7 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
-        <aside class="left-sidebar">
+        <aside class="left-sidebar" style="background-color: aliceblue; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"> 
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -38,7 +38,7 @@
                                 <span>
                                     <i class="ti ti-dashboard"></i>
                                 </span>
-                                <span class="hide-menu">Trang chủ</span>
+                                <span class="hide-menu">Tổng quan</span>
                             </a>
                         </li>
                     @if (Auth::guard('admin')->user()->role == 'Quản trị viên')
@@ -47,7 +47,7 @@
                                 <span>
                                     <i class="ti ti-category"></i>
                                 </span>
-                                <span class="hide-menu">Danh mục</span>
+                                <span class="hide-menu">Danh mục sản phẩm</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -55,7 +55,7 @@
                                 <span>
                                     <i class="ti ti-book-2"></i>
                                 </span>
-                                <span class="hide-menu">Thương hiệu</span>
+                                <span class="hide-menu">Xuất xứ sản phẩm</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -64,6 +64,22 @@
                                     <i class="ti ti-apple"></i>
                                 </span>
                                 <span class="hide-menu">Sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="#" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-book"></i>
+                                </span>
+                                <span class="hide-menu">Bài viết</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="#" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-target"></i>
+                                </span>
+                                <span class="hide-menu">Phân quyền</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -121,7 +137,7 @@
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
-            <header class="app-header">
+            <header class="app-header" style="background-color: aliceblue; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav">
                         <li class="nav-item d-block d-xl-none">
@@ -132,8 +148,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-hover" href="{{ route('home') }}">
-                                <i class="ti ti-bell-ringing"></i>
-                                Trang chủ
+                                <i class="ti ti-home"> Trang chủ</i>
                             </a>
                         </li>
                     </ul>
@@ -142,8 +157,11 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="/assets/admin/images/profile/user-1.jpg" alt="" width="35" height="35"
+                                    <img src="/assets/admin/images/profile/avatar.jpg" alt="" width="35" height="35"
                                         class="rounded-circle">
+                                    <span class="mx-2">
+                                        {{ Auth::user()->name }}
+                                    </span>    
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
@@ -163,15 +181,15 @@
 
         </div>
     </div>
-    <script src="/assets/admin/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/assets/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/admin/libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     {{-- <script src="/assets/admin/libs/summernote/summernote-lite.min.js"></script> --}}
-    <script src="/assets/admin/js/sidebarmenu.js"></script>
-    <script src="/assets/admin/js/app.min.js"></script>
-    <script src="/assets/admin/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="/assets/admin/libs/simplebar/dist/simplebar.js"></script>
-    <script src="/assets/admin/js/dashboard.js"></script>
-    <script src="/assets/admin/js/my_script.js"></script>
+    <script src="{{ asset('assets/admin/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/app.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/libs/simplebar/dist/simplebar.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/dashboard.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/my_script.js') }}"></script>
     @stack('js')
 </body>
 

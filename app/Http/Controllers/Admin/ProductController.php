@@ -25,6 +25,7 @@ class ProductController extends Controller
             })
             ->orderByDesc('id')
             ->paginate(5);
+        
         return view('admin.product.list', compact('products'));
     }
 
@@ -88,12 +89,12 @@ class ProductController extends Controller
             unset($data['images']);
             unset($data['price_import']);
             unset($data['price_sale']);
-
-            $product->update($data);
             if($request->file('images')){
                 $arrimages = $request->file('images');
                 $this->createProductImage($product,$arrimages);
             }
+
+            $product->update($data);
             $this->createPrice($product, $price_import, $price_sale);
 
             DB::commit();

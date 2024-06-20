@@ -1,10 +1,17 @@
 @extends('admin.layout.master')
 
-@section('content')
+@section('content')   
+
     <div class="container-fluid">
+        <h1 class="mt-4">Thêm nhân viên</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{ route('staff.index') }}">Danh sách nhân viên</a></li>
+            <li class="breadcrumb-item active">Thêm nhân viên</li>
+        </ol>  
+
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Nhân viên</h5>
+                <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
                 <form action="{{route('staff.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -47,6 +54,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Lưu</button>
+                    <a href="{{ route('staff.index') }}" class="btn btn-danger mx-2">Quay lại</a>
                 </form>
             </div>
         </div>
