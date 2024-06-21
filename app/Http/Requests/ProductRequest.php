@@ -26,8 +26,6 @@ class ProductRequest extends FormRequest
             'category_id' => 'required',
             'name' => 'required|string',
             'product_code' => 'required|string',
-            'price_import' => 'required|numeric',
-            'price_sale' => 'required|numeric',
             'quantity' => 'required|numeric',
             'weight' => 'required|string',
             'description' =>'required|string',
@@ -57,8 +55,6 @@ class ProductRequest extends FormRequest
             'weight' => 'Khối lượng sản phẩm',
             'images' => 'Hình ảnh sản phẩm',
             'description' => 'Mô tả sản phẩm',
-            'price_import' => 'Giá nhập sản phẩm',
-            'price_sale' => 'Giá bán sản phẩm',
             'name' => 'Tên sản phẩm',
         ];
     }

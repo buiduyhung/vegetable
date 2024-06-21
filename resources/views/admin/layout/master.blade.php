@@ -191,6 +191,15 @@
     <script src="{{ asset('assets/admin/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/admin/js/my_script.js') }}"></script>
     @stack('js')
+
+    <script>
+        // hiden notification after 2s
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#notification').fadeOut('fast');
+            }, 2000); // 2 giây
+        });
+    </script>
 </body>
 
 </html>

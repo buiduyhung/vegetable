@@ -18,6 +18,7 @@
                     </form>
                     <a href="{{route('product.create')}}" class="btn btn-primary m-1">Thêm sản phẩm</a>
                 </div>
+                <hr>
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
@@ -31,12 +32,6 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Tên</h6>
                                 </th>
-                                {{-- <th class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">Giá nhập</h6>
-                                </th>
-                                <th class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">Giá bán</h6>
-                                </th> --}}
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Số lượng</h6>
                                 </th>
@@ -68,12 +63,6 @@
                                             <span class="fw-normal">{{$product->brand->name}}</span> 
                                         </div>
                                     </td>
-                                    {{-- <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{ $product->prices }}</p>
-                                    </td> --}}
-                                    {{-- <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{convertPrice($product->prices)}}</p>
-                                    </td> --}}
                                     <td class="border-bottom-0 text-center">
                                         <p class="fw-semibold mb-0">{{$product->quantity}}</p>
                                     </td>
@@ -84,9 +73,9 @@
                                         <p class="fw-semibold mb-0">{{$product->weight}}</p>
                                     </td>
                                     <td class="border-bottom-0 text-end">
+                                        <a href="{{route('product.show', $product)}}" class="btn btn-outline-info m-1">Chi tiết</a>
                                         <a href="{{route('product.edit', $product)}}" class="btn btn-outline-warning m-1">Sửa</a>
                                         <a onclick="return confirm('Bạn có chắc sẽ xóa sản phẩm này không?')" href="{{route('product.destroy', $product)}}" class="btn btn-outline-danger m-1">Xóa</a>
-                                        <a href="{{route('product.show', $product)}}" class="btn btn-outline-info m-1">Chi tiết</a>
                                     </td>
                                 </tr>
                             @endforeach

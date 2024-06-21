@@ -71,6 +71,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/product/show/{product}', [ProductController::class, 'show'])->name('product.show');
         Route::get('/product/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
+        Route::post('/product/show/price-sale/{productId}', [ProductController::class, 'update_price_sale'])->name('product.updatePriceSale');
+
         //Order
         Route::get('/order', [OrderController::class, 'index'])->name('order.index');
         Route::get('/order/show/{order}', [OrderController::class, 'show'])->name('order.show');

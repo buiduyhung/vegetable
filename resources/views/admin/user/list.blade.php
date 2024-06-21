@@ -18,6 +18,7 @@
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
                 </div>
+                <hr>
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">

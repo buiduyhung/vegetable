@@ -18,6 +18,7 @@
                     </form>
                     <a href="{{route('brand.create')}}" class="btn btn-primary m-1">Thêm xuất xứ sản phẩm</a>
                 </div>
+                <hr>
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">

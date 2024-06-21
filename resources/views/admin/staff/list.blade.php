@@ -19,6 +19,7 @@
                     </form>
                     <a href="{{route('staff.create')}}" class="btn btn-primary m-1">Thêm nhân viên</a>
                 </div>
+                <hr>
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">

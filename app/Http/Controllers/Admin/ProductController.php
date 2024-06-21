@@ -13,6 +13,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class ProductController extends Controller
 {
@@ -40,11 +41,9 @@ class ProductController extends Controller
     
     public function store(ProductRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->all();
+        
         $arrimages = $data['images'];
-        $price_import = $data['price_import'];
-        $price_sale = $data['price_sale'];
-
         DB::beginTransaction();
         try {
             unset($data['images']);
@@ -53,10 +52,9 @@ class ProductController extends Controller
 
             $product = Product::create($data);
             $this->createProductImage($product,$arrimages);
-            $this->createPrice($product, $price_import, $price_sale);
             DB::commit();
 
-            return redirect()->route('product.show', $product->id)->with('success', 'Thêm sản phẩm thành công.');
+            return redirect()->route('product.show', $product->id)->with('success', 'Thêm sản phẩm thành công!');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
@@ -65,7 +63,10 @@ class ProductController extends Controller
     
     public function show(Product $product)
     {
-        return view('admin.product.show', compact('product'));
+        $prices = Price::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->get();
+        $dateToday = Carbon::now()->format('d-m-Y');
+
+        return view('admin.product.show', compact('product', 'prices', 'dateToday'));
     }
 
     
@@ -81,9 +82,7 @@ class ProductController extends Controller
     
     public function update(ProductRequest $request, Product $product)
     {
-        $data = $request->validated();
-        $price_import = $data['price_import'];
-        $price_sale = $data['price_sale'];
+        $data = $request->all();
         DB::beginTransaction();
         try {
             unset($data['images']);
@@ -95,10 +94,9 @@ class ProductController extends Controller
             }
 
             $product->update($data);
-            $this->createPrice($product, $price_import, $price_sale);
 
             DB::commit();
-            return redirect()->route('product.show', $product->id)->with('success', 'Cập nhật sản phẩm thành công.');
+            return redirect()->route('product.show', $product->id)->with('success', 'Cập nhật sản phẩm thành công!');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
@@ -152,6 +150,23 @@ class ProductController extends Controller
             $price->save();
 
             DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+        }
+    }
+
+    public function update_price_sale(Request $request, $id){
+        DB::beginTransaction();
+        try {
+            $price = new Price();
+            $price->product_id = $id;
+            $price->price_import = $request->price_import_new;
+            $price->price_sale = $request->price_sale_new;
+            $price->save();
+            
+            DB::commit();
+            return back()->with('msg', 'Cập nhật giá sản phẩm thành công');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;

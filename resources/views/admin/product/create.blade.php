@@ -79,7 +79,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="price_import" class="form-label">Giá nhập
                             <span class="text-danger">*</span>
                         </label>
@@ -97,7 +97,7 @@
                         @error('price_sale')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3">
                         <label for="quantity" class="form-label">Số lượng
