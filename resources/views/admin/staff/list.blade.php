@@ -14,18 +14,20 @@
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <form class="product-search d-flex">
                         <input type="text" class="border border-1 border-primary rounded px-2" value="{{request('name')}}"
-                        placeholder="Tên nhân viên" name="name" style="margin-right: 10px">
+                        placeholder="Tên" name="name" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
-                    <a href="{{route('staff.create')}}" class="btn btn-primary m-1">Thêm nhân viên</a>
+
+                    <a href="{{route('staff.create')}}" class="btn btn-primary m-1">Thêm</a>
+
                 </div>
                 <hr>
                 <div class="table-responsive">
-                    <table class="table text-nowrap mb-0 align-middle">
+                    <table class="table table-bordered text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
                             <tr>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">ID</h6>
+                                    <h6 class="fw-semibold mb-0">#</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Họ tên</h6>
@@ -39,7 +41,7 @@
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Ngày tạo</h6>
                                 </th>
-                                <th class="border-bottom-0 text-end">
+                                <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
                                 </th>
                             </tr>
@@ -48,7 +50,7 @@
                             @foreach($staffs as $staff)
                                 <tr>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">#{{$staff->id}}</h6>
+                                        <h6 class="fw-semibold mb-0">{{$staff->id}}</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <p class="fw-semibold mb-0">{{$staff->name}}</p>
@@ -57,13 +59,15 @@
                                         <p class="fw-semibold mb-0">{{$staff->email}}</p>
                                     </td>
                                     <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$staff->role}}</p>
+                                        <p class="fw-semibold mb-0">{{$staff->group->name}}</p>
                                     </td>
                                     <td class="border-bottom-0 text-center">
                                         <p class="fw-semibold mb-0">{{date_format($staff->created_at, 'd/m/Y')}}</p>
                                     </td>
                                     
-                                    <td class="border-bottom-0 text-end">
+                                    <td class="border-bottom-0 text-center">
+                                        <a href="{{route('staff.edit', $staff)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+
                                         <a href="{{route('staff.destroy', $staff)}}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản này không?')"
                                         class="btn btn-outline-danger m-1">Xóa</a>
                                     </td>

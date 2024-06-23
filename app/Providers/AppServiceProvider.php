@@ -5,8 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
-use App\Models\Category;
-use App\Models\Brand;
+use App\Models\CategoryProduct;
+use App\Models\Origin;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
@@ -25,13 +25,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = CategoryProduct::all();
+        $brands = Origin::all();
 
         $sevenDaysAgo = now()->subDays(7);
-        $topProduct_ids = Product::select('products.id as product_id', DB::raw('SUM(order_product.quantity) as totalSold'))
-                    ->join('order_product', 'products.id', '=', 'order_product.product_id')
-                    ->join('orders', 'order_product.order_id', '=', 'orders.id')
+        $topProduct_ids = Product::select('products.id as product_id', DB::raw('SUM(order_detail.quantity) as totalSold'))
+                    ->join('order_detail', 'products.id', '=', 'order_detail.product_id')
+                    ->join('orders', 'order_detail.order_id', '=', 'orders.id')
                     ->where('orders.created_at', '>=', $sevenDaysAgo)
                     ->groupBy('product_id')
                     ->orderByDesc('totalSold')

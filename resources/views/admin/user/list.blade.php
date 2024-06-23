@@ -18,9 +18,9 @@
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
 
-                    @can('create', App\Models\Admin::class)
+                    {{-- @can('create', App\Models\Admin::class)
                         <a href="{{route('user.create')}}" class="btn btn-primary m-1">Thêm khách hàng</a>
-                    @endcan
+                    @endcan --}}
                    
                 </div>
                 <hr>
@@ -91,9 +91,9 @@
                                             @endif
                                         @endcan
 
-                                        @can('update', App\Models\Admin::class)
+                                        {{-- @can('update', App\Models\Admin::class)
                                             <a href="{{route('user.edit', $user)}}" class="btn btn-outline-secondary m-1">Sửa</a>
-                                        @endcan
+                                        @endcan --}}
                                         
                                         @can('delete', App\Models\Admin::class)
                                             <a href="{{route('user.destroy', $user)}}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản này không?')"

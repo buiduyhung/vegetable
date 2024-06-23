@@ -76,13 +76,11 @@ class AdminPolicy
         if(!empty($roleJson)){
             $roleArr = json_decode($roleJson);
 
-            $check = isRole($roleArr, 'users', 'delete');
+            $check = isRole($roleArr, 'users', 'active');
 
             return $check;
         }
 
         return false;
     }
-
-    
 }

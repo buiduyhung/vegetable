@@ -21,7 +21,8 @@ class Admin extends Authenticatable
         'email',
         'password',
         'role',
-        'group_id'
+        'group_id',
+        'active'
     ];
 
     /**
@@ -47,4 +48,5 @@ class Admin extends Authenticatable
     public function group(){
         return $this->belongsTo(Group::class);
     }
+    
 }

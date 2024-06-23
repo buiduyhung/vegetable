@@ -25,36 +25,81 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Admin',
         //     'email' => 'admin@admin.com',
         //     'password' => Hash::make('password'),
-        //     'role' => 'Quản trị viên',
         //     'group_id' => 1
         // ]);
 
-        DB::table('modules')->insert([
-            'name' => 'users',
-            'title' => 'Quản lý người dùng',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
+        // DB::table('groups')->insert([
+        //     'name' => 'Quản lý'
+        // ]);
 
-        DB::table('modules')->insert([
-            'name' => 'groups',
-            'title' => 'Quản lý nhóm',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
+        // DB::table('groups')->insert([
+        //     'name' => 'Nhân viên'
+        // ]);
 
-        DB::table('modules')->insert([
-            'name' => 'posts',
-            'title' => 'Quản lý bài viết',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
 
-        DB::table('modules')->insert([
-            'name' => 'products',
-            'title' => 'Quản lý sản phẩm',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
+        // DB::table('modules')->insert([
+        //     'name' => 'users',
+        //     'title' => 'Quản lý khách hàng',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // DB::table('modules')->insert([
+        //     'name' => 'groups',
+        //     'title' => 'Quản lý nhóm',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // DB::table('modules')->insert([
+        //     'name' => 'categoryPosts',
+        //     'title' => 'Quản lý danh mục bài viết',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // DB::table('modules')->insert([
+        //     'name' => 'posts',
+        //     'title' => 'Quản lý bài viết',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // DB::table('modules')->insert([
+        //     'name' => 'products',
+        //     'title' => 'Quản lý sản phẩm',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // DB::table('modules')->insert([
+        //     'name' => 'origins',
+        //     'title' => 'Quản lý xuất xứ sản phẩm',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // DB::table('modules')->insert([
+        //     'name' => 'categoryProducts',
+        //     'title' => 'Quản lý danh mục sản phẩm',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // DB::table('modules')->insert([
+        //     'name' => 'orders',
+        //     'title' => 'Quản lý đơn hàng',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // DB::table('modules')->insert([
+        //     'name' => 'saffs',
+        //     'title' => 'Quản lý nhân viên',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+
     }
 }
