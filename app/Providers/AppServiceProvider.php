@@ -8,7 +8,7 @@ use Illuminate\Pagination\Paginator;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {

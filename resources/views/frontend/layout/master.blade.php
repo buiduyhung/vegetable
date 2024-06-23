@@ -34,7 +34,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
+            <a href="#"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt="" ></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -120,7 +120,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
+                        <a href="/"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt="" width="160px"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -128,7 +128,7 @@
                         <ul>
                             <li class="active"><a href="{{route('home')}}">Trang chủ</a></li>
                             <li><a href="{{route('shop')}}">Cửa hàng</a></li>
-                            <li><a href="{{route('brand', '')}}">Thương hiệu</a>
+                            <li><a href="{{route('brand', '')}}">Xuất xứ</a>
                                 <ul class="header__menu__dropdown">
                                     @foreach ($brands as $brand)
                                        <li><a href="{{route('brand', $brand)}}">{{$brand->name}}</a></li>

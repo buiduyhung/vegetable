@@ -23,7 +23,6 @@ return new class extends Migration
             $table->tinyInteger('payment')->comment('1: VNPay, 2: COD');
             $table->tinyInteger('status')->comment('0: Hủy, 1: Trả hàng, 2: Chờ xác nhận, 3: Đang giao, 4: Đã giao');
             $table->timestamps();
-
         });
     }
 

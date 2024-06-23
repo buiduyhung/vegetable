@@ -75,7 +75,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('group.index') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-target"></i>
                                 </span>
@@ -181,6 +181,8 @@
 
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('assets/admin/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     {{-- <script src="/assets/admin/libs/summernote/summernote-lite.min.js"></script> --}}
@@ -192,14 +194,6 @@
     <script src="{{ asset('assets/admin/js/my_script.js') }}"></script>
     @stack('js')
 
-    <script>
-        // hiden notification after 2s
-        $(document).ready(function() {
-            setTimeout(function() {
-                $('#notification').fadeOut('fast');
-            }, 2000); // 2 giây
-        });
-    </script>
 </body>
 
 </html>

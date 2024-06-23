@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('category_id');
             $table->string('name')->unique();
-            $table->double('price');
+            $table->string('slug')->nullable();
+            $table->double('price_import');
             $table->integer('quantity');
             $table->integer('sold')->default(0);
             $table->string('weight');

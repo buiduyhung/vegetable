@@ -17,6 +17,11 @@
                         placeholder="Nhập email" name="email" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
+
+                    @can('create', App\Models\Admin::class)
+                        <a href="{{route('user.create')}}" class="btn btn-primary m-1">Thêm khách hàng</a>
+                    @endcan
+                   
                 </div>
                 <hr>
                 <div class="table-responsive">
@@ -76,15 +81,25 @@
                                     </td>
                                     
                                     <td class="border-bottom-0 text-end">
-                                        @if ($user->status === 1)
-                                            <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này không?')"
-                                             class="btn btn-outline-warning m-1">Khóa</a>
-                                        @else
-                                            <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này không?')"
-                                             class="btn btn-outline-success m-1">Mở khóa</a>
-                                        @endif
-                                        <a href="{{route('user.destroy', $user)}}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản này không?')"
-                                        class="btn btn-outline-danger m-1">Xóa</a>
+                                        @can('active', App\Models\Admin::class)
+                                            @if ($user->status === 1)
+                                                <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này không?')"
+                                                class="btn btn-outline-warning m-1">Khóa</a>
+                                            @else
+                                                <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này không?')"
+                                                class="btn btn-outline-success m-1">Mở khóa</a>
+                                            @endif
+                                        @endcan
+
+                                        @can('update', App\Models\Admin::class)
+                                            <a href="{{route('user.edit', $user)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+                                        @endcan
+                                        
+                                        @can('delete', App\Models\Admin::class)
+                                            <a href="{{route('user.destroy', $user)}}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản này không?')"
+                                            class="btn btn-outline-danger m-1">Xóa</a>
+                                        @endcan
+                                        
                                     </td>
                                 </tr>
                             @endforeach
