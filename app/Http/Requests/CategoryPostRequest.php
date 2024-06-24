@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BrandRequest extends FormRequest
+class CategoryPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,9 @@ class BrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'desc' => 'required|string',
         ];
     }
 
@@ -31,13 +33,16 @@ class BrandRequest extends FormRequest
         return [
             'required' => ':attribute không được để trống',
             'string' => ':attribute là ký tự',
+            'max' => ':attribute không quá :max ký tự',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'Tên thương hiệu',
+            'name' => 'Tên danh mục bài viết',
+            'slug' => 'Slug danh mục bài viết',
+            'desc' => 'Mô tả danh mục bài viết',
         ];
     }
 }

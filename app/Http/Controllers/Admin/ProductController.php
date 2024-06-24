@@ -72,7 +72,6 @@ class ProductController extends Controller
 
         return view('admin.product.show', compact('product', 'dateToday', 'priceImports', 'priceSales'));
     }
-
     
     public function edit(Product $product)
     {

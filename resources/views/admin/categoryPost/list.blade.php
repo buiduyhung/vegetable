@@ -19,17 +19,17 @@
                         placeholder="Tên nhóm" name="name" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
-                    <a href="#" class="btn btn-primary m-1">Thêm</a>
+                    <a href="{{ route('categoryPost.create') }}" class="btn btn-primary m-1">Thêm danh mục bài viết</a>
                 </div>
                 <hr>
                 <div class="table-responsive">
                     <table class="table table-bordered text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
                             <tr>
-                                <th class="border-bottom-0">
+                                <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">#</h6>
                                 </th>
-                                <th class="border-bottom-0">
+                                <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Tên</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
@@ -42,30 +42,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach($groups as $group)
+                            @foreach($categoryPosts as $categoryPost)
                                 <form>
                                     @csrf
                                     <tr>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">{{$group->id}}</h6>
+                                            <h6 class="fw-semibold mb-0 text-center">{{$categoryPost->id}}</h6>
                                         </td>
                                         <td class="border-bottom-0 ">
-                                            <h6 class="fw-semibold mb-0">{{$group->name}}</h6>
+                                            <h6 class="fw-semibold mb-0 text-center">{{$categoryPost->name}}</h6>
                                         </td>
-                                        <td class="border-bottom-0 text-center justify-content-center">
-                                            <a href="{{ route('group.permission', $group) }}" class="btn btn-outline-success m-1">Phân quyền</a>
+                                        <td class="border-bottom-0 ">
+                                            <h6 class="fw-semibold mb-0 ">{!! $categoryPost->desc !!}</h6>
                                         </td>
+
                                         <td class="border-bottom-0 text-center d-flex justify-content-center">
-                                            <a href="{{route('group.edit', $group)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+                                            <a href="{{route('categoryPost.edit', $categoryPost)}}" class="btn btn-outline-secondary m-1">Sửa</a>
     
-                                            <button type="button" name="delete-group" data-id_group="{{ $group->id }}" class="btn btn-outline-danger m-1 delete-group">
+                                            <button type="button" name="delete-categoryPost" data-id_categoryPost="{{ $categoryPost->id }}" class="btn btn-outline-danger m-1 delete-categoryPost">
                                                 Xóa
                                             </button>   
                                         </td>
                                     </tr>
                                 </form>
                                 
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

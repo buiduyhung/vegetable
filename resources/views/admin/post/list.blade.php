@@ -16,7 +16,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <form class="product-search d-flex">
                         <input type="text" class="border border-1 border-primary rounded px-2" value="{{request('name')}}"
-                        placeholder="Tên nhóm" name="name" style="margin-right: 10px">
+                        placeholder="Tên" name="name" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
                     <a href="#" class="btn btn-primary m-1">Thêm mã giảm giá</a>

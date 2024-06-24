@@ -95,17 +95,28 @@ Route::prefix('admin')->group(function () {
             Route::post('create', [DiscountController::class, 'store'])->name('store');
             Route::get('edit/{discount}', [DiscountController::class, 'edit'])->name('edit');
             Route::post('edit/{discount}', [DiscountController::class, 'update'])->name('update');
+            Route::post('delete', [DiscountController::class, 'destroy'])->name('destroy');
         });
 
         // Category Post
         Route::prefix('category-post')->name('categoryPost.')->group(function (){
             Route::get('/', [CategoryPostController::class, 'index'])->name('index');
+            Route::get('create', [CategoryPostController::class, 'create'])->name('create');
+            Route::post('create', [CategoryPostController::class, 'store'])->name('store');
+            Route::get('edit/{categoryPost}', [CategoryPostController::class, 'edit'])->name('edit');
+            Route::post('edit/{categoryPost}', [CategoryPostController::class, 'update'])->name('update');
+            Route::post('delete', [CategoryPostController::class, 'destroy'])->name('destroy');
         });
 
 
         // Post
         Route::prefix('post')->name('post.')->group(function() {
             Route::get('/', [PostController::class, 'index'])->name('index');
+            Route::get('create', [PostController::class, 'create'])->name('create');
+            Route::post('create', [PostController::class, 'store'])->name('store');
+            Route::get('edit/{categoryPost}', [PostController::class, 'edit'])->name('edit');
+            Route::post('edit/{categoryPost}', [PostController::class, 'update'])->name('update');
+            Route::post('delete', [PostController::class, 'destroy'])->name('destroy');
         });         
 
         //Order

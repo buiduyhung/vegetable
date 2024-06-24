@@ -430,6 +430,102 @@
             });
 
 
+            // delete discount
+            $('.delete-discount').click(function(e){
+                e.preventDefault();
+
+                var id = $(this).data('id_discount');
+                var _token = $('input[name="_token"]').val();
+
+                Swal.fire({
+                    title: "Bạn có chắc chắn?",
+                    text: "Bạn sẽ không thể khôi phục lại điều này!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Có, xóa nó đi!",
+                    cancelButtonText: "Hủy"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('discount.destroy') }}",
+                            method: "POST",
+                            data: {
+                                discount_id: id,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                Swal.fire({
+                                    title: "Đã xóa!",
+                                    text: "Dữ liệu đã được xóa thành công.",
+                                    icon: "success"
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                Swal.fire({
+                                    title: "Lỗi!",
+                                    text: "Đã xảy ra lỗi. Vui lòng thử lại.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+
+            // delete category post
+            $('.delete-categoryPost').click(function(e){
+                e.preventDefault();
+
+                var id = $(this).data('id_categoryPost');
+                var _token = $('input[name="_token"]').val();
+
+                Swal.fire({
+                    title: "Bạn có chắc chắn?",
+                    text: "Bạn sẽ không thể khôi phục lại điều này!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Có, xóa nó đi!",
+                    cancelButtonText: "Hủy"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('categoryPost.destroy') }}",
+                            method: "POST",
+                            data: {
+                                categoryPost_id: id,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                Swal.fire({
+                                    title: "Đã xóa!",
+                                    text: "Dữ liệu đã được xóa thành công.",
+                                    icon: "success"
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                Swal.fire({
+                                    title: "Lỗi!",
+                                    text: "Đã xảy ra lỗi. Vui lòng thử lại.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+
         })
     </script>
 

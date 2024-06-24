@@ -30,7 +30,7 @@ class ProductRequest extends FormRequest
             'weight' => 'required|string',
             'description' =>'required|string',
             'images' => 'array|required',
-            // 'images.*' => 'required|mimes:jpg,bmp,png,webp'
+            'images.*' => 'required|mimes:jpg,bmp,png,webp'
         ];
     }
 

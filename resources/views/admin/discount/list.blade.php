@@ -16,10 +16,10 @@
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <form class="product-search d-flex">
                         <input type="text" class="border border-1 border-primary rounded px-2" value="{{request('name')}}"
-                        placeholder="Tên nhóm" name="name" style="margin-right: 10px">
+                        placeholder="Tên" name="name" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
-                    <a href="#" class="btn btn-primary m-1">Thêm mã giảm giá</a>
+                    <a href="{{ route('discount.create') }}" class="btn btn-primary m-1">Thêm mã giảm giá</a>
                 </div>
                 <hr>
                 <div class="table-responsive">
@@ -30,13 +30,13 @@
                                     <h6 class="fw-semibold mb-0">#</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Tên mã giảm giá</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Tên mã giảm giá</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Mã giảm giá</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">Giá trị</h6>
+                                    <h6 class="fw-semibold mb-0">Giá trị giảm giá</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Số lượng</h6>
@@ -51,30 +51,44 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach($groups as $group)
+                            @foreach($discounts as $discount)
                                 <form>
                                     @csrf
                                     <tr>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">{{$group->id}}</h6>
+                                            <h6 class="fw-semibold mb-0 text-center">{{$discount->id}}</h6>
                                         </td>
                                         <td class="border-bottom-0 ">
-                                            <h6 class="fw-semibold mb-0">{{$group->name}}</h6>
+                                            <h6 class="fw-semibold mb-0 text-center">{{$discount->name}}</h6>
                                         </td>
-                                        <td class="border-bottom-0 text-center justify-content-center">
-                                            <a href="{{ route('group.permission', $group) }}" class="btn btn-outline-success m-1">Phân quyền</a>
+                                        <td class="border-bottom-0 ">
+                                            <h6 class="fw-semibold mb-0 text-center">{{$discount->code}}</h6>
                                         </td>
+                                        <td class="border-bottom-0 ">
+                                            <h6 class="fw-semibold mb-0 text-center">{{$discount->value}}</h6>
+                                        </td>
+                                        <td class="border-bottom-0 ">
+                                            <h6 class="fw-semibold mb-0 text-center">{{$discount->quantity}}</h6>
+                                        </td>
+                                        <td class="border-bottom-0 ">
+                                            @if ($discount->condition == 1)
+                                                <h6 class="fw-semibold mb-0 text-center">Giảm {{ $discount->value }} %</h6>
+                                            @else
+                                                <h6 class="fw-semibold mb-0 text-center">Giảm {{ number_format($discount->value) }} VNĐ</h6>
+                                            @endif
+                                        </td>
+                                        
                                         <td class="border-bottom-0 text-center d-flex justify-content-center">
-                                            <a href="{{route('group.edit', $group)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+                                            <a href="{{route('discount.edit', $discount)}}" class="btn btn-outline-secondary m-1">Sửa</a>
     
-                                            <button type="button" name="delete-group" data-id_group="{{ $group->id }}" class="btn btn-outline-danger m-1 delete-group">
+                                            <button type="button" name="delete-discount" data-id_discount="{{ $discount->id }}" class="btn btn-outline-danger m-1 delete-discount">
                                                 Xóa
                                             </button>   
                                         </td>
                                     </tr>
                                 </form>
                                 
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

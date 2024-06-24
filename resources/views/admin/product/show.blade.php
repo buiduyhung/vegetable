@@ -33,7 +33,7 @@
                                         <h6 class="fw-semibold mb-0">Khối lượng (Kg/Túi)</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Số lượng</h6>
+                                        <h6 class="fw-semibold mb-0">Số lượng (Túi)</h6>
                                     </th>
                                 </tr>
                             </thead>
