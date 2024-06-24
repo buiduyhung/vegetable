@@ -15,7 +15,24 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Tên</label>
-                        <input type="text" class="form-control" name="name" value="{{$origin->name}}" id="name" >
+                        <input type="text" class="form-control title" name="name" id="name" value="{{ $origin->name }}">
+                        @error('name')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="slug" class="form-label">Slug</label>
+                        <input type="text" class="form-control slug" name="slug" id="slug" value="{{ $origin->slug }}">
+                        @error('slug')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Mô tả</label>
+                        <textarea style="resize: none;" rows="5" type="text" name="description" class="form-control ckeditor" id="description">{!! $origin->description !!}</textarea>
+                        @error('description')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                     <a href="{{ route('origin.index') }}" class="btn btn-danger mx-2">Quay lại</a>

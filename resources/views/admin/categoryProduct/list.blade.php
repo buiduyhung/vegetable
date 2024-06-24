@@ -14,7 +14,6 @@
         <div class="card w-100">
             <div class="card-body p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    {{-- <h5 class="card-title fw-semibold mb-4">Danh mục</h5> --}}
                     <form class="product-search d-flex">
                         <input type="text" class="border border-1 border-primary rounded px-2" value="{{request('name')}}"
                         placeholder="Tên danh mục" name="name" style="margin-right: 10px">
@@ -24,7 +23,7 @@
                 </div>
                 <hr>
                 <div class="table-responsive">
-                    <table class="table text-nowrap mb-0 align-middle">
+                    <table class="table table-bordered text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
                             <tr>
                                 <th class="border-bottom-0">
@@ -39,6 +38,9 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Mô tả</h6>
                                 </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Hiện thị</h6>
+                                </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
                                 </th>
@@ -46,30 +48,46 @@
                         </thead>
                         <tbody>
                             @foreach($categoryProducts as $categoryProduct)
-                                <tr>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">{{$categoryProduct->id}}</h6>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <img src="{{Storage::url($categoryProduct->image)}}" alt="" width="70">
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-semibold">{{$categoryProduct->name}}</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-semibold">{!! $categoryProduct->description !!}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center d-flex justify-content-center">
-                                        <a href="{{route('categoryProduct.edit', $categoryProduct)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+                                <form action="">
+                                    @csrf
+                                    <tr>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">{{$categoryProduct->id}}</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <img src="{{Storage::url($categoryProduct->image)}}" alt="" width="70">
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-semibold">{{$categoryProduct->name}}</p>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-semibold">{!! $categoryProduct->description !!}</p>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-semibold">
+                                                <span class="text-ellipsis">
+                                                    @if ($categoryProduct->status == 1)
+                                                        <a href="{{ route('categoryProduct.active', $categoryProduct->id) }}">
+                                                            <span class="fa-styling fa-solid fa-thumbs-down">Hiện thị</span>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('categoryProduct.hidden', $categoryProduct->id) }}">
+                                                            <span class="fa-styling fa-solid fa-thumbs-up">Ẩn</span>
+                                                        </a>
+                                                    @endif
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center d-flex justify-content-center">
 
-                                        <form method="POST" action="{{ route('categoryProduct.destroy') }}">
-                                            @csrf
-                                            <button type="button" name="delete-category-product" data-id_categoryProduct="{{ $categoryProduct->id }}" class="btn btn-outline-danger m-1 delete-category-product">
+                                            <a href="{{route('categoryProduct.edit', $categoryProduct)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+    
+                                            <button type="button" name="delete-category-product" data-id_category="{{ $categoryProduct->id }}" class="btn btn-outline-danger m-1 delete-category-product">
                                                 Xóa
                                             </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                </form>
                             @endforeach
                         </tbody>
                     </table>

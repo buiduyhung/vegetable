@@ -81,15 +81,13 @@
                                     </td>
                                     
                                     <td class="border-bottom-0 text-end">
-                                        @can('active', App\Models\Admin::class)
-                                            @if ($user->status === 1)
-                                                <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này không?')"
-                                                class="btn btn-outline-warning m-1">Khóa</a>
-                                            @else
-                                                <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này không?')"
-                                                class="btn btn-outline-success m-1">Mở khóa</a>
-                                            @endif
-                                        @endcan
+                                        @if ($user->status === 1)
+                                            <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này không?')"
+                                            class="btn btn-outline-warning m-1">Khóa</a>
+                                        @else
+                                            <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này không?')"
+                                            class="btn btn-outline-success m-1">Mở khóa</a>
+                                        @endif
 
                                         {{-- @can('update', App\Models\Admin::class)
                                             <a href="{{route('user.edit', $user)}}" class="btn btn-outline-secondary m-1">Sửa</a>

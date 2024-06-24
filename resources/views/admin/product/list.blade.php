@@ -48,36 +48,41 @@
                         </thead>
                         <tbody>
                             @foreach($products as $key=>$product)
-                                
-                                <tr>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">#{{$key+1}}</h6>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">{{$product->product_code}}</h6>
-                                    </td>
-                                    <td class="border-bottom-0 d-flex align-items-center">
-                                        <img class="rounded-1" style="width: 80px; border: 1px solid #f7f7f7" src="{{ $product->images->shift()->image }}" alt="">
-                                        <div class="m-2">
-                                            <h6 class="fw-semibold mb-1">{{$product->name}}</h6>
-                                            <span class="fw-normal">{{$product->brand->name}}</span> 
-                                        </div>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$product->quantity}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$product->sold}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$product->weight}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-end">
-                                        <a href="{{route('product.show', $product)}}" class="btn btn-outline-info m-1">Chi tiết</a>
-                                        <a href="{{route('product.edit', $product)}}" class="btn btn-outline-warning m-1">Sửa</a>
-                                        <a onclick="return confirm('Bạn có chắc sẽ xóa sản phẩm này không?')" href="{{route('product.destroy', $product)}}" class="btn btn-outline-danger m-1">Xóa</a>
-                                    </td>
-                                </tr>
+                                <form>
+                                    @csrf
+                                    <tr>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">#{{$key+1}}</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">{{$product->product_code}}</h6>
+                                        </td>
+                                        <td class="border-bottom-0 d-flex align-items-center">
+                                            <img class="rounded-1" style="width: 80px; border: 1px solid #f7f7f7" src="{{ $product->images->shift()->image }}" alt="">
+                                            <div class="m-2">
+                                                <h6 class="fw-semibold mb-1">{{$product->name}}</h6>
+                                                <span class="fw-normal">{{$product->origin->name}}</span> 
+                                            </div>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$product->quantity}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$product->sold}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$product->weight}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-end">
+                                            <a href="{{route('product.show', $product)}}" class="btn btn-outline-info m-1">Chi tiết</a>
+                                            <a href="{{route('product.edit', $product)}}" class="btn btn-outline-warning m-1">Sửa</a>
+    
+                                            <button type="button" name="delete-product" data-id_product="{{ $product->id }}" class="btn btn-outline-danger m-1 delete-product">
+                                                Xóa
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </form>
                             @endforeach
                         </tbody>
                     </table>

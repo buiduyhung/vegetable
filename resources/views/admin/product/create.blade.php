@@ -50,16 +50,16 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="brand" class="form-label">Thương hiệu
+                        <label for="origin" class="form-label">Xuất xứ
                             <span class="text-danger">*</span>
                         </label>
-                        <select class="form-select" name="brand_id" id="brand">
-                            <option value="" disabled selected>--- Chọn thương hiệu ---</option>
-                            @foreach ($brands as $brand)
-                                <option value="{{$brand->id}}">{{$brand->name}}</option>
+                        <select class="form-select" name="origin_id" id="origin">
+                            <option value="" disabled selected>--- Chọn xuất xứ ---</option>
+                            @foreach ($origins as $origin)
+                                <option value="{{$origin->id}}">{{$origin->name}}</option>
                             @endforeach
                         </select>
-                        @error('brand_id')
+                        @error('origin_id')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
@@ -78,26 +78,6 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-
-                    {{-- <div class="mb-3">
-                        <label for="price_import" class="form-label">Giá nhập
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="number" class="form-control" name="price_import" id="price_import">
-                        @error('price_import')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="price_sale" class="form-label">Giá bán
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="number" class="form-control" name="price_sale" id="price_sale">
-                        @error('price_sale')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div> --}}
 
                     <div class="mb-3">
                         <label for="quantity" class="form-label">Số lượng

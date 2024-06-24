@@ -11,9 +11,14 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\CategoryProduct;
+use App\Models\Origin;
+use App\Models\PriceImport;
+use App\Models\PriceSale;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -33,22 +38,20 @@ class ProductController extends Controller
     
     public function create()
     {   
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('admin.product.create', compact('categories','brands'));
+        $categories = CategoryProduct::all();
+        $origins = Origin::all();
+        return view('admin.product.create', compact('categories','origins'));
     }
 
     
     public function store(ProductRequest $request)
     {
         $data = $request->all();
-        
         $arrimages = $data['images'];
+
         DB::beginTransaction();
         try {
             unset($data['images']);
-            unset($data['price_import']);
-            unset($data['price_sale']);
 
             $product = Product::create($data);
             $this->createProductImage($product,$arrimages);
@@ -63,34 +66,36 @@ class ProductController extends Controller
     
     public function show(Product $product)
     {
-        $prices = Price::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->get();
         $dateToday = Carbon::now()->format('d-m-Y');
+        $priceImports =  PriceImport::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->get();
+        $priceSales =  PriceSale::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->get();
 
-        return view('admin.product.show', compact('product', 'prices', 'dateToday'));
+        return view('admin.product.show', compact('product', 'dateToday', 'priceImports', 'priceSales'));
     }
 
     
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        $brands = Brand::all();
-        $prices = Price::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->first();
+        $categories = CategoryProduct::all();
+        $origins = Origin::all();
 
-        return view('admin.product.edit', compact('product','categories','brands', 'prices'));
+        return view('admin.product.edit', compact('product','categories','origins'));
     }
 
     
     public function update(ProductRequest $request, Product $product)
     {
         $data = $request->all();
+
         DB::beginTransaction();
         try {
             unset($data['images']);
-            unset($data['price_import']);
-            unset($data['price_sale']);
-            if($request->file('images')){
-                $arrimages = $request->file('images');
-                $this->createProductImage($product,$arrimages);
+
+            if($request->file('image')){
+                $image = $request->file('image');
+                $data['image'] = $this->saveImage($image);
+            } else {
+                $data['image'] = $product->image;
             }
 
             $product->update($data);
@@ -102,12 +107,22 @@ class ProductController extends Controller
             throw $e;
         }
     }
-
     
-    public function destroy(Product $product)
+    public function destroy(Request $request)
     {
-        $product->delete();
-        return back()->with('success', 'Xóa sản phẩm thành công.');
+        try {
+            $product = Product::find($request->input('product_id'));
+            if ($product) {
+                $product->delete();
+                return response()->json(['success' => true]);
+            } else {
+
+                return response()->json(['error' => 'Không có dữ liệu sản phẩm'], 404);
+            }
+        } catch (\Exception $e) {
+            Log::error('Error deleting product: ' . $e->getMessage());
+            return response()->json(['error' => 'An error occurred'], 500);
+        }
     }
 
     protected function createProductImage($product, $arrimages){
@@ -140,33 +155,32 @@ class ProductController extends Controller
         return $path;
     }
 
-    public function createPrice($product, $price_import, $price_sale){
+    public function priceImport(Request $request, $id){
         DB::beginTransaction();
         try {
-            $price = new Price();
-            $price->product_id = $product->id;
-            $price->price_import = $price_import;
-            $price->price_sale = $price_sale;
+            $price = new PriceImport();
+            $price->product_id = $id;
+            $price->price_import = $request->price_import_new;
             $price->save();
-
+            
             DB::commit();
+            return back()->with('success', 'Cập nhật giá nhập sản phẩm thành công');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
         }
     }
 
-    public function update_price_sale(Request $request, $id){
+    public function priceSale(Request $request, $id){
         DB::beginTransaction();
         try {
-            $price = new Price();
+            $price = new PriceSale();
             $price->product_id = $id;
-            $price->price_import = $request->price_import_new;
             $price->price_sale = $request->price_sale_new;
             $price->save();
             
             DB::commit();
-            return back()->with('msg', 'Cập nhật giá sản phẩm thành công');
+            return back()->with('success', 'Cập nhật giá bán sản phẩm thành công');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;

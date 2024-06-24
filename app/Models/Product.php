@@ -12,23 +12,19 @@ class Product extends Model
 
     protected $guarded = [];
 
-    public function prices(){
-        return $this->hasMany(Price::class);
-    }
-
     public function images()
     {
         return $this->hasMany(ProductImage::class);
     }
 
-    public function brand()
+    public function origin()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Origin::class);
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(CategoryProduct::class);
     }
 
     public function orders()
@@ -36,4 +32,13 @@ class Product extends Model
         return $this->belongsToMany(Order::class)
                     ->withPivot('name', 'quantity', 'price');
     }
+
+    public function priceImports(){
+        return $this->hasMany(PriceImport::class);
+    }
+
+    public function priceSales(){
+        return $this->hasMany(PriceSale::class);
+    }
+
 }

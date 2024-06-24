@@ -8,6 +8,7 @@ use App\Models\Origin;
 use Illuminate\Http\Request;
 use Throwable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OriginController extends Controller
 {
@@ -48,11 +49,10 @@ class OriginController extends Controller
         return view('admin.origin.edit', compact('origin'));
     }
 
-    public function update(Request $request, Origin $origin)
+    public function update(OriginRequest $request, Origin $origin)
     {
-        $data = $request->validate([
-            'name' => 'required|string'
-        ]);
+        $data = $request->all();
+
         DB::beginTransaction();
         try {
             $origin->update($data);
@@ -64,9 +64,19 @@ class OriginController extends Controller
         }
     }
 
-    public function destroy(Origin $origin)
-    {
-        $origin->delete();
-        return back()->with('success', 'Xóa dữ liệu thành công.');
+
+    public function destroy(Request $request){
+        try {
+            $origin = Origin::find($request->input('origin_id'));
+            if ($origin) {
+                $origin->delete();
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['error' => 'Không có dữ liệu xuất xứ sản phẩm'], 404);
+            }
+        } catch (\Exception $e) {
+            Log::error('Error deleting categoryProduct: ' . $e->getMessage());
+            return response()->json(['error' => 'An error occurred'], 500);
+        }
     }
 }

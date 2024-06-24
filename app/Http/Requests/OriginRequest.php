@@ -22,8 +22,9 @@ class OriginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:origins,name|string',
-            'slug' => 'required,string',
+            'name' => 'required|string',
+            'slug' => 'required|string',
+            'description' => 'required|string',
         ];
     }
 
@@ -39,6 +40,8 @@ class OriginRequest extends FormRequest
     {
         return [
             'name' => 'Tên xuất xứ',
+            'slug' => 'Slug xuất xứ',
+            'description' => 'Mô tả xuất xứ',
         ];
     }
 }

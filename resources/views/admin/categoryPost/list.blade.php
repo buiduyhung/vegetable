@@ -1,10 +1,13 @@
 @extends('admin.layout.master')
 
 @section('content')
+
+
 <div class="container-fluid">
-    <h1 class="mt-4">Xuất xứ sản phẩm</h1>
+
+    <h1 class="mt-4">Danh sách danh mục bài viết</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Danh sách xuất xứ sản phẩm</li>
+        <li class="breadcrumb-item active">Danh sách danh mục bài viết</li>
     </ol>
 
     <div class="row">
@@ -13,16 +16,13 @@
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <form class="product-search d-flex">
                         <input type="text" class="border border-1 border-primary rounded px-2" value="{{request('name')}}"
-                        placeholder="Tên" name="name" style="margin-right: 10px">
+                        placeholder="Tên nhóm" name="name" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
-
-                    <a href="{{route('origin.add')}}" class="btn btn-primary m-1">Thêm xuất xứ sản phẩm</a>
-
+                    <a href="#" class="btn btn-primary m-1">Thêm</a>
                 </div>
                 <hr>
                 <div class="table-responsive">
-
                     <table class="table table-bordered text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
                             <tr>
@@ -32,40 +32,40 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Tên</h6>
                                 </th>
-                                <th class="border-bottom-0">
+                                <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Mô tả</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
                                 </th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($origins as $origin)
+                            {{-- @foreach($groups as $group)
                                 <form>
                                     @csrf
                                     <tr>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">{{$origin->id}}</h6>
+                                            <h6 class="fw-semibold mb-0">{{$group->id}}</h6>
                                         </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-semibold">{{$origin->name}}</p>
+                                        <td class="border-bottom-0 ">
+                                            <h6 class="fw-semibold mb-0">{{$group->name}}</h6>
                                         </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-semibold">{!! $origin->description !!}</p>
+                                        <td class="border-bottom-0 text-center justify-content-center">
+                                            <a href="{{ route('group.permission', $group) }}" class="btn btn-outline-success m-1">Phân quyền</a>
                                         </td>
                                         <td class="border-bottom-0 text-center d-flex justify-content-center">
-                                            
-                                            <a href="{{route('origin.edit', $origin)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+                                            <a href="{{route('group.edit', $group)}}" class="btn btn-outline-secondary m-1">Sửa</a>
     
-                                            <button type="button" name="delete-group" data-id_origin="{{ $origin->id }}" class="btn btn-outline-danger m-1 delete-origin">
+                                            <button type="button" name="delete-group" data-id_group="{{ $group->id }}" class="btn btn-outline-danger m-1 delete-group">
                                                 Xóa
-                                            </button>
-    
+                                            </button>   
                                         </td>
                                     </tr>
                                 </form>
-                            @endforeach
+                                
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
@@ -73,4 +73,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

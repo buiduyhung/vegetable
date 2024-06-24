@@ -5,20 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Price extends Model
+class PriceImport extends Model
 {
     use HasFactory;
 
-    protected $table = 'prices';
+    protected $table = "price_imports";
 
     protected $fillable = [
         'product_id',
-        'price_import',
-        'price_sale',
+        'price_import'
     ];
 
-    public function product()
-    {
+    public function product(){
         return $this->belongsTo(Product::class);
     }
 }

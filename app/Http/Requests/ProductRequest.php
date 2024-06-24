@@ -22,7 +22,7 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'brand_id' => 'required',
+            'origin_id' => 'required',
             'category_id' => 'required',
             'name' => 'required|string',
             'product_code' => 'required|string',
@@ -30,7 +30,7 @@ class ProductRequest extends FormRequest
             'weight' => 'required|string',
             'description' =>'required|string',
             'images' => 'array|required',
-            'images.*' => 'required|mimes:jpg,bmp,png,webp'
+            // 'images.*' => 'required|mimes:jpg,bmp,png,webp'
         ];
     }
 
@@ -47,7 +47,7 @@ class ProductRequest extends FormRequest
     public function attributes()
     {
         return [
-            'brand_id' => 'Thương hiệu sản phẩm',
+            'origin_id' => 'Xuất xứ sản phẩm',
             'category_id' => 'Danh mục sản phẩm',
             'product_code' => 'Mã sản phẩm',
             'price' => 'Giá sản phẩm',

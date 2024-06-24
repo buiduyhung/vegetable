@@ -29,6 +29,8 @@
                 <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
                 <form method="POST" action="{{route('product.update', $product)}}" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Tên 
                             <span class="text-danger">*</span> 
@@ -50,16 +52,16 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="brand" class="form-label">Thương hiệu
+                        <label for="origin" class="form-label">Xuất xứ
                             <span class="text-danger">*</span>
                         </label>
-                        <select class="form-select" name="brand_id" id="brand">
-                            <option value="" disabled selected>--- Chọn thương hiệu ---</option>
-                            @foreach ($brands as $brand)
-                                <option value="{{$brand->id}}" {{$brand->id == $product->brand_id ? 'selected' : '' }}>{{$brand->name}}</option>
+                        <select class="form-select" name="origin_id" id="origin">
+                            <option value="" disabled selected>--- Chọn xuất xứ ---</option>
+                            @foreach ($origins as $origin)
+                                <option value="{{$origin->id}}" {{$origin->id == $product->origin_id ? 'selected' : '' }}>{{$origin->name}}</option>
                             @endforeach
                         </select>
-                        @error('brand_id')
+                        @error('origin_id')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>

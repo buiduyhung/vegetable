@@ -3,13 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\OriginController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -54,7 +57,7 @@ Route::prefix('admin')->group(function () {
             Route::post('create', [OriginController::class, 'store'])->name('store');
             Route::get('edit/{origin}', [OriginController::class, 'edit'])->name('edit');
             Route::post('edit/{origin}', [OriginController::class, 'update'])->name('update');
-            Route::delete('delete/{origin}', [OriginController::class, 'destroy'])->name('destroy');
+            Route::post('delete', [OriginController::class, 'destroy'])->name('destroy');
         });
 
         //Category product
@@ -64,8 +67,10 @@ Route::prefix('admin')->group(function () {
             Route::post('create', [CategoryProductController::class, 'store'])->name('store');
             Route::get('edit/{categoryProduct}', [CategoryProductController::class, 'edit'])->name('edit');
             Route::put('edit/{categoryProduct}', [CategoryProductController::class, 'update'])->name('update');
-            // Route::delete('delete/{categoryProduct}', [CategoryProductController::class, 'destroy'])->name('destroy');
             Route::post('delete', [CategoryProductController::class, 'destroy'])->name('destroy');
+
+            Route::get('active/{id}', [CategoryProductController::class, 'active'])->name('active');
+            Route::get('hidden/{id}', [CategoryProductController::class, 'hidden'])->name('hidden');
         });
 
         //Product
@@ -75,13 +80,33 @@ Route::prefix('admin')->group(function () {
             Route::get('create', [ProductController::class, 'create'])->name('create');
             Route::post('create', [ProductController::class, 'store'])->name('store');
             Route::get('edit/{product}', [ProductController::class, 'edit'])->name('edit');
-            Route::post('edit/{product}', [ProductController::class, 'update'])->name('update');
+            Route::put('edit/{product}', [ProductController::class, 'update'])->name('update');
             Route::get('show/{product}', [ProductController::class, 'show'])->name('show');
-            Route::get('delete/{product}', [ProductController::class, 'destroy'])->name('destroy');
+            Route::post('delete', [ProductController::class, 'destroy'])->name('destroy');
 
-            Route::post('product/show/price-sale/{productId}', [ProductController::class, 'update_price_sale'])->name('updatePriceSale');
+            Route::post('price-import/{productId}', [ProductController::class, 'priceImport'])->name('priceImport');
+            Route::post('price-sale/{productId}', [ProductController::class, 'priceSale'])->name('priceSale');
         });
-        
+
+        // Discount
+        Route::prefix('discount')->name('discount.')->group(function () {
+            Route::get('/', [DiscountController::class, 'index'])->name('index');
+            Route::get('create', [DiscountController::class, 'create'])->name('create');
+            Route::post('create', [DiscountController::class, 'store'])->name('store');
+            Route::get('edit/{discount}', [DiscountController::class, 'edit'])->name('edit');
+            Route::post('edit/{discount}', [DiscountController::class, 'update'])->name('update');
+        });
+
+        // Category Post
+        Route::prefix('category-post')->name('categoryPost.')->group(function (){
+            Route::get('/', [CategoryPostController::class, 'index'])->name('index');
+        });
+
+
+        // Post
+        Route::prefix('post')->name('post.')->group(function() {
+            Route::get('/', [PostController::class, 'index'])->name('index');
+        });         
 
         //Order
         Route::prefix('order')->name('order.')->group(function () {

@@ -67,6 +67,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('discount.index') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-pin"></i>
+                                </span>
+                                <span class="hide-menu">Mã giảm giá</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('order.index')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-file-invoice"></i>
@@ -81,7 +89,7 @@
                             <span class="hide-menu">Quản lý bài viết</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('categoryPost.index') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-menu"></i>
                                 </span>
@@ -90,7 +98,7 @@
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('post.index') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-book"></i>
                                 </span>
@@ -276,19 +284,61 @@
                 });
             });
 
-        })
-    </script>
 
 
+            // delete origin
+            $('.delete-origin').click(function(e){
+                e.preventDefault();
+    
+                var id = $(this).data('id_origin');
+                var _token = $('input[name="_token"]').val();
+    
+                Swal.fire({
+                    title: "Bạn có chắc chắn?",
+                    text: "Bạn sẽ không thể khôi phục lại điều này!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Có, xóa nó đi!",
+                    cancelButtonText: "Hủy"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('origin.destroy') }}",
+                            method: "POST",
+                            data: {
+                                origin_id: id,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                Swal.fire({
+                                    title: "Đã xóa!",
+                                    text: "Dữ liệu đã được xóa thành công.",
+                                    icon: "success"
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                Swal.fire({
+                                    title: "Lỗi!",
+                                    text: "Đã xảy ra lỗi. Vui lòng thử lại.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
 
 
-    <script>
-        $(document).ready(function() {
             // delete category product
             $('.delete-category-product').click(function(e){
                 e.preventDefault();
 
-                var id = $(this).data('id_categoryProduct');
+                var id = $(this).data('id_category');
                 var _token = $('input[name="_token"]').val();
 
                 Swal.fire({
@@ -329,10 +379,58 @@
                         });
                     }
                 });
-
             });
-        });
 
+
+            // delete product
+            $('.delete-product').click(function(e){
+                e.preventDefault();
+
+                var id = $(this).data('id_product');
+                var _token = $('input[name="_token"]').val();
+
+                Swal.fire({
+                    title: "Bạn có chắc chắn?",
+                    text: "Bạn sẽ không thể khôi phục lại điều này!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Có, xóa nó đi!",
+                    cancelButtonText: "Hủy"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('product.destroy') }}",
+                            method: "POST",
+                            data: {
+                                product_id: id,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                Swal.fire({
+                                    title: "Đã xóa!",
+                                    text: "Dữ liệu đã được xóa thành công.",
+                                    icon: "success"
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                Swal.fire({
+                                    title: "Lỗi!",
+                                    text: "Đã xảy ra lỗi. Vui lòng thử lại.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+
+        })
     </script>
 
     
