@@ -35,6 +35,9 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Mô tả</h6>
                                 </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 text-center">Trạng thái</h6>
+                                </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
                                 </th>
@@ -53,6 +56,15 @@
                                         </td>
                                         <td class="border-bottom-0">
                                             <p class="mb-0 fw-semibold">{!! $origin->description !!}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <span class="text-ellipsis">
+                                                @if ($origin->status == 0)
+                                                    <a href="{{ route('origin.active', $origin->id) }}" class="btn btn-success">Hiển thị</a>
+                                                @else
+                                                    <a href="{{ route('origin.hidden', $origin->id) }}" class="btn btn-warning">Ẩn</a>
+                                                @endif
+                                            </span>
                                         </td>
                                         <td class="border-bottom-0 text-center d-flex justify-content-center">
                                             

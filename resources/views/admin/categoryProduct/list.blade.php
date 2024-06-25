@@ -39,7 +39,7 @@
                                     <h6 class="fw-semibold mb-0">Mô tả</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Hiện thị</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Trạng thái</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
@@ -63,20 +63,14 @@
                                         <td class="border-bottom-0">
                                             <p class="mb-0 fw-semibold">{!! $categoryProduct->description !!}</p>
                                         </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-semibold">
-                                                <span class="text-ellipsis">
-                                                    @if ($categoryProduct->status == 1)
-                                                        <a href="{{ route('categoryProduct.active', $categoryProduct->id) }}">
-                                                            <span class="fa-styling fa-solid fa-thumbs-down">Hiện thị</span>
-                                                        </a>
-                                                    @else
-                                                        <a href="{{ route('categoryProduct.hidden', $categoryProduct->id) }}">
-                                                            <span class="fa-styling fa-solid fa-thumbs-up">Ẩn</span>
-                                                        </a>
-                                                    @endif
-                                                </span>
-                                            </p>
+                                        <td class="border-bottom-0 text-center">
+                                            <span class="text-ellipsis">
+                                                @if ($categoryProduct->status == 0)
+                                                    <a href="{{ route('categoryProduct.active', $categoryProduct->id) }}" class="btn btn-success">Hiển thị</a>
+                                                @else
+                                                    <a href="{{ route('categoryProduct.hidden', $categoryProduct->id) }}" class="btn btn-warning">Ẩn</a>
+                                                @endif
+                                            </span>
                                         </td>
                                         <td class="border-bottom-0 text-center d-flex justify-content-center">
 

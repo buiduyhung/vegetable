@@ -45,6 +45,9 @@
                                     <h6 class="fw-semibold mb-0">Tính năng</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Trạng thái</h6>
+                                </th>
+                                <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
                                 </th>
                                 
@@ -77,7 +80,15 @@
                                                 <h6 class="fw-semibold mb-0 text-center">Giảm {{ number_format($discount->value) }} VNĐ</h6>
                                             @endif
                                         </td>
-                                        
+                                        <td class="border-bottom-0 text-center">
+                                            <span class="text-ellipsis">
+                                                @if ($discount->status == 1)
+                                                    <a href="{{ route('discount.active', $discount->id) }}" class="btn btn-success">Hiển thị</a>
+                                                @else
+                                                    <a href="{{ route('discount.hidden', $discount->id) }}" class="btn btn-warning">Ẩn</a>
+                                                @endif
+                                            </span>
+                                        </td>
                                         <td class="border-bottom-0 text-center d-flex justify-content-center">
                                             <a href="{{route('discount.edit', $discount)}}" class="btn btn-outline-secondary m-1">Sửa</a>
     

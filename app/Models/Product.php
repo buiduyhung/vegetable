@@ -10,7 +10,20 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $table = 'products';
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'quantity',
+        'sold',
+        'weight',
+        'product_code',
+        'description',
+        'status',
+        'origin_id',
+        'category_id',
+    ];
 
     public function images()
     {

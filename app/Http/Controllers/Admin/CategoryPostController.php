@@ -55,7 +55,6 @@ class CategoryPostController extends Controller
     }
 
     public function destroy(Request $request){
-        
         try {
             $categoryPost = CategoryPost::find($request->input('categoryPost_id'));
             
@@ -71,5 +70,14 @@ class CategoryPostController extends Controller
         }
     }
 
+    public function active($id){
+        CategoryPost::where('id', $id)->update(['status' => '0']);
+        return redirect()->route('categoryPost.index')->with('success', 'Ẩn danh mục bài viết thành công !');
+    }
+
+    public function hidden($id){
+        CategoryPost::where('id', $id)->update(['status' => '1']);
+        return redirect()->route('categoryPost.index')->with('success', 'Hiện danh mục bài viết thành công !');
+    }
 
 }

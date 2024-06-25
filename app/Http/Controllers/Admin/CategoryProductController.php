@@ -100,14 +100,12 @@ class CategoryProductController extends Controller
 
     public function hidden($id){
         CategoryProduct::where('id', $id)->update(['status' => '0']);
-
-        return redirect()->route('categoryProduct.index')->with('msg', 'Ẩn danh mục sản phẩm thành công !');
+        return redirect()->route('categoryProduct.index')->with('success', 'Hiện danh mục sản phẩm thành công !');
     }
 
     public function active($id){
         CategoryProduct::where('id', $id)->update(['status' => '1']);
-
-        return redirect()->route('categoryProduct.index')->with('msg', 'Kích hoạt danh mục sản phẩm thành công !');
+        return redirect()->route('categoryProduct.index')->with('success', 'Ẩn bài danh mục viết thành công !');
     }
     
 }

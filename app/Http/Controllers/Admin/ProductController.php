@@ -4,13 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Models\Price;
 use App\Models\Product;
 use App\Models\ProductImage;
-use App\Models\Category;
-use App\Models\Brand;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
 use App\Models\CategoryProduct;
 use App\Models\Origin;
 use App\Models\PriceImport;
@@ -34,7 +29,6 @@ class ProductController extends Controller
         
         return view('admin.product.list', compact('products'));
     }
-
     
     public function create()
     {   
@@ -44,7 +38,7 @@ class ProductController extends Controller
     }
 
     
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         $arrimages = $data['images'];
@@ -96,9 +90,7 @@ class ProductController extends Controller
             } else {
                 $data['image'] = $product->image;
             }
-
             $product->update($data);
-
             DB::commit();
             return redirect()->route('product.show', $product->id)->with('success', 'Cập nhật sản phẩm thành công!');
         } catch (\Throwable $e) {
@@ -115,7 +107,6 @@ class ProductController extends Controller
                 $product->delete();
                 return response()->json(['success' => true]);
             } else {
-
                 return response()->json(['error' => 'Không có dữ liệu sản phẩm'], 404);
             }
         } catch (\Exception $e) {
@@ -184,5 +175,15 @@ class ProductController extends Controller
             DB::rollback();
             throw $e;
         }
+    }
+
+    public function hidden($id){
+        Product::where('id', $id)->update(['status' => '1']);
+        return redirect()->route('product.index')->with('success', 'Hiện sản phẩm thành công !');
+    }
+
+    public function active($id){
+        Product::where('id', $id)->update(['status' => '0']);
+        return redirect()->route('product.index')->with('success', 'Ẩn sản phẩm thành công !');
     }
 }

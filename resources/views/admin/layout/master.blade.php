@@ -157,6 +157,7 @@
                                 <span class="hide-menu">Đổi mật khẩu</span>
                             </a>
                         </li>
+                        
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('admin.logout')}}" aria-expanded="false">
                                 <span>
@@ -201,13 +202,13 @@
                                         {{ Auth::user()->name }}
                                     </span>    
                                 </a>
-                                {{-- <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
                                     <div class="message-body">
                                         <a href="{{route('admin.logout')}}"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Đăng xuất</a>
                                     </div>
-                                </div> --}}
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -478,6 +479,54 @@
             });
 
 
+            // delete post
+            $('.delete-post').click(function(e){
+                e.preventDefault();
+
+                var id = $(this).data('id_post');
+                var _token = $('input[name="_token"]').val();
+
+                Swal.fire({
+                    title: "Bạn có chắc chắn?",
+                    text: "Bạn sẽ không thể khôi phục lại điều này!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Có, xóa nó đi!",
+                    cancelButtonText: "Hủy"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('post.destroy') }}",
+                            method: "POST",
+                            data: {
+                                post_id: id,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                Swal.fire({
+                                    title: "Đã xóa!",
+                                    text: "Dữ liệu đã được xóa thành công.",
+                                    icon: "success"
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                Swal.fire({
+                                    title: "Lỗi!",
+                                    text: "Đã xảy ra lỗi. Vui lòng thử lại.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+
             // delete category post
             $('.delete-categoryPost').click(function(e){
                 e.preventDefault();
@@ -497,7 +546,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: "{{ route('categoryPost.destroy') }}",
+                            url: "{{ route('post.destroy') }}",
                             method: "POST",
                             data: {
                                 categoryPost_id: id,
@@ -524,6 +573,9 @@
                     }
                 });
             });
+
+
+
 
 
         })

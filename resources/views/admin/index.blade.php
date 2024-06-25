@@ -2,7 +2,6 @@
 
 @section('content')
 
-@if (Auth::guard('admin')->user()->role === 'Quản trị viên')
     <div class="container-fluid">
         <!--  Row 1 -->
         <div class="row">
@@ -188,11 +187,7 @@
             </div>
         </div>
     </div>
-@else
-    <div class="container-fluid text-center ">
-        <h3>Trang này chỉ dành cho quản trị viên.</h3>
-    </div>
-@endif
+
 
 @push('js')
     <script>

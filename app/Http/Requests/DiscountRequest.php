@@ -24,6 +24,7 @@ class DiscountRequest extends FormRequest
         return [
             'name' => 'required|min:2',
             'code' => 'required|min:2',
+            'status' => 'required',
             'quantity' => 'required|min:2',
             'value' => 'required|min:2',
             'condition' => ['required', function($attribute, $value, $fail) {
@@ -50,6 +51,7 @@ class DiscountRequest extends FormRequest
             'quantity' => 'Số lượng mã giảm giá',
             'value' => 'Giá trị mã giảm giá',
             'condition' => 'Tính năng mã giảm giá',
+            'status' => 'Trạng thái mã giảm giá',
         ];
     }
 }

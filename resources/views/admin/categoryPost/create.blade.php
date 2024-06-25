@@ -35,6 +35,18 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Trạng thái</label>
+                        <select name="status" class="form-control m-bot15">
+                            <option value="">-----chọn trạng thái-----</option>
+                            <option value="1">Hiện</option>
+                            <option value="0">Ẩn</option>
+                        </select>
+                        @error('status')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Lưu</button>
                     <a href="{{ route('categoryPost.index') }}" class="btn btn-danger mx-2">Quay lại</a>
                 </form>

@@ -26,14 +26,17 @@
                     <table class="table table-bordered text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
                             <tr>
-                                <th class="border-bottom-0 text-center">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">#</h6>
                                 </th>
-                                <th class="border-bottom-0 text-center">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Tên</h6>
                                 </th>
-                                <th class="border-bottom-0 text-center">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Mô tả</h6>
+                                </th>
+                                <th class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Trạng thái</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
@@ -47,15 +50,23 @@
                                     @csrf
                                     <tr>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0 text-center">{{$categoryPost->id}}</h6>
+                                            <h6 class="fw-semibold mb-0">{{$categoryPost->id}}</h6>
                                         </td>
                                         <td class="border-bottom-0 ">
-                                            <h6 class="fw-semibold mb-0 text-center">{{$categoryPost->name}}</h6>
+                                            <h6 class="fw-semibold mb-0">{{$categoryPost->name}}</h6>
                                         </td>
                                         <td class="border-bottom-0 ">
                                             <h6 class="fw-semibold mb-0 ">{!! $categoryPost->desc !!}</h6>
                                         </td>
-
+                                        <td class="border-bottom-0 text-center">
+                                            <span class="text-ellipsis">
+                                                @if ($categoryPost->status == 1)
+                                                    <a href="{{ route('categoryPost.active', $categoryPost->id) }}" class="btn btn-success">Hiển thị</a>
+                                                @else
+                                                    <a href="{{ route('categoryPost.hidden', $categoryPost->id) }}" class="btn btn-warning">Ẩn</a>
+                                                @endif
+                                            </span>
+                                        </td>
                                         <td class="border-bottom-0 text-center d-flex justify-content-center">
                                             <a href="{{route('categoryPost.edit', $categoryPost)}}" class="btn btn-outline-secondary m-1">Sửa</a>
     

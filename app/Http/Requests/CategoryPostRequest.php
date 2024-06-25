@@ -25,6 +25,7 @@ class CategoryPostRequest extends FormRequest
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'desc' => 'required|string',
+            'status' => 'required',
         ];
     }
 
@@ -43,6 +44,7 @@ class CategoryPostRequest extends FormRequest
             'name' => 'Tên danh mục bài viết',
             'slug' => 'Slug danh mục bài viết',
             'desc' => 'Mô tả danh mục bài viết',
+            'status' => 'Trạng thái bài viết',
         ];
     }
 }

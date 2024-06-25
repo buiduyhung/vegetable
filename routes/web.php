@@ -44,6 +44,7 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AuthController::class, 'loginPost'])->middleware(['guest:admin'])->name('admin.loginPost');
 
     Route::middleware(['auth:admin'])->group(function () {
+
         Route::get('dashboard', [DashboardController::class, 'index'] )->name('admin.dashboard');
 
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
@@ -58,6 +59,9 @@ Route::prefix('admin')->group(function () {
             Route::get('edit/{origin}', [OriginController::class, 'edit'])->name('edit');
             Route::post('edit/{origin}', [OriginController::class, 'update'])->name('update');
             Route::post('delete', [OriginController::class, 'destroy'])->name('destroy');
+
+            Route::get('active/{id}', [OriginController::class, 'active'])->name('active');
+            Route::get('hidden/{id}', [OriginController::class, 'hidden'])->name('hidden');
         });
 
         //Category product
@@ -86,6 +90,9 @@ Route::prefix('admin')->group(function () {
 
             Route::post('price-import/{productId}', [ProductController::class, 'priceImport'])->name('priceImport');
             Route::post('price-sale/{productId}', [ProductController::class, 'priceSale'])->name('priceSale');
+
+            Route::get('active/{id}', [ProductController::class, 'active'])->name('active');
+            Route::get('hidden/{id}', [ProductController::class, 'hidden'])->name('hidden');
         });
 
         // Discount
@@ -96,6 +103,9 @@ Route::prefix('admin')->group(function () {
             Route::get('edit/{discount}', [DiscountController::class, 'edit'])->name('edit');
             Route::post('edit/{discount}', [DiscountController::class, 'update'])->name('update');
             Route::post('delete', [DiscountController::class, 'destroy'])->name('destroy');
+
+            Route::get('active/{post}', [DiscountController::class, 'active'])->name('active');
+            Route::get('hidden/{post}', [DiscountController::class, 'hidden'])->name('hidden');
         });
 
         // Category Post
@@ -106,17 +116,24 @@ Route::prefix('admin')->group(function () {
             Route::get('edit/{categoryPost}', [CategoryPostController::class, 'edit'])->name('edit');
             Route::post('edit/{categoryPost}', [CategoryPostController::class, 'update'])->name('update');
             Route::post('delete', [CategoryPostController::class, 'destroy'])->name('destroy');
+
+            Route::get('active/{post}', [CategoryPostController::class, 'active'])->name('active');
+            Route::get('hidden/{post}', [CategoryPostController::class, 'hidden'])->name('hidden');
         });
 
 
         // Post
         Route::prefix('post')->name('post.')->group(function() {
             Route::get('/', [PostController::class, 'index'])->name('index');
+            Route::get('show/{post}', [PostController::class, 'show'])->name('show');
             Route::get('create', [PostController::class, 'create'])->name('create');
             Route::post('create', [PostController::class, 'store'])->name('store');
-            Route::get('edit/{categoryPost}', [PostController::class, 'edit'])->name('edit');
-            Route::post('edit/{categoryPost}', [PostController::class, 'update'])->name('update');
+            Route::get('edit/{post}', [PostController::class, 'edit'])->name('edit');
+            Route::put('edit/{post}', [PostController::class, 'update'])->name('update');
             Route::post('delete', [PostController::class, 'destroy'])->name('destroy');
+
+            Route::get('active/{post}', [PostController::class, 'active'])->name('active');
+            Route::get('hidden/{post}', [PostController::class, 'hidden'])->name('hidden');
         });         
 
         //Order

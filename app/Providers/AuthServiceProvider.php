@@ -30,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         /*
         users.view
         */
+
         $modules = Module::all();
 
         if($modules->count() > 0){

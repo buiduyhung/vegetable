@@ -81,26 +81,6 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3">
-                        <label for="price_import" class="form-label">Giá nhập
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="number" class="form-control" name="price_import" id="price_import" value="{{$prices['price_import']}}">
-                        @error('price_import')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="price_sale" class="form-label">Giá bán
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="number" class="form-control" name="price_sale" id="price_sale" value="{{$prices['price_sale']}}">
-                        @error('price_sale')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div> --}}
-
                     <div class="mb-3">
                         <label for="quantity" class="form-label">Số lượng
                             <span class="text-danger">*</span>

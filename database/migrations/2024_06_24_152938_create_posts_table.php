@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->nullable();
-            $table->string('desc');
+            $table->text('desc');
             $table->string('image');
-            $table->string('content');
+            $table->longText('content');
+            $table->unsignedBigInteger('categoryPost_id');
+            $table->string('status');
             $table->timestamps();
+
+            $table->foreign('categoryPost_id')->references('id')->on('category_posts')->onDelete('cascade');
         });
     }
 

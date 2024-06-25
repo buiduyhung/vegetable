@@ -2,24 +2,25 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="mt-4">Thêm danh mục sản phẩm</h1>
+        <h1 class="mt-4">Thêm bài viết</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('categoryProduct.index') }}">Danh sách danh mục sản phẩm</a></li>
-            <li class="breadcrumb-item active">Thêm danh mục sản phẩm</li>
+            <li class="breadcrumb-item"><a href="{{ route('post.index') }}">Danh sách bài viết</a></li>
+            <li class="breadcrumb-item active">Thêm bài viết</li>
         </ol>
 
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
-                <form method="POST" action="{{route('categoryProduct.store')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('post.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Tên</label>
+                        <label for="name" class="form-label">Tên bài viết</label>
                         <input type="text" name="name" class="form-control title" id="name">
                         @error('name')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="slug" class="form-label">Slug</label>
                         <input type="text" name="slug" class="form-control slug" id="slug">
@@ -27,10 +28,32 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
+
                     <div class="mb-3">
-                        <label for="description" class="form-label">Mô tả</label>
-                        <textarea style="resize: none;" rows="5" type="text" name="description" class="form-control ckeditor" id="description"></textarea>
-                        @error('description')
+                        <label for="categoryPost_id" class="form-label">Danh Mục</label>
+                        <select class="form-select" name="categoryPost_id" id="categoryPost_id">
+                            <option value="" disabled selected>--- Chọn danh mục bài viết ---</option>
+                            @foreach ($categoryPosts as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('categoryPost_id')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Mô tả</label>
+                        <textarea style="resize: none;" rows="5" type="text" name="desc" class="form-control" id="desc"></textarea>
+                        @error('desc')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Nội dung</label>
+                        <textarea style="resize: none;" rows="5" type="text" name="content" class="form-control ckeditor" id="content"></textarea>
+                        @error('content')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
@@ -55,9 +78,8 @@
                         @enderror
                     </div>
 
-
                     <button type="submit" class="btn btn-primary">Lưu</button>
-                    <a href="{{ route('categoryProduct.index') }}" class="btn btn-danger mx-2">Quay lại</a>
+                    <a href="{{ route('post.index') }}" class="btn btn-danger mx-2">Quay lại</a>
                 </form>
             </div>
         </div>

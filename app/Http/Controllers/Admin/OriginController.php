@@ -79,4 +79,14 @@ class OriginController extends Controller
             return response()->json(['error' => 'An error occurred'], 500);
         }
     }
+
+    public function hidden($id){
+        Origin::where('id', $id)->update(['status' => '0']);
+        return redirect()->route('origin.index')->with('success', 'Hiện xuất xứ thành công !');
+    }
+
+    public function active($id){
+        Origin::where('id', $id)->update(['status' => '1']);
+        return redirect()->route('origin.index')->with('success', 'Ẩn xuất xứ thành công !');
+    }
 }

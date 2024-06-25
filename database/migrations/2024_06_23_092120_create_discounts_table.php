@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('condition');
             $table->integer('value');
-            $table->tinyInteger('status')->default(1);
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -71,4 +71,14 @@ class DiscountController extends Controller
         }
     }
 
+    public function hidden($id){
+        Discount::where('id', $id)->update(['status' => '1']);
+        return redirect()->route('discount.index')->with('success', 'Hiện mã giảm giá thành công !');
+    }
+
+    public function active($id){
+        Discount::where('id', $id)->update(['status' => '0']);
+        return redirect()->route('discount.index')->with('success', 'Ẩn mã giảm giá thành công !');
+    }
+
 }

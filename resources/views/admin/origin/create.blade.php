@@ -35,7 +35,18 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-
+                    
+                    <div class="mb-3">
+                        <label for="status">Trạng thái</label>
+                        <select name="status" class="form-control m-bot15">
+                            <option value="">---- chọn trạng thái -----</option>
+                            <option value="1">Hiện</option>
+                            <option value="0">Ẩn</option>
+                        </select>
+                        @error('image')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Lưu</button>
                     <a href="{{ route('origin.index') }}" class="btn btn-danger mx-2">Quay lại</a>

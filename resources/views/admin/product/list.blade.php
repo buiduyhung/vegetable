@@ -39,7 +39,7 @@
                                     <h6 class="fw-semibold mb-0">Đã bán</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">Khối lượng</h6>
+                                    <h6 class="fw-semibold mb-0">Trạng thái</h6>
                                 </th>
                                 <th class="border-bottom-0 text-end">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
@@ -71,7 +71,13 @@
                                             <p class="fw-semibold mb-0">{{$product->sold}}</p>
                                         </td>
                                         <td class="border-bottom-0 text-center">
-                                            <p class="fw-semibold mb-0">{{$product->weight}}</p>
+                                            <span class="text-ellipsis">
+                                                @if ($product->status == 1)
+                                                    <a href="{{ route('product.active', $product->id) }}" class="btn btn-success">Hiển thị</a>
+                                                @else
+                                                    <a href="{{ route('product.hidden', $product->id) }}" class="btn btn-warning">Ẩn</a>
+                                                @endif
+                                            </span>
                                         </td>
                                         <td class="border-bottom-0 text-end">
                                             <a href="{{route('product.show', $product)}}" class="btn btn-outline-info m-1">Chi tiết</a>
