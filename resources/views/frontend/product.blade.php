@@ -41,7 +41,9 @@
                 <form action="{{route('cart.add', $product)}}">
                     <div class="product__details__text">
                         <h3>{{$product->name}}</h3>
-                        <div class="product__details__price">{{convertPrice($product->price)}}</div>
+
+                        <div class="product__details__price"> {{ convertPrice($priceSale->price_sale) }} </div>
+
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty shop">
@@ -61,8 +63,8 @@
                                 @endif
                             </li>
                             <li><b>Đã bán</b> {{$product->sold}} sản phẩm</li>
-                            <li><b>Thương hiệu</b> {{$product->brand->name}}</li>
-                            <li><b>Khối lượng</b>{{$product->weight}}/chùm</li>
+                            <li><b>Thương hiệu</b> {{$product->origin->name}}</li>
+                            <li><b>Khối lượng</b>{{$product->weight}}/túi</li>
                             <li><b>Chính sách giao hàng</b>Nhận hàng trong 4 tiếng - 6 tiếng</li>
                             <li><b>Chia sẻ</b>
                                 <div class="share">
@@ -80,15 +82,15 @@
                 <div class="product__details__tab">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                aria-selected="true">Thông tin sản phẩm</a>
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">Thông tin sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" aria-selected="false">Chính
-                                sách vận chuyển</a>
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" aria-selected="false">Chính sách vận chuyển</a>
                         </li>
                     </ul>
+
                     <div class="tab-content">
+                        
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
                             <div class="product__details__tab__desc">
                                 {!!$product->description!!}

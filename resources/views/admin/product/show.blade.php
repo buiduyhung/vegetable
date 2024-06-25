@@ -71,11 +71,13 @@
                         </div>
                     </div>
                     <hr>
+                    
                     <div class="mb-3 mt-5">
                         <label for="description" class="form-label">Mô tả</label>
                         {!!$product->description!!}
                     </div>
                     <hr>
+                    <a href="{{ route('product.index') }}" class="btn btn-danger mx-2">Quay lại</a>
                 </div>
             </div>
         </div>
@@ -138,7 +140,7 @@
                             </div>
     
                             <button type="submit" class="btn btn-primary">Cập nhật</button>
-                            <a href="{{ route('product.index') }}" class="btn btn-danger mx-2">Quay lại</a>
+                            
                         </form>
                         
                     </div>
@@ -196,7 +198,7 @@
                             </div>
     
                             <button type="submit" class="btn btn-primary">Cập nhật</button>
-                            <a href="{{ route('product.index') }}" class="btn btn-danger mx-2">Quay lại</a>
+                            {{-- <a href="{{ route('product.index') }}" class="btn btn-danger mx-2">Quay lại</a> --}}
                         </form>
                         
                     </div>

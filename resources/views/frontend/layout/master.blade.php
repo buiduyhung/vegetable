@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Nông Sản Việt</title>
 
-    {{-- <link rel="shortcut icon" type="image/png" href="#" /> --}}
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
@@ -72,7 +71,7 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> vegetable@gmail.com</li>
+                <li><i class="fa fa-envelope"></i> nongsanviet@gmail.com</li>
                 <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 199,000đ</li>
             </ul>
         </div>
@@ -87,7 +86,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> vegetable@gmail.com</li>
+                                <li><i class="fa fa-envelope"></i> nongsanviet@gmail.com</li>
                                 <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 199,000đ</li>
                             </ul>
                         </div>
@@ -135,6 +134,7 @@
                                     @endforeach   
                                </ul>
                             </li>
+                            <li><a href="{{route('shop')}}">Bài viết</a></li>
                             <li><a href="{{route('contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>

@@ -111,7 +111,7 @@
                         <label for="description" class="form-label">Mô tả
                             <span class="text-danger">*</span>
                         </label>
-                        <textarea class="form-control ckeditor" name="description" id="editor"></textarea>
+                        <textarea class="form-control ckeditor" name="description" id="editor" row=10></textarea>
                         @error('description')
                             <p class="text-danger">{{$message}}</p>
                         @enderror

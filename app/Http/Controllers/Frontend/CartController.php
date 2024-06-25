@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\PriceSale;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -14,6 +15,9 @@ class CartController extends Controller
 
     public function add(Product $product, Request $request){
         $quantity = $request->quantity ?? 1;
+
+        $priceSale = PriceSale::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->first();
+        $priceProduct = $priceSale->price_sale;
 
         if($quantity > $product->quantity){
             toastr()->error('Quá số lượng sản phẩm.');
@@ -31,7 +35,7 @@ class CartController extends Controller
                     'image' => $product->images->first()->image,
                     'name' => $product->name,
                     'quantity' => $quantity,
-                    'price'=> $product->price,
+                    'price'=> $priceProduct,
                 ];
             }
             session()->put('cart', $cart);

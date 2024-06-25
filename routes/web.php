@@ -18,8 +18,6 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\AuthUserController;
 use App\Http\Controllers\Frontend\AccountController;
-use App\Models\Admin;
-use App\Models\Origin;
 
 /*
 |--------------------------------------------------------------------------

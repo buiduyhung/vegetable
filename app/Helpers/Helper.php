@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists('convertPrice')) {
-    function convertPrice($amount, $currency = 'đ')
+    function convertPrice($amount, $currency = ' VNĐ')
     {
         return number_format($amount) . $currency;
     }

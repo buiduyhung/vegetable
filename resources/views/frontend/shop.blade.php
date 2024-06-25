@@ -56,7 +56,7 @@
                                 <button type="submit" class="btn text-white mt-2 px-3" style="background: #7fad39">Lọc</button>
                             </div>
                             <div class="sidebar__item">
-                                <h4>Thương hiệu</h4>
+                                <h4>Xuất xứ</h4>
                                 @foreach($brands as $brand)
                                     <div class="sidebar__item__publisher">
                                         <input type="checkbox" name="brand[{{$brand->id}}]" id="{{$brand->name}}" 
@@ -131,7 +131,7 @@
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
-                                            <span>{{$product->brand->name}}</span>
+                                            <span>{{$product->origin->name}}</span>
                                             <h5><a href="{{route('product', [$product, Str::slug($product->name)] )}}">{{$product->name}}</a></h5>
                                             <div class="product__item__price">{{convertPrice($product->price)}}</div>
                                         </div>

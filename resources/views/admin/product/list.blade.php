@@ -32,6 +32,9 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Tên</h6>
                                 </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Loại sản phẩm</h6>
+                                </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Số lượng</h6>
                                 </th>
@@ -63,6 +66,9 @@
                                                 <h6 class="fw-semibold mb-1">{{$product->name}}</h6>
                                                 <span class="fw-normal">{{$product->origin->name}}</span> 
                                             </div>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$product->category->name}}</p>
                                         </td>
                                         <td class="border-bottom-0 text-center">
                                             <p class="fw-semibold mb-0">{{$product->quantity}}</p>
