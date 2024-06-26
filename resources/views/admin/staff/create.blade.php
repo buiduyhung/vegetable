@@ -1,7 +1,6 @@
 @extends('admin.layout.master')
 
 @section('content')   
-
     <div class="container-fluid">
         <h1 class="mt-4">Thêm nhân viên</h1>
         <ol class="breadcrumb mb-4">
@@ -29,13 +28,14 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="role" class="form-label">Chức vụ</label>
-                        <select name="role" id="role" class="form-select">
+                        <label for="group_id" class="form-label">Chức vụ</label>
+                        <select name="group_id" id="group_id" class="form-select">
                             <option value="" disabled selected>--- Chọn chức vụ ---</option>
-                            <option value="Quản trị viên">Quản trị viên</option>
-                            <option value="Nhân viên">Nhân viên</option>
+                            @foreach ($groups as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
                         </select>
-                        @error('role')
+                        @error('group_id')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>

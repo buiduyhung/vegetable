@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CheckoutController extends Controller
 {
@@ -31,7 +33,7 @@ class CheckoutController extends Controller
 
 
         $data['total_price'] = session('total_price');
-        $data['user_id'] = \Auth::id();
+        $data['user_id'] = Auth::id();
         $data['status'] = 2; // trang thai chờ xác nhận
 
         /* Nếu thanh toán COD */
@@ -61,7 +63,7 @@ class CheckoutController extends Controller
             ];
             $data_url = $this->vnpay_create_payment($data);
             //chuyển hướng đến URL lấy được
-            \Redirect::to($data_url)->send();
+            Redirect::to($data_url)->send();
         }
 
     }
@@ -142,7 +144,6 @@ class CheckoutController extends Controller
             'message' => 'success',
             'data' => $vnp_Url
         ];
-
 
         return $returnData['data']; 
     }

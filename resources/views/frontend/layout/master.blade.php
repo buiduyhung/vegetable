@@ -61,7 +61,7 @@
                          @endforeach   
                     </ul>
                 </li>
-                <li><a href="#">Bài viết</a></li>
+                <li><a href="{{ route('blog') }}">Bài viết</a></li>
                 <li><a href="{{route('contact')}}">Liên hệ</a></li>
             </ul>
         </nav>
@@ -134,7 +134,7 @@
                                     @endforeach   
                                </ul>
                             </li>
-                            <li><a href="{{route('shop')}}">Bài viết</a></li>
+                            <li><a href="{{route('blog')}}">Bài viết</a></li>
                             <li><a href="{{route('contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>

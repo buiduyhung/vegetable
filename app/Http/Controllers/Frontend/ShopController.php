@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Models\PriceImport;
 use App\Models\PriceSale;
 
 class ShopController extends Controller
@@ -13,11 +14,11 @@ class ShopController extends Controller
     public function index(){
         $topSellingProducts = Product::orderByDesc('sold')->get()->take(10);
         $latestProducts = Product::orderByDesc('id')->get()->take(8);
+        
         return view('frontend.index', compact('topSellingProducts','latestProducts'));
     }
 
     public function shop(Request $request){
-        
         $keyword = $request->input('search');
        
         $products = Product::when($keyword, function($query,$keyword){
@@ -59,12 +60,12 @@ class ShopController extends Controller
 
     protected function filter($products, $request){
         
-        /* Thương hiệu */
+        /* xuất xứ */
         $brands = $request->input('brand') ?? [];
         $arr_brands = array_keys($brands);
 
         $products = $products->when($arr_brands, function($query, $arr_brands){
-            return $query->whereIn('brand_id', $arr_brands);
+            return $query->whereIn('origin_id', $arr_brands);
         });
 
         /* Lọc giá */
@@ -79,6 +80,8 @@ class ShopController extends Controller
 
     protected function sortByAndPaginate($products,Request $request){
         $sortBy = $request->input('sort_by') ?? 'latest';
+
+        // $price = PriceImport::where('product_id', $products->id)->orderBy('update_at', 'DESC')->first();
         
         switch ($sortBy) {
             case 'latest':
@@ -106,6 +109,7 @@ class ShopController extends Controller
     }
 
     public function contact(){
+
         return view('frontend.contact');
     }
 }

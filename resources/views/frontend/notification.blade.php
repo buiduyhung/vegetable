@@ -13,7 +13,7 @@
                 <h4 class="text-success mt-2 mb-3">Đặt hàng thành công</h4>
             </span>
             <p>
-                Cảm ơn, đơn hàng của bạn đã thành công, đơn hàng sẽ được chuyển đi trong vài ngày tới.
+                Cảm ơn, đơn hàng của bạn đã được chuyển đến kho giao hàng. 
             </p>
         </div>
     </div>

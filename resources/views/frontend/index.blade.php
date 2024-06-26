@@ -9,7 +9,7 @@
                 <div class="col-lg-12">
                     <div class="hero__item set-bg" data-setbg="/assets/frontend/img/hero/banner-main.jpg">
                         <div class="hero__text">
-                            <span>HOA QUẢ SẠCH</span>
+                            <span>NÔNG SẢN VIỆT</span>
                             <h2>Giảm giá tới<br />25% cho đơn hàng</h2>
                             <p>Đặt hàng và giao hàng miễn phí ngay hôm nay</p>
                             <a href="{{route('shop')}}" class="primary-btn">Mua ngay</a>
@@ -22,7 +22,7 @@
     <!-- Banner Section End -->
    
     <!-- Categories Section Begin -->
-    <section class="categories mt-5">
+    {{-- <section class="categories mt-5">
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->

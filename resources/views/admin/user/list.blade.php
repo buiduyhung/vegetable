@@ -18,9 +18,7 @@
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
 
-                    {{-- @can('create', App\Models\Admin::class)
-                        <a href="{{route('user.create')}}" class="btn btn-primary m-1">Thêm khách hàng</a>
-                    @endcan --}}
+                    <a href="{{route('user.create')}}" class="btn btn-primary m-1">Thêm</a>
                    
                 </div>
                 <hr>

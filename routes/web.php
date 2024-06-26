@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\AuthUserController;
 use App\Http\Controllers\Frontend\AccountController;
+use App\Http\Controllers\Frontend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,8 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-//Admin
+//--------------------------Admin-------------------------------------
+
 Route::prefix('admin')->group(function () {
 
     //Auth
@@ -162,9 +164,11 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [StaffController::class, 'index'])->name('index');
             Route::get('create', [StaffController::class, 'create'])->name('create');
             Route::post('create', [StaffController::class, 'store'])->name('store');
-            Route::get('edit/{staff}', [StaffController::class, 'edit'])->name('edit');
-            Route::post('edit/{staff}', [StaffController::class, 'update'])->name('update');
-            Route::get('destroy/{staff}', [StaffController::class, 'destroy'])->name('destroy');
+            Route::get('edit/{admin}', [StaffController::class, 'edit'])->name('edit');
+            Route::post('edit/{admin}', [StaffController::class, 'update'])->name('update');
+            Route::get('destroy/{admin}', [StaffController::class, 'destroy'])->name('destroy');
+
+            Route::get('profile', [StaffController::class, 'profile'])->name('profile');
         });
         
 
@@ -186,8 +190,14 @@ Route::prefix('admin')->group(function () {
 });
 
 
+// ----------------------------------------- Home --------------------------------------------------------
+
 
 Route::get('/', [ShopController::class, 'index'])->name('home');
+
+Route::get('/bai-viet', [HomeController::class, 'blog'])->name('blog');
+Route::get('/bai-viet-chi-tiet/{id}', [HomeController::class, 'blogDetail'])->name('blogDetail');
+
 Route::get('/cua-hang', [ShopController::class, 'shop'])->name('shop');
 Route::get('/danh-muc/{category_id}', [ShopController::class, 'getProductByCategory'])->name('category');
 Route::get('/thuong-hieu/{brand_id?}', [ShopController::class, 'getProductByBrand'])->name('brand');
@@ -199,6 +209,7 @@ Route::get('/cart/add/{product}', [CartController::class, 'add'])->name('cart.ad
 Route::get('/cart/increase/{product_id}', [CartController::class, 'increase'])->name('cart.increase');
 Route::get('/cart/decrease/{product_id}', [CartController::class, 'decrease'])->name('cart.decrease');
 Route::get('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
+
 
 Route::middleware(['guest:web'])->group(function () {
     Route::get('/dang-nhap', [AuthUserController::class, 'login'])->name('login');

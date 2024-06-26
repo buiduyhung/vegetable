@@ -15,7 +15,7 @@
                     <hr>
                     <div class="table-responsive">
                         <table class="table table-bordered text-nowrap mb-0 align-middle">
-                            <thead class="text-dark fs-4">
+                            <thead class="text-dark fs-4" style="background-color: aliceblue;">
                                 <tr>
                                     <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">Mã sản phẩm</h6>
@@ -99,7 +99,7 @@
                         <hr>
                         <div class="table-responsive">
                             <table class="table table-bordered text-nowrap mb-0 align-middle">
-                                <thead class="text-dark fs-4">
+                                <thead class="text-dark fs-4" style="background-color: aliceblue;">
                                     <tr>
                                         <th class="border-bottom-0">
                                             <h6 class="fw-semibold mb-0">Ngày nhập</h6>
@@ -157,7 +157,7 @@
                         <hr>
                         <div class="table-responsive">
                             <table class="table table-bordered text-nowrap mb-0 align-middle">
-                                <thead class="text-dark fs-4">
+                                <thead class="text-dark fs-4" style="background-color: aliceblue;">
                                     <tr>
                                         <th class="border-bottom-0">
                                             <h6 class="fw-semibold mb-0">Ngày bán</h6>

@@ -143,7 +143,7 @@
                             <span class="hide-menu">Quản lý thông tin tài khoản</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('staff.profile') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-user"></i>
                                 </span>

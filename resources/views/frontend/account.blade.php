@@ -72,7 +72,7 @@
                     <h2>Tài khoản</h2>
                     <div class="breadcrumb__option">
                         <a href="/">Trang chủ</a>
-                        <span>Tài khoản</span>
+                        <span>Thông tin cá nhân</span>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 @endif
                 <nav>
                     <div class="nav nav-tabs nav-fill">
-                        <a style="color: #7fad39" href="{{route('account')}}" class="nav-item nav-link {{ request()->segment(1) == 'tai-khoan' ? 'active' : ''}}">Tài khoản</a>
+                        <a style="color: #7fad39" href="{{route('account')}}" class="nav-item nav-link {{ request()->segment(1) == 'tai-khoan' ? 'active' : ''}}">Thông tin tài khoản</a>
                         <a style="color: #7fad39" href="{{route('account.orderHistory')}}" class="nav-item nav-link {{ request()->segment(1) == 'lich-su-don-hang' ? 'active' : ''}}" >Lịch sử đơn hàng</a>
                         <a style="color: #7fad39" href="{{route('account.change-password')}}" class="nav-item nav-link {{ request()->segment(1) == 'doi-mat-khau' ? 'active' : ''}}">Đổi mật khẩu</a>
                     </div>

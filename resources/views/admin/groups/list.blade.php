@@ -19,15 +19,15 @@
                         placeholder="Tên nhóm" name="name" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
-                    <a href="{{route('group.create')}}" class="btn btn-primary m-1">Thêm nhóm</a>
+                    <a href="{{route('group.create')}}" class="btn btn-primary m-1">Thêm</a>
                 </div>
                 <hr>
                 <div class="table-responsive">
                     <table class="table table-bordered text-nowrap mb-0 align-middle">
-                        <thead class="text-dark fs-4">
+                        <thead class="text-dark fs-4" style="background-color: aliceblue;">
                             <tr>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Id</h6>
+                                    <h6 class="fw-semibold mb-0">#</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Tên</h6>

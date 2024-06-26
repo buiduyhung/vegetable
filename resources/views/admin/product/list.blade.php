@@ -16,12 +16,12 @@
                         placeholder="Mã sản phẩm" name="product_code" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
-                    <a href="{{route('product.create')}}" class="btn btn-primary m-1">Thêm sản phẩm</a>
+                    <a href="{{route('product.create')}}" class="btn btn-primary m-1">Thêm</a>
                 </div>
                 <hr>
                 <div class="table-responsive">
                     <table class="table table-bordered text-nowrap mb-0 align-middle">
-                        <thead class="text-dark fs-4">
+                        <thead class="text-dark fs-4" style="background-color: aliceblue;">
                             <tr>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">ID</h6>

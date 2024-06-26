@@ -19,12 +19,12 @@
                         placeholder="Tên nhóm" name="name" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
-                    <a href="{{ route('categoryPost.create') }}" class="btn btn-primary m-1">Thêm danh mục bài viết</a>
+                    <a href="{{ route('categoryPost.create') }}" class="btn btn-primary m-1">Thêm</a>
                 </div>
                 <hr>
                 <div class="table-responsive">
                     <table class="table table-bordered text-nowrap mb-0 align-middle">
-                        <thead class="text-dark fs-4">
+                        <thead class="text-dark fs-4" style="background-color: aliceblue;">
                             <tr>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">#</h6>
@@ -55,7 +55,7 @@
                                         <td class="border-bottom-0 ">
                                             <h6 class="fw-semibold mb-0">{{$categoryPost->name}}</h6>
                                         </td>
-                                        <td class="border-bottom-0 ">
+                                        <td class="border-bottom-0" style="max-width: 330px; white-space: normal; text-align: justify;">
                                             <h6 class="fw-semibold mb-0 ">{!! $categoryPost->desc !!}</h6>
                                         </td>
                                         <td class="border-bottom-0 text-center">
@@ -67,7 +67,7 @@
                                                 @endif
                                             </span>
                                         </td>
-                                        <td class="border-bottom-0 text-center d-flex justify-content-center">
+                                        <td class="border-bottom-0 text-center">
                                             <a href="{{route('categoryPost.edit', $categoryPost)}}" class="btn btn-outline-secondary m-1">Sửa</a>
     
                                             <button type="button" name="delete-categoryPost" data-id_categoryPost="{{ $categoryPost->id }}" class="btn btn-outline-danger m-1 delete-categoryPost">

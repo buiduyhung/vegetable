@@ -29,9 +29,9 @@ class AppServiceProvider extends ServiceProvider
         $brands = Origin::all();
 
         $sevenDaysAgo = now()->subDays(7);
-        $topProduct_ids = Product::select('products.id as product_id', DB::raw('SUM(order_detail.quantity) as totalSold'))
-                    ->join('order_detail', 'products.id', '=', 'order_detail.product_id')
-                    ->join('orders', 'order_detail.order_id', '=', 'orders.id')
+        $topProduct_ids = Product::select('products.id as product_id', DB::raw('SUM(order_product.quantity) as totalSold'))
+                    ->join('order_product', 'products.id', '=', 'order_product.product_id')
+                    ->join('orders', 'order_product.order_id', '=', 'orders.id')
                     ->where('orders.created_at', '>=', $sevenDaysAgo)
                     ->groupBy('product_id')
                     ->orderByDesc('totalSold')
