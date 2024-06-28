@@ -53,7 +53,7 @@
                                                 <div class="quantity">
                                                     <div class="pro-qty">
                                                         <input type="hidden" id="product_id" value="{{$item['product_id']}}">
-                                                        <input type="text" value="{{$item['quantity']}}" name="quantity">
+                                                        <input type="number" value="{{$item['quantity']}}" name="quantity">
                                                     </div>
                                                 </div>
                                             </td>

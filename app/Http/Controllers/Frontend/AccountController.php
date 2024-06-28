@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
-use Hash;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -14,7 +15,7 @@ class AccountController extends Controller
     }
 
     public function updateAccount(Request $request){
-        $user = \Auth::guard('web')->user();
+        $user = Auth::guard('web')->user();
         if($request->avatar){
             $file = $request->avatar;
             $imageName = $file->hashName();
@@ -32,7 +33,7 @@ class AccountController extends Controller
     }
 
     public function orderHistory(){
-        $orders = Order::where('user_id', \Auth::guard('web')->id())->orderByDesc('id')->paginate(10);
+        $orders = Order::where('user_id', Auth::guard('web')->id())->orderByDesc('id')->paginate(10);
         return view('frontend.order-history', compact('orders'));
     }
 
@@ -69,7 +70,7 @@ class AccountController extends Controller
     }
 
     public function updatePassword(Request $request){
-        $user = \Auth::guard('web')->user();
+        $user = Auth::guard('web')->user();
 
         $request->validate([
             'old_password' => 'required',
@@ -87,6 +88,10 @@ class AccountController extends Controller
         $user->save();
         toastr()->success('Thay đổi mật khẩu thành công.');
         return redirect()->back();
-
     }
+
+    public function feedback(Request $request, Order $order){
+        
+    }
+
 }

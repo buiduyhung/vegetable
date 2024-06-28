@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\OriginController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductCodeController;
+use App\Http\Controllers\Admin\TotalController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -45,12 +46,16 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AuthController::class, 'loginPost'])->middleware(['guest:admin'])->name('admin.loginPost');
 
     Route::middleware(['auth:admin'])->group(function () {
-
+        // dashboard
         Route::get('dashboard', [DashboardController::class, 'index'] )->name('admin.dashboard');
+        // total
+        Route::get('total', [TotalController::class, 'index'] )->name('admin.total');
+
 
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('change-password', [AuthController::class, 'password'])->name('admin.password');
         Route::post('change-password', [AuthController::class, 'changePassword'])->name('admin.change-password');
+
 
         //Origin
         Route::prefix('origin')->name('origin.')->group(function () { //->middleware('can:origins')
@@ -253,6 +258,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/order-history/cancel/{order}', [AccountController::class, 'cancel'])->name('order.cancel');
     Route::post('/order-history/receive/{order}', [AccountController::class, 'receive'])->name('order.receive');
     Route::post('/order-history/return/{order}', [AccountController::class, 'return'])->name('order.return');
+
+    Route::post('/phan-hoi-khach-hang/{order}', [AccountController::class, 'feedback'])->name('account.feedback');
 
     Route::get('/doi-mat-khau', [AccountController::class, 'changePassword'])->name('account.change-password');
     Route::post('/doi-mat-khau', [AccountController::class, 'updatePassword'])->name('account.update-password');

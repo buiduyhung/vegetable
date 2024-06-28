@@ -37,9 +37,17 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('admin.dashboard')}}" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-dashboard"></i>
+                                    <i class="ti ti-home"></i>
                                 </span>
                                 <span class="hide-menu">Tổng quan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('admin.total') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-dashboard"></i>
+                                </span>
+                                <span class="hide-menu">Thống kê</span>
                             </a>
                         </li>
 
@@ -78,14 +86,6 @@
                                     <i class="ti ti-apple"></i>
                                 </span>
                                 <span class="hide-menu">Sản phẩm</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-apple"></i>
-                                </span>
-                                <span class="hide-menu">Cập nhật giá sản phẩm</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

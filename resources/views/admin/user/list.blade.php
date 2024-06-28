@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="container-fluid">
-    <h1 class="mt-4">Danh sách thành viên</h1>
+    <h1 class="mt-4">Danh sách khách hàng</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Danh sách thành viên</li>
+        <li class="breadcrumb-item active">Danh sách khách hàng</li>
     </ol>   
 
     <div class="row">

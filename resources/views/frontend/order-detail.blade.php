@@ -59,7 +59,6 @@
                                     <li>{{$product->pivot->name}} x {{$product->pivot->quantity}}<span>{{convertPrice($product->pivot->price * $product->pivot->quantity )}}</span></li>
                                 @endforeach
                             </ul>
-                            {{-- <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div> --}}
                             <div class="checkout__order__total">Tổng tiền <span>{{convertPrice($order->total_price)}}</span></div>
                             <div class="checkout__input__checkbox">
                                 @if ($order->payment === 1)
@@ -69,6 +68,18 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-7 col-md-6">
+                        <h4>Phàn hồi về đơn hàng</h4>
+                        <form method="POST" action="{{ route('account.feedback', $order) }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Nhập thông tin</label>
+                                <textarea name="feedback" id="feedback" class="form-control" cols="30" rows="10"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                        </form>
                     </div>
                 </div>
             </div>

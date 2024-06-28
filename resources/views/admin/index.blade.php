@@ -104,7 +104,7 @@
                     <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">Sản phẩm bán chạy</h5>
                         <div class="table-responsive">
-                            <table class="table text-nowrap mb-0 align-middle">
+                            <table class="table table-bordered text-nowrap mb-0 align-middle">
                                 <thead class="text-dark fs-4">
                                     <tr>
                                         <th class="border-bottom-0">
@@ -145,7 +145,7 @@
                     <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">Đơn hàng gần đây</h5>
                         <div class="table-responsive">
-                            <table class="table text-nowrap mb-0 align-middle">
+                            <table class="table table-bordered text-nowrap mb-0 align-middle">
                                 <thead class="text-dark fs-4">
                                     <tr>
                                         <th class="border-bottom-0">

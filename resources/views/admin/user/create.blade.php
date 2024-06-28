@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="mt-4">Thêm thành viên</h1>
+        <h1 class="mt-4">Thêm thông tin khách hàng</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">Danh sách thành viên</a></li>
-            <li class="breadcrumb-item active">Thêm thành viên</li>
+            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">Danh sách khách hàng</a></li>
+            <li class="breadcrumb-item active">Thêm khách hàng</li>
         </ol>  
 
         <div class="card">
@@ -14,7 +14,7 @@
                 <form action="{{route('user.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="image" class="form-label">Ảnh đại diện</label>
+                        <label for="image" class="form-label">Ảnh</label>
                         <input type="file" name="image" class="form-control" id="image" accept="image/*">
                         @error('image')
                             <p class="text-danger">{{$message}}</p>

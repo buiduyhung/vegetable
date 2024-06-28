@@ -42,7 +42,7 @@
                     <div class="product__details__text">
                         <h3>{{$product->name}}</h3>
 
-                        <div class="product__details__price"> {{ convertPrice($priceSale->price_sale) }} </div>
+                        <div class="product__details__price"> {{ convertPrice($product->price_sale) }} </div>
 
                         <div class="product__details__quantity">
                             <div class="quantity">

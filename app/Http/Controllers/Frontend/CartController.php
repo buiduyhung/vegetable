@@ -16,8 +16,7 @@ class CartController extends Controller
     public function add(Product $product, Request $request){
         $quantity = $request->quantity ?? 1;
 
-        $priceSale = PriceSale::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->first();
-        $priceProduct = $priceSale->price_sale;
+        $priceProduct = $product->price_sale;
 
         if($quantity > $product->quantity){
             toastr()->error('Quá số lượng sản phẩm.');

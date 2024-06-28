@@ -56,9 +56,8 @@ class ShopController extends Controller
     
     public function product(Product $product){
         $relatedProducts = Product::where('category_id', $product->category_id)->whereNot('id', $product->id)->get();
-        $priceSale = PriceSale::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->first();
         
-        return view('frontend.product', compact('product','relatedProducts', 'priceSale'));
+        return view('frontend.product', compact('product','relatedProducts'));
     }
 
     protected function filter($products, $request){

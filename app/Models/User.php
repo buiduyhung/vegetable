@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements CanResetPassword
 {
@@ -28,7 +30,7 @@ class User extends Authenticatable implements CanResetPassword
     protected function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value != null ? \Storage::url($value) : null,
+            get: fn ($value) => $value != null ? Storage::url($value) : null,
         );
     }
     
