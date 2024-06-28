@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 
-    <h1 class="mt-4">Bạn không có quyền truy cập. Vui lòng liên hệ quản trị viên</h1>
+    <h1 class="mt-4 text-danger text-center">Bạn không có quyền truy cập. Vui lòng liên hệ quản lý để được cấp quyền truy cập !</h1>
     
 </div>
 @endsection

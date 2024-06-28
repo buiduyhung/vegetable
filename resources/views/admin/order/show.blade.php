@@ -14,7 +14,7 @@
                             <h2 class="text-center">Danh sách sản phẩm</h2>
                             <hr>
                             <table class="table table-bordered align-middle mb-0">
-                                <thead>
+                                <thead style="background-color: aliceblue;">
                                     <tr>
                                         <th>Sản phẩm</th>
                                         <th class="text-center">Số lượng</th>

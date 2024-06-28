@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -15,6 +17,22 @@ class UserController extends Controller
             $query->where('email', $email);
         })->orderByDesc('id')->paginate(10);
         return view('admin.user.list', compact('users'));
+    }
+
+    public function create(){
+        return view('admin.user.create');
+    }
+
+    public function store(Request $request){
+
+    }
+
+    public function edit(User $user){
+        return view('admin.user.edit', $user);
+    }
+
+    public function update(){
+
     }
 
     public function handleStatus(User $user){
@@ -29,8 +47,19 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Cập nhật trạng thái thành công.');
     }
 
-    public function destroy(User $user){
-        $user->delete();
-        return redirect()->back()->with('success', 'Xóa khách hàng thành công.');
+    public function destroy(Request $request)
+    {
+        try {
+            $user = User::find($request->input('user_id'));
+            if ($user) {
+                $user->delete();
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['error' => 'Không có dữ liệu thành viên'], 404);
+            }
+        } catch (\Exception $e) {
+            Log::error('Error deleting product: ' . $e->getMessage());
+            return response()->json(['error' => 'An error occurred'], 500);
+        }
     }
 }

@@ -31,9 +31,9 @@
                                 <thead>
                                     <tr>
                                         <th class="shoping__product">Sản phẩm</th>
-                                        <th>Giá tiền</th>
+                                        <th>Giá tiền (VNĐ)</th>
                                         <th>Số lượng</th>
-                                        <th>Tổng tiền</th>
+                                        <th>Tổng tiền (VNĐ)</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -47,7 +47,7 @@
                                                 </a>
                                             </td>
                                             <td class="shoping__cart__price">
-                                                {{convertPrice($item['price'])}}
+                                                {{number_format($item['price'])}}
                                             </td>
                                             <td class="shoping__cart__quantity">
                                                 <div class="quantity">
@@ -58,7 +58,7 @@
                                                 </div>
                                             </td>
                                             <td class="shoping__cart__total">
-                                                {{convertPrice($item['price'] * $item['quantity'])}}
+                                                {{number_format($item['price'] * $item['quantity'])}}
                                             </td>
                                             <td class="shoping__cart__item__close">
                                                 <span onclick="confirmDelete({{$item['product_id']}})" class="icon_close"></span>

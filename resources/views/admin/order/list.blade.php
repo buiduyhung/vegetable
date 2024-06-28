@@ -63,7 +63,7 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">#{{$order->id}}</h6>
+                                        <h6 class="fw-semibold mb-0">{{$order->id}}</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <p class="fw-semibold mb-0">{{$order->name}}</p>

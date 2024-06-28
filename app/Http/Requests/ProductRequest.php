@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
             'origin_id' => 'required',
             'category_id' => 'required',
             'name' => 'required|string',
-            'product_code' => 'required|string',
+            'code_id' => 'required',
             'quantity' => 'required|numeric',
             'weight' => 'required|string',
             'description' =>'required|string',
@@ -56,7 +56,7 @@ class ProductRequest extends FormRequest
         return [
             'origin_id' => 'Xuất xứ sản phẩm',
             'category_id' => 'Danh mục sản phẩm',
-            'product_code' => 'Mã sản phẩm',
+            'code_id' => 'Mã sản phẩm',
             'price' => 'Giá sản phẩm',
             'quantity' => 'Số lượng sản phẩm',
             'weight' => 'Khối lượng sản phẩm',

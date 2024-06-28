@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class CheckoutController extends Controller
 {
-    static $vnp_TmnCode = "W6YEW49O";
-    static $vnp_HashSecret = "WSBCHHFZBEGYEQNOQHVKLNCGZVHQTHMU"; 
+    static $vnp_TmnCode = "ARNJUIXY";
+    static $vnp_HashSecret = "39F099YN3ZF5H8G1OHLC2C2DDWZ4JVH2"; 
     static $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     static $vnp_Returnurl = "/checkout/vnPayCheck"; 
 
@@ -80,6 +80,7 @@ class CheckoutController extends Controller
 
             $product = product::where('id',$item['product_id'])->first();  
             $product->quantity -= $item['quantity'];
+            $product->sold += $item['quantity'];
             $product->save();
         }
 

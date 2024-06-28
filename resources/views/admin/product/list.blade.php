@@ -13,7 +13,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <form class="product-search d-flex">
                         <input type="text" class="border border-1 border-primary rounded px-2" value="{{request('product_code')}}"
-                        placeholder="Mã sản phẩm" name="product_code" style="margin-right: 10px">
+                        placeholder="Tên sản phẩm" name="product_name" style="margin-right: 10px">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
                     <a href="{{route('product.create')}}" class="btn btn-primary m-1">Thêm</a>
@@ -24,7 +24,7 @@
                         <thead class="text-dark fs-4" style="background-color: aliceblue;">
                             <tr>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">ID</h6>
+                                    <h6 class="fw-semibold mb-0">#</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Mã sản phẩm</h6>
@@ -55,10 +55,10 @@
                                     @csrf
                                     <tr>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">#{{$key+1}}</h6>
+                                            <h6 class="fw-semibold mb-0">{{$key+1}}</h6>
                                         </td>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">{{$product->product_code}}</h6>
+                                            <h6 class="fw-semibold mb-0">{{ $product->productCode->name }}</h6>
                                         </td>
                                         <td class="border-bottom-0 d-flex align-items-center">
                                             <img class="rounded-1" style="width: 80px; border: 1px solid #f7f7f7" src="{{ $product->images->shift()->image }}" alt="">
@@ -100,7 +100,7 @@
                     </table>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    {{$products->links()}}
+                    {{-- {{$products->links()}} --}}
                 </div>
             </div>
         </div>

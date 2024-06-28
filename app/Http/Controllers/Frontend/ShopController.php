@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Models\Post;
 use App\Models\PriceImport;
 use App\Models\PriceSale;
 
@@ -13,9 +14,11 @@ class ShopController extends Controller
 {
     public function index(){
         $topSellingProducts = Product::orderByDesc('sold')->get()->take(10);
-        $latestProducts = Product::orderByDesc('id')->get()->take(8);
+        $latestProducts = Product::orderByDesc('id')->get()->take(12);
         
-        return view('frontend.index', compact('topSellingProducts','latestProducts'));
+        $posts = Post::orderByDesc('updated_at')->get()->take(3); 
+        
+        return view('frontend.index', compact('topSellingProducts','latestProducts', 'posts'));
     }
 
     public function shop(Request $request){
@@ -68,12 +71,12 @@ class ShopController extends Controller
             return $query->whereIn('origin_id', $arr_brands);
         });
 
-        /* Lọc giá */
-        $min_price = $request->input('min_price');
-        $max_price = $request->input('max_price');
+        // /* Lọc giá */
+        // $min_price = $request->input('min_price');
+        // $max_price = $request->input('max_price');
 
-        $products = ($min_price != null && $max_price != null) 
-                    ? $products->whereBetween('price', [$min_price, $max_price]) : $products;
+        // $products = ($min_price != null && $max_price != null) 
+        //             ? $products->whereBetween('price', [$min_price, $max_price]) : $products;
 
         return $products;
     }

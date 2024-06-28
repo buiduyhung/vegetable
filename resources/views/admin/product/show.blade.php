@@ -30,17 +30,23 @@
                                         <h6 class="fw-semibold mb-0">Xuất xứ</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Khối lượng (Kg/Túi)</h6>
+                                        <h6 class="fw-semibold mb-0">Giá nhập (VNĐ)(Hiện tại)</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Số lượng (Túi)</h6>
+                                        <h6 class="fw-semibold mb-0">Giá bán (VNĐ)(Hiện tại)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Khối lượng (Kg/hộp)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Số lượng (Hộp)</h6>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">{{ $product->product_code }}</h6>
+                                        <h6 class="fw-semibold mb-0">{{ $product->productCode->name }}</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">{{ $product->name }}</h6>
@@ -50,6 +56,12 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">{{ $product->origin->name }}</h6>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">{{ number_format($product->price_import) }}</h6>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">{{ number_format($product->price_sale) }}</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">{{ $product->weight }}</h6>
@@ -111,7 +123,7 @@
                                 </thead>
                                 
                                 <tbody>
-                                    @foreach ($priceImports as $price)
+                                    {{-- @foreach ($priceImports as $price)
                                         <tr>
                                             <td class="border-bottom-0">
                                                 <h6 class="fw-semibold mb-0">{{date_format($price->created_at, 'd/m/Y')}}</h6>
@@ -120,7 +132,7 @@
                                                 <h6 class="fw-semibold mb-0">{{ number_format($price->price_import) }}</h6>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>
@@ -169,7 +181,7 @@
                                 </thead>
                                 
                                 <tbody>
-                                    @foreach ($priceSales as $price)
+                                    {{-- @foreach ($priceSales as $price)
                                         <tr>
                                             <td class="border-bottom-0">
                                                 <h6 class="fw-semibold mb-0">{{date_format($price->created_at, 'd/m/Y')}}</h6>
@@ -178,7 +190,7 @@
                                                 <h6 class="fw-semibold mb-0">{{ number_format($price->price_sale) }}</h6>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>

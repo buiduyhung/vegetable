@@ -4,37 +4,45 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\PriceUpdate;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\CategoryProduct;
 use App\Models\Origin;
-use App\Models\PriceImport;
 use App\Models\PriceSale;
+use App\Models\ProductCode;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {   
-        $product_code = $request->input('product_code');
+        $productCodes = ProductCode::all();
+        // $productName = $request->input('product_name');
+        $products = Product::all();
 
-        $products = Product::when($product_code, function($query, $product_code){
-                $query->where('product_code', $product_code);
-            })
-            ->orderByDesc('id')
-            ->paginate(5);
+        // json file search
+        $productList = Product::all();
+        $path = public_path().'/json/';
+        if(!is_dir($path)){
+            mkdir($path, 0777, true);
+        }
+        File::put($path.'products.json', json_encode($productList));
         
-        return view('admin.product.list', compact('products'));
+        return view('admin.product.list', compact('products', 'productCodes'));
     }
     
     public function create()
     {   
         $categories = CategoryProduct::all();
         $origins = Origin::all();
-        return view('admin.product.create', compact('categories','origins'));
+        $productCodes = ProductCode::all();
+
+        return view('admin.product.create', compact('categories','origins', 'productCodes'));
     }
 
     
@@ -60,11 +68,10 @@ class ProductController extends Controller
     
     public function show(Product $product)
     {
+        $priceUpdate = PriceUpdate::where('product_id', $product->id)->get();
         $dateToday = Carbon::now()->format('d-m-Y');
-        $priceImports =  PriceImport::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->get();
-        $priceSales =  PriceSale::where('product_id', $product->id)->orderBy('updated_at', 'DESC')->get();
 
-        return view('admin.product.show', compact('product', 'dateToday', 'priceImports', 'priceSales'));
+        return view('admin.product.show', compact('product', 'dateToday', 'priceUpdate'));
     }
     
     public function edit(Product $product)
@@ -146,13 +153,18 @@ class ProductController extends Controller
     }
 
     public function priceImport(Request $request, $id){
+
         DB::beginTransaction();
         try {
-            $price = new PriceImport();
+            $price = new PriceUpdate();
             $price->product_id = $id;
             $price->price_import = $request->price_import_new;
             $price->save();
-            
+
+            $product = Product::where('id', $id)->first();
+            $product->price_import = $request->price_import_new;
+            $product->update();
+
             DB::commit();
             return back()->with('success', 'Cập nhật giá nhập sản phẩm thành công');
         } catch (\Throwable $e) {
@@ -164,10 +176,14 @@ class ProductController extends Controller
     public function priceSale(Request $request, $id){
         DB::beginTransaction();
         try {
-            $price = new PriceSale();
+            $price = new PriceUpdate();
             $price->product_id = $id;
             $price->price_sale = $request->price_sale_new;
             $price->save();
+
+            $product = Product::where('id', $id)->first();
+            $product->price_sale = $request->price_sale_new;
+            $product->update();
             
             DB::commit();
             return back()->with('success', 'Cập nhật giá bán sản phẩm thành công');

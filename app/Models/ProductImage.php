@@ -11,7 +11,12 @@ class ProductImage extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $table = 'product_image';
+
+    protected $fillable = [
+        'product_id',
+        'image'
+    ];
 
     public function product()
     {

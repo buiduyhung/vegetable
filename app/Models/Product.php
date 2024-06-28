@@ -18,7 +18,7 @@ class Product extends Model
         'quantity',
         'sold',
         'weight',
-        'product_code',
+        'code_id',
         'description',
         'status',
         'origin_id',
@@ -46,12 +46,12 @@ class Product extends Model
                     ->withPivot('name', 'quantity', 'price');
     }
 
-    public function priceImports(){
-        return $this->hasMany(PriceImport::class);
+    public function productCode(){
+        return $this->belongsTo(ProductCode::class, 'code_id', 'id');
     }
 
-    public function priceSales(){
-        return $this->hasMany(PriceSale::class);
+    public function priceUpdates(){
+        return $this->hasMany(PriceUpdate::class);
     }
 
 }

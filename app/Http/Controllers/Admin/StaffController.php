@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Group;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use PgSql\Lob;
 use Throwable;
 
 class StaffController extends Controller
@@ -26,13 +29,23 @@ class StaffController extends Controller
         return view('admin.staff.create', compact('groups'));
     }
 
-    public function store(SaffRequest $request){
-        $data = $request->all();
+    public function store(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:admins',
+            'group_id' => 'required|integer|exists:groups,id',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-        $res = Admin::create($data);
-        if($res){
-            return redirect()->route('staff.index')->with('success', 'Thêm nhân viên mới thành công.');
-        }
+        $admin = new Admin();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->group_id = $request->group_id;
+        $admin->password = Hash::make($request->password);
+        $admin->save();
+
+        return redirect()->route('staff.index')->with('success', 'Thêm nhân viên mới thành công.');
+        
     }
 
     public function edit(Admin $admin){
@@ -63,9 +76,20 @@ class StaffController extends Controller
     }
 
 
-    public function destroy(Admin $staff){
-        $staff->delete();
-        return back()->with('success', 'Xóa nhân viên thành công.');
+    public function destroy(Request $request)
+    {
+        try {
+            $admin = Admin::find($request->input('staff_id'));
+            if ($admin) {
+                $admin->delete();
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['error' => 'Không có dữ liệu nhân viên'], 404);
+            }
+        } catch (\Exception $e) {
+            Log::error('Error deleting product: ' . $e->getMessage());
+            return response()->json(['error' => 'An error occurred'], 500);
+        }
     }
 
 

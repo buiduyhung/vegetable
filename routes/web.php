@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\OriginController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProductCodeController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -40,7 +41,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 Route::prefix('admin')->group(function () {
 
     //Auth
-    Route::get('login', [AuthController::class, 'login'])->middleware(['guest:admin'])->name('admin.login');
+    Route::get('login', [AuthController::class, 'login'])->name('admin.login'); //->middleware(['guest:admin'])
     Route::post('login', [AuthController::class, 'loginPost'])->middleware(['guest:admin'])->name('admin.loginPost');
 
     Route::middleware(['auth:admin'])->group(function () {
@@ -52,7 +53,7 @@ Route::prefix('admin')->group(function () {
         Route::post('change-password', [AuthController::class, 'changePassword'])->name('admin.change-password');
 
         //Origin
-        Route::prefix('origin')->name('origin.')->group(function () {
+        Route::prefix('origin')->name('origin.')->group(function () { //->middleware('can:origins')
             Route::get('/', [OriginController::class, 'index'])->name('index');
             Route::get('create', [OriginController::class, 'create'])->name('add');
             Route::post('create', [OriginController::class, 'store'])->name('store');
@@ -65,7 +66,7 @@ Route::prefix('admin')->group(function () {
         });
 
         //Category product
-        Route::prefix('category-product')->name('categoryProduct.')->group(function () {
+        Route::prefix('category-product')->name('categoryProduct.')->group(function () {  //->middleware('can:categoryProducts')
             Route::get('/', [CategoryProductController::class, 'index'])->name('index');
             Route::get('create', [CategoryProductController::class, 'create'])->name('create');
             Route::post('create', [CategoryProductController::class, 'store'])->name('store');
@@ -77,8 +78,21 @@ Route::prefix('admin')->group(function () {
             Route::get('hidden/{id}', [CategoryProductController::class, 'hidden'])->name('hidden');
         });
 
+        // Product code
+        Route::prefix('product-code')->name('productCode.')->group(function () {
+            Route::get('/', [ProductCodeController::class, 'index'])->name('index');
+            Route::get('create', [ProductCodeController::class, 'create'])->name('create');
+            Route::post('create', [ProductCodeController::class, 'store'])->name('store');
+            Route::get('edit/{productCode}', [ProductCodeController::class, 'edit'])->name('edit');
+            Route::post('edit/{productCode}', [ProductCodeController::class, 'update'])->name('update');
+            Route::post('delete', [ProductCodeController::class, 'destroy'])->name('destroy');
+
+            Route::get('active/{id}', [ProductCodeController::class, 'active'])->name('active');
+            Route::get('hidden/{id}', [ProductCodeController::class, 'hidden'])->name('hidden');
+        });
+
         //Product
-        Route::prefix('product')->name('product.')->group(function () {
+        Route::prefix('product')->name('product.')->group(function () { //->middleware('can:products')
             Route::get('/', [ProductController::class, 'index'])->name('index');
             Route::post('search', [ProductController::class, 'index'])->name('search');
             Route::get('create', [ProductController::class, 'create'])->name('create');
@@ -109,7 +123,7 @@ Route::prefix('admin')->group(function () {
         });
 
         // Category Post
-        Route::prefix('category-post')->name('categoryPost.')->group(function (){
+        Route::prefix('category-post')->name('categoryPost.')->group(function (){ //->middleware('can:categoryPosts')
             Route::get('/', [CategoryPostController::class, 'index'])->name('index');
             Route::get('create', [CategoryPostController::class, 'create'])->name('create');
             Route::post('create', [CategoryPostController::class, 'store'])->name('store');
@@ -123,7 +137,7 @@ Route::prefix('admin')->group(function () {
 
 
         // Post
-        Route::prefix('post')->name('post.')->group(function() {
+        Route::prefix('post')->name('post.')->group(function() {  //->middleware('can:posts')
             Route::get('/', [PostController::class, 'index'])->name('index');
             Route::get('show/{post}', [PostController::class, 'show'])->name('show');
             Route::get('create', [PostController::class, 'create'])->name('create');
@@ -147,33 +161,33 @@ Route::prefix('admin')->group(function () {
         
 
         //User
-        Route::prefix('user')->name('user.')->group(function () {
+        Route::prefix('user')->name('user.')->group(function () {  //->middleware('can:users')
             Route::get('/', [UserController::class, 'index'])->name('index');
             Route::get('create', [UserController::class, 'create'])->name('create');
-            Route::post('create', [StaffController::class, 'store'])->name('store');
-            Route::get('edit/{user}', [StaffController::class, 'edit'])->name('edit');
-            Route::post('edit/{user}', [StaffController::class, 'update'])->name('update');
-            Route::get('destroy/{user}', [UserController::class, 'destroy'])->name('destroy');
+            Route::post('create', [UserController::class, 'store'])->name('store');
+            Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit');
+            Route::post('edit/{user}', [UserController::class, 'update'])->name('update');
+            Route::post('delete', [UserController::class, 'destroy'])->name('destroy');
 
             Route::get('starus/{user}', [UserController::class, 'handleStatus'])->name('status');
         });
         
 
         //Staff
-        Route::prefix('staff')->name('staff.')->group(function () {
+        Route::prefix('staff')->name('staff.')->group(function () {  //->middleware('can:saffs')
             Route::get('/', [StaffController::class, 'index'])->name('index');
             Route::get('create', [StaffController::class, 'create'])->name('create');
             Route::post('create', [StaffController::class, 'store'])->name('store');
             Route::get('edit/{admin}', [StaffController::class, 'edit'])->name('edit');
             Route::post('edit/{admin}', [StaffController::class, 'update'])->name('update');
-            Route::get('destroy/{admin}', [StaffController::class, 'destroy'])->name('destroy');
+            Route::post('destroy', [StaffController::class, 'destroy'])->name('destroy');
 
             Route::get('profile', [StaffController::class, 'profile'])->name('profile');
         });
         
 
         //Group
-        Route::prefix('group')->name('group.')->group(function () {
+        Route::prefix('group')->name('group.')->group(function () {  //->middleware('can:groups')
             Route::get('/', [GroupController::class, 'index'])->name('index');
             Route::get('create', [GroupController::class, 'create'])->name('create');
             Route::post('create', [GroupController::class, 'store'])->name('store');

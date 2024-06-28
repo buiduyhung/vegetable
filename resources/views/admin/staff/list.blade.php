@@ -48,30 +48,34 @@
                         </thead>
                         <tbody>
                             @foreach($staffs as $staff)
-                                <tr>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">{{$staff->id}}</h6>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="fw-semibold mb-0">{{$staff->name}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$staff->email}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$staff->group->name}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{date_format($staff->created_at, 'd/m/Y')}}</p>
-                                    </td>
-                                    
-                                    <td class="border-bottom-0 text-center">
-                                        <a href="{{route('staff.edit', $staff)}}" class="btn btn-outline-secondary m-1">Sửa</a>
-
-                                        <a href="{{route('staff.destroy', $staff)}}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản này không?')"
-                                        class="btn btn-outline-danger m-1">Xóa</a>
-                                    </td>
-                                </tr>
+                                <form>
+                                    @csrf
+                                    <tr>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">{{$staff->id}}</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="fw-semibold mb-0">{{$staff->name}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$staff->email}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$staff->group->name}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{date_format($staff->created_at, 'd/m/Y')}}</p>
+                                        </td>
+                                        
+                                        <td class="border-bottom-0 text-center">
+                                            <a href="{{route('staff.edit', $staff)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+    
+                                            <button type="button" name="delete-staff" data-id_staff="{{ $staff->id }}" class="btn btn-outline-danger m-1 delete-staff">
+                                                Xóa
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </form>
                             @endforeach
                         </tbody>
                     </table>

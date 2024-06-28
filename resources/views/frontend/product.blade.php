@@ -63,8 +63,8 @@
                                 @endif
                             </li>
                             <li><b>Đã bán</b> {{$product->sold}} sản phẩm</li>
-                            <li><b>Thương hiệu</b> {{$product->origin->name}}</li>
-                            <li><b>Khối lượng</b>{{$product->weight}}/túi</li>
+                            <li><b>Xuất xứ</b> {{$product->origin->name}}</li>
+                            <li><b>Khối lượng</b>{{$product->weight}} / hộp</li>
                             <li><b>Chính sách giao hàng</b>Nhận hàng trong 4 tiếng - 6 tiếng</li>
                             <li><b>Chia sẻ</b>
                                 <div class="share">
@@ -132,9 +132,9 @@
                         </ul>
                     </div>
                     <div class="product__discount__item__text">
-                        <h5><a href="{{route('product',[$product, Str::slug($product->name)])}}">{{$product->name}}</a>
-                        </h5>
-                        <div class="product__item__price">{{convertPrice($product->price)}}</div>
+                        <h4>
+                            <a href="{{route('product',[$product, Str::slug($product->name)])}}">{{$product->name}}</a>
+                        </h4>
                     </div>
                 </div>
             </div>

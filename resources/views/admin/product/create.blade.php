@@ -29,22 +29,28 @@
                 <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
                 <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
                     @csrf
+
+                    <div class="mb-3">
+                        <label for="product_code" class="form-label">Mã sản phẩm 
+                            <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select" name="code_id" id="code_id">
+                            <option value="" disabled selected>--- chon mã sản phẩm ---</option>
+                            @foreach ($productCodes as $productCode)
+                                <option value="{{$productCode->id}}">{{$productCode->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('code_id')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Tên 
                             <span class="text-danger">*</span> 
                         </label>
                         <input type="text" class="form-control" name="name" id="name">
                         @error('name')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="product_code" class="form-label">Mã sản phẩm 
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" class="form-control" name="product_code" id="product_code">
-                        @error('product_code')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>

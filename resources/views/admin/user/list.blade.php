@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="container-fluid">
-    <h1 class="mt-4">Danh sách khách hàng</h1>
+    <h1 class="mt-4">Danh sách thành viên</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Danh sách khách hàng</li>
+        <li class="breadcrumb-item active">Danh sách thành viên</li>
     </ol>   
 
     <div class="row">
@@ -51,53 +51,53 @@
                         </thead>
                         <tbody>
                             @foreach($users as $user)
-                                <tr>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">#{{$user->id}}</h6>
-                                    </td>
-                                    <td class="border-bottom-0 d-flex align-items-center ">
-                                        <img class="rounded-circle" style="width: 40px;" src="{{ $user->avatar ?? asset('assets/frontend/img/no-avatar.png')}}" alt="">
-                                        <div class="m-2">
-                                            <p class="fw-semibold mb-0">{{$user->name}}</p>
-                                        </div>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$user->email}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$user->phone}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$user->address}}</p>
-                                    </td>
-                                    <td class="border-bottom-0 text-center">
-                                        @if($user->status === 1)
-                                            <p class="fw-semibold mb-0 text-success">Hoạt động</p>
-                                        @else
-                                            <p class="fw-semibold mb-0 text-danger">Bị khóa</p>
-                                        @endif
-                                    </td>
-                                    
-                                    <td class="border-bottom-0 text-end">
-                                        @if ($user->status === 1)
-                                            <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này không?')"
-                                            class="btn btn-outline-warning m-1">Khóa</a>
-                                        @else
-                                            <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này không?')"
-                                            class="btn btn-outline-success m-1">Mở khóa</a>
-                                        @endif
-
-                                        {{-- @can('update', App\Models\Admin::class)
+                                <form>
+                                    @csrf
+                                    <tr>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">#{{$user->id}}</h6>
+                                        </td>
+                                        <td class="border-bottom-0 d-flex align-items-center ">
+                                            <img class="rounded-circle" style="width: 40px;" src="{{ $user->avatar ?? asset('assets/frontend/img/no-avatar.png')}}" alt="">
+                                            <div class="m-2">
+                                                <p class="fw-semibold mb-0">{{$user->name}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$user->email}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$user->phone}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            <p class="fw-semibold mb-0">{{$user->address}}</p>
+                                        </td>
+                                        <td class="border-bottom-0 text-center">
+                                            @if($user->status === 1)
+                                                <p class="fw-semibold mb-0 text-success">Hoạt động</p>
+                                            @else
+                                                <p class="fw-semibold mb-0 text-danger">Bị khóa</p>
+                                            @endif
+                                        </td>
+                                        
+                                        <td class="border-bottom-0 text-end">
+                                            @if ($user->status === 1)
+                                                <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này không?')"
+                                                class="btn btn-outline-warning m-1">Khóa</a>
+                                            @else
+                                                <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này không?')"
+                                                class="btn btn-outline-success m-1">Mở khóa</a>
+                                            @endif
+    
                                             <a href="{{route('user.edit', $user)}}" class="btn btn-outline-secondary m-1">Sửa</a>
-                                        @endcan --}}
-                                        
-                                        @can('delete', App\Models\Admin::class)
-                                            <a href="{{route('user.destroy', $user)}}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản này không?')"
-                                            class="btn btn-outline-danger m-1">Xóa</a>
-                                        @endcan
-                                        
-                                    </td>
-                                </tr>
+                                            
+                                            <button type="button" name="delete-user" data-id_user="{{ $user->id }}" class="btn btn-outline-danger m-1 delete-user">
+                                                Xóa
+                                            </button>
+                                            
+                                        </td>
+                                    </tr>
+                                </form>
                             @endforeach
                         </tbody>
                     </table>

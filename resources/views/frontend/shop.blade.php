@@ -37,7 +37,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="sidebar__item">
+                            {{-- <div class="sidebar__item">
                                 <h4>Giá</h4>
                                 <div class="price-range-wrap">
                                     <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn text-white mt-2 px-3" style="background: #7fad39">Lọc</button>
-                            </div>
+                            </div> --}}
                             <div class="sidebar__item">
                                 <h4>Xuất xứ</h4>
                                 @foreach($brands as $brand)
@@ -78,7 +78,7 @@
                                                 </div>
                                                 <div class="latest-product__item__text">
                                                     <h6>{{$product->name}}</h6>
-                                                    <span>{{convertPrice($product->price)}}đ</span>
+                                                    {{-- <span>{{convertPrice($product->price)}}đ</span> --}}
                                                     <div class="text-warning">Đã bán {{$product->totalSold}}</div>
                                                 </div>
                                             </a>
@@ -132,8 +132,8 @@
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>{{$product->origin->name}}</span>
-                                            <h5><a href="{{route('product', [$product, Str::slug($product->name)] )}}">{{$product->name}}</a></h5>
-                                            <div class="product__item__price">{{convertPrice($product->price)}}</div>
+                                            <h4><a href="{{route('product', [$product, Str::slug($product->name)] )}}">{{$product->name}}</a></h4>
+                                            {{-- <div class="product__item__price">{{convertPrice($product->price)}}</div> --}}
                                         </div>
                                     </div>
                                 </div>

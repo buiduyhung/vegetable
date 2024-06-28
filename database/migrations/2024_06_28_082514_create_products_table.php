@@ -15,18 +15,21 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('origin_id');
             $table->unsignedBigInteger('category_id');
-            $table->string('name')->unique();
+            $table->unsignedBigInteger('code_id');
+            $table->string('name');
             $table->string('slug')->nullable();
             $table->integer('quantity');
             $table->integer('sold')->default(0);
+            $table->string('price_import')->nullable();
+            $table->string('price_sale')->nullable();
             $table->string('weight');
-            $table->string('product_code');
             $table->longText('description');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('origin_id')->references('id')->on('origins')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('category_products')->onDelete('cascade');
+            $table->foreign('code_id')->references('id')->on('product_code')->onDelete('cascade');
         });
     }
 

@@ -21,30 +21,12 @@
     </section>
     <!-- Banner Section End -->
    
-    <!-- Categories Section Begin -->
-    {{-- <section class="categories mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                   @foreach ($categories as $category)
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="{{Storage::url($category->image)}}">
-                            <h5><a href="{{route('category', $category)}}">{{$category->name}}</a></h5>
-                        </div>
-                    </div>
-                   @endforeach
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Categories Section End -->
-
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title">
+                    <div class="section-title text-start" style="text-align: justify;">
                         <h2>Sản phẩm bán chạy</h2>
                     </div>
                 </div>
@@ -61,8 +43,8 @@
                             </div>
                             <div class="featured__item__text">
                                 <span class="text-warning">Đã bán {{$product->sold}}</span>
-                                <h6><a href="{{route('product', [$product,Str::slug($product->name)])}}">{{$product->name}}</a></h6>
-                                <h5>{{convertPrice($product->price)}}</h5>
+                                <h4><a href="{{route('product', [$product,Str::slug($product->name)])}}">{{$product->name}}</a></h4>
+                                
                             </div>
                         </div>
                     </div>
@@ -96,7 +78,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title">
+                    <div class="section-title" style="text-align: justify;">
                         <h2>Sản phẩm mới nhất</h2>
                     </div>
                 </div>
@@ -112,8 +94,7 @@
                                 </ul>
                             </div>
                             <div class="featured__item__text">
-                                <h6><a href="{{route('product', [$product,Str::slug($product->name)])}}">{{$product->name}}</a></h6>
-                                <h5>{{convertPrice($product->price)}}</h5>
+                                <h4><a href="{{route('product', [$product,Str::slug($product->name)])}}">{{$product->name}}</a></h4>
                             </div>
                         </div>
                     </div>
@@ -124,64 +105,38 @@
     <!-- Latest Product Section End -->
 
     <!-- Blog Section Begin -->
-    {{-- <section class="from-blog spad">
+    <section class="from-blog spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title from-blog__title">
-                        <h2>Bài viết</h2>
+                    <div class="section-title from-blog__title" style="text-align: justify;">
+                        <h2>Bài viết Mới</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="/assets/frontend/img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Mẹo nấu ăn giúp việc nấu ăn trở nên đơn giản</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
+                @foreach ($posts as $post)
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <a href="{{ route('blogDetail', $post->slug) }}">
+                            <div class="blog__item">
+                                <div class="blog__item__pic">
+                                    <img src="{{ asset('storage/' . $post->image) }}" alt="" width="50px">
+                                </div>
+                                <div class="blog__item__text">
+                                    <ul>
+                                        <li><i class="fa fa-calendar-o"></i> {{ $post->updated_at }}</li>
+                                    </ul>
+                                    <h5><a href="#">{{ $post->name }}</a></h5>
+                                    <p>{!! $post->desc !!}</p>
+                                </div>
+                            </div>
+                        </a>
+                        
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="/assets/frontend/img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">6 cách chuẩn bị bữa sáng trong 30 phút</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="/assets/frontend/img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Thăm nông trại hoa quả sạch ở Mỹ</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-    </section> --}}
+    </section>
     <!-- Blog Section End -->
 
 

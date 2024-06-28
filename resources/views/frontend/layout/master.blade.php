@@ -10,7 +10,9 @@
     <title>Nông Sản Việt</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" type="text/css">
@@ -72,7 +74,7 @@
         <div class="humberger__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i> nongsanviet@gmail.com</li>
-                <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 199,000đ</li>
+                <li>Hỗ trợ vận chuyển đồ toàn quốc</li>
             </ul>
         </div>
     </div>
@@ -87,7 +89,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> nongsanviet@gmail.com</li>
-                                <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 199,000đ</li>
+                                <li>Vận chuyển nông sản toàn quốc</li>
                             </ul>
                         </div>
                     </div>
@@ -117,12 +119,12 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="/"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt="" width="160px"></a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{route('home')}}">Trang chủ</a></li>
@@ -176,10 +178,13 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="{{route('shop')}}">
-                                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm" value="{{ request('search') }}">
+                                <input type="text" id="search" name="search" placeholder="Tìm kiếm sản phẩm" value="{{ request('search') }}">
                                 <button type="submit" class="site-btn">Tìm kiếm</button>
                             </form>
+                            
+                            <ul class="list-group" id="result" style="position: absolute; z-index: 1000; background: white; width: 100%;"></ul>
                         </div>
+                        
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
@@ -245,7 +250,7 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-    
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Js Plugins -->
     <script src="{{ asset('assets/frontend/js/jquery-3.3.1.min.js') }}"></script>
@@ -256,6 +261,36 @@
     <script src="{{ asset('assets/frontend/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+
+    {{-- Search --}}
+    <script>
+        $(document).ready(function() {
+            $('#search').keyup(function() {
+                $('#result').html('');
+                var search = $('#search').val();
+                if (search != '') {
+                    $('#result').css('display', 'inherit');
+                    var expression = new RegExp(search, 'i');
+                    $.getJSON('/json/products.json', function(data) {
+                        $.each(data, function(key, value) {
+                            if (value.name.search(expression) != -1) {
+                                $('#result').append('<li class="list-group-item" style="cursor: pointer">' + value.name + '</li>');
+                            }
+                        });
+                    });
+                } else {
+                    $('#result').css('display', 'none');
+                }
+            });
+
+            $('#result').on('click', 'li', function() {
+                var click_text = $(this).text();
+                $('#search').val($.trim(click_text));
+                $('#result').html('');
+                $('#result').css('display', 'none');
+            });
+        });
+    </script>
 
 </body>
 

@@ -99,7 +99,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #ffffff;
+	/* color: #ffffff; */
 }
 
 ul,
@@ -415,7 +415,7 @@ ol {
 }
 
 .header__logo {
-	padding: 15px 0;
+	padding: 3px 0;
 }
 
 .header__logo a {
@@ -600,7 +600,7 @@ ol {
 .hero__categories__all {
 	background: #7fad39;
 	position: relative;
-	padding: 10px 25px 10px 40px;
+	padding: 13px 25px 10px 15px;
 	cursor: pointer;
 }
 
@@ -653,7 +653,7 @@ ol {
 	width: 610px;
 	height: 50px;
 	border: 1px solid #ebebeb;
-	position: relative;
+	position: absolute;
 	float: left;
 }
 
@@ -939,14 +939,20 @@ ol {
 .featured__item__text {
 	text-align: center;
 	padding-top: 15px;
+	
 }
 
-.featured__item__text h6 {
+.featured__item__text h4 {
 	margin-bottom: 10px;
+	color: #007b5e;
 }
 
-.featured__item__text h6 a {
+.featured__item__text h4 a {
 	color: #252525;
+}
+
+.featured__item__text h4 a:hover {
+    color: #ff0000; 
 }
 
 .featured__item__text h5 {
