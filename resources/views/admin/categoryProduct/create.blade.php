@@ -28,13 +28,13 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Mô tả</label>
-                        <textarea style="resize: none;" rows="5" type="text" name="description" class="form-control ckeditor" id="description"></textarea>
+                        <label for="desc" class="form-label">Mô tả</label>
+                        <textarea style="resize: none;" rows="5" type="text" name="desc" class="form-control ckeditor" id="desc"></textarea>
                         @error('description')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>
                         <input type="file" name="image" class="form-control" id="image" accept="image/*">

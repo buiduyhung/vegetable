@@ -16,7 +16,7 @@
         margin: 20px auto;
     }
     </style>
-    
+
     <div class="container-fluid">
         <h1 class="mt-4">Thêm sản phẩm</h1>
         <ol class="breadcrumb mb-4">
@@ -31,7 +31,7 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label for="product_code" class="form-label">Mã sản phẩm 
+                        <label for="product_code" class="form-label">Mã sản phẩm
                             <span class="text-danger">*</span>
                         </label>
                         <select class="form-select" name="code_id" id="code_id">
@@ -46,15 +46,15 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Tên 
-                            <span class="text-danger">*</span> 
+                        <label for="name" class="form-label">Tên
+                            <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control" name="name" id="name">
                         @error('name')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="origin" class="form-label">Xuất xứ
                             <span class="text-danger">*</span>
@@ -114,11 +114,11 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">Mô tả
+                        <label for="desc" class="form-label">Mô tả
                             <span class="text-danger">*</span>
                         </label>
-                        <textarea class="form-control ckeditor" name="description" id="editor" row=10></textarea>
-                        @error('description')
+                        <textarea class="form-control ckeditor" name="desc" id="editor" row=10></textarea>
+                        @error('desc')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>

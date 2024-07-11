@@ -61,7 +61,7 @@
                                             <p class="mb-0 fw-semibold">{{$categoryProduct->name}}</p>
                                         </td>
                                         <td class="border-bottom-0" style="max-width: 330px; white-space: normal; text-align: justify;">
-                                            <p class="mb-0 fw-semibold">{!! $categoryProduct->description !!}</p>
+                                            <p class="mb-0 fw-semibold">{!! $categoryProduct->desc !!}</p>
                                         </td>
                                         <td class="border-bottom-0 text-center">
                                             <span class="text-ellipsis">
@@ -75,7 +75,7 @@
                                         <td class="border-bottom-0 text-center">
 
                                             <a href="{{route('categoryProduct.edit', $categoryProduct)}}" class="btn btn-outline-secondary m-1">Sửa</a>
-    
+
                                             <button type="button" name="delete-category-product" data-id_category="{{ $categoryProduct->id }}" class="btn btn-outline-danger m-1 delete-category-product">
                                                 Xóa
                                             </button>

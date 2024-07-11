@@ -15,7 +15,7 @@ class CategoryProduct extends Model
         'name',
         'image',
         'slug',
-        'description',
+        'desc',
         'status'
     ];
 

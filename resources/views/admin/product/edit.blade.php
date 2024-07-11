@@ -16,14 +16,14 @@
         margin: 20px auto;
     }
     </style>
-    
+
     <div class="container-fluid">
         <h1 class="mt-4">Cập nhật thông tin sản phẩm</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('product.index') }}">Danh sách sản phẩm</a></li>
             <li class="breadcrumb-item active">Cập nhật thông tin sản phẩm</li>
         </ol>
-        
+
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
@@ -32,8 +32,8 @@
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Tên 
-                            <span class="text-danger">*</span> 
+                        <label for="name" class="form-label">Tên
+                            <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control" name="name" id="name" value="{{old('name', $product->name)}}">
                         @error('name')
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="product_code" class="form-label">Mã sản phẩm 
+                        <label for="product_code" class="form-label">Mã sản phẩm
                             <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control" name="product_code" id="product_code" value="{{old('product_code', $product->product_code)}}">
@@ -50,7 +50,7 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="origin" class="form-label">Xuất xứ
                             <span class="text-danger">*</span>
@@ -110,11 +110,11 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">Mô tả
+                        <label for="desc" class="form-label">Mô tả
                             <span class="text-danger">*</span>
                         </label>
-                        <textarea class="form-control ckeditor" name="description" id="editor">{{$product->description}}</textarea>
-                        @error('description')
+                        <textarea class="form-control ckeditor" name="desc" id="editor">{{$product->desc}}</textarea>
+                        @error('desc')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>

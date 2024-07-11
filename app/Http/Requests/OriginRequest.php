@@ -24,7 +24,7 @@ class OriginRequest extends FormRequest
         return [
             'name' => 'required|string',
             'slug' => 'required|string',
-            'description' => 'required|string',
+            'desc' => 'required|string',
         ];
     }
 
@@ -41,7 +41,7 @@ class OriginRequest extends FormRequest
         return [
             'name' => 'Tên xuất xứ',
             'slug' => 'Slug xuất xứ',
-            'description' => 'Mô tả xuất xứ',
+            'desc' => 'Mô tả xuất xứ',
         ];
     }
 }

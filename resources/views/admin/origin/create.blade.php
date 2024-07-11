@@ -11,7 +11,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
-                
+
                 <form action="{{route('origin.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -29,13 +29,13 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Mô tả</label>
-                        <textarea style="resize: none;" rows="5" type="text" name="description" class="form-control ckeditor" id="description"></textarea>
-                        @error('description')
+                        <label for="desc" class="form-label">Mô tả</label>
+                        <textarea style="resize: none;" rows="5" type="text" name="desc" class="form-control ckeditor" id="desc"></textarea>
+                        @error('desc')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="status">Trạng thái</label>
                         <select name="status" class="form-control m-bot15">

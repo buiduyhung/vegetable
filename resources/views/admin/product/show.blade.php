@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @section('content')
-    
+
     <div class="container-fluid">
         <h1 class="mt-4">Chi tiết thông tin sản phẩm</h1>
         <ol class="breadcrumb mb-4">
@@ -85,11 +85,11 @@
                         </div>
                     </div>
                     <hr>
-                    
+
                     <div class="mb-3 mt-5">
                         <h5 class="card-title fw-semibold mb-4">Mô tả sản phẩm</h5>
                         <hr>
-                        {!!$product->description!!}
+                        {!!$product->desc!!}
                     </div>
                     <hr>
 
@@ -97,7 +97,7 @@
                     <div class="mb-3 mt-5">
                         <h5 class="card-title fw-semibold mb-4">Bảng giá sản phẩm</h5>
                         <hr>
-                        
+
                         <div class="row">
                             <div class="col-6">
                                 <table class="table table-bordered text-nowrap mb-0 align-middle">
@@ -127,7 +127,7 @@
                                     </tbody>
                                 </table>
                             </div>
-    
+
                             <div class="col-6">
                                 <table class="table table-bordered text-nowrap mb-0 align-middle">
                                     <thead class="text-dark fs-4">
@@ -180,16 +180,16 @@
                             @csrf
                             <div class="mb-3 mt-5">
                                 <label for="price_import_new" class="form-label">Giá nhập ngày: {{ $dateToday }}
-                                    <span class="text-danger">*</span> 
+                                    <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" class="form-control" name="price_import_new" id="price_import_new">
                                 @error('price_import_new')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
-    
+
                             <button type="submit" class="btn btn-primary">Cập nhật</button>
-                            
+
                         </form>
                     </div>
                 </div>
@@ -203,20 +203,20 @@
                             @csrf
                             <div class="mb-3 mt-5">
                                 <label for="price_sale_new" class="form-label">Giá bán ngày: {{ $dateToday }}
-                                    <span class="text-danger">*</span> 
+                                    <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" class="form-control" name="price_sale_new" id="price_sale_new">
                                 @error('price_sale_new')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
-    
+
                             <button type="submit" class="btn btn-primary">Cập nhật</button>
                         </form>
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\File;
 class ProductController extends Controller
 {
     public function index()
-    {   
+    {
         $productCodes = ProductCode::all();
         // $productName = $request->input('product_name');
         $products = Product::all();
@@ -32,12 +32,12 @@ class ProductController extends Controller
             mkdir($path, 0777, true);
         }
         File::put($path.'products.json', json_encode($productList));
-        
+
         return view('admin.product.list', compact('products', 'productCodes'));
     }
-    
+
     public function create()
-    {   
+    {
         $categories = CategoryProduct::all();
         $origins = Origin::all();
         $productCodes = ProductCode::all();
@@ -45,7 +45,7 @@ class ProductController extends Controller
         return view('admin.product.create', compact('categories','origins', 'productCodes'));
     }
 
-    
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -65,7 +65,7 @@ class ProductController extends Controller
             throw $e;
         }
     }
-    
+
     public function show(Product $product)
     {
         $priceUpdate = PriceUpdate::where('product_id', $product->id)->get();
@@ -73,7 +73,7 @@ class ProductController extends Controller
 
         return view('admin.product.show', compact('product', 'dateToday', 'priceUpdate'));
     }
-    
+
     public function edit(Product $product)
     {
         $categories = CategoryProduct::all();
@@ -82,7 +82,7 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('product','categories','origins'));
     }
 
-    
+
     public function update(ProductRequest $request, Product $product)
     {
         $data = $request->all();
@@ -105,7 +105,7 @@ class ProductController extends Controller
             throw $e;
         }
     }
-    
+
     public function destroy(Request $request)
     {
         try {
@@ -148,7 +148,7 @@ class ProductController extends Controller
         $res = $image->storeAs('products', $imageName, 'public');
         if($res){
             $path = 'products/'. $imageName;
-        } 
+        }
         return $path;
     }
 
@@ -184,7 +184,7 @@ class ProductController extends Controller
             $product = Product::where('id', $id)->first();
             $product->price_sale = $request->price_sale_new;
             $product->update();
-            
+
             DB::commit();
             return back()->with('success', 'Cập nhật giá bán sản phẩm thành công');
         } catch (\Throwable $e) {

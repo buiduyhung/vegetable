@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             'address' => 'required',
             'phone' => 'required'
         ];
-    
+
         if ($this->isMethod('post')) {
             $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
         } else if ($this->isMethod('put')) {

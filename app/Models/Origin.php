@@ -14,7 +14,7 @@ class Origin extends Model
     protected $fillable = [
         'name',
         'slug',
-        'description',
+        'desc',
         'status'
     ];
 

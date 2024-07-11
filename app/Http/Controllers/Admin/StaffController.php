@@ -45,7 +45,7 @@ class StaffController extends Controller
         $admin->save();
 
         return redirect()->route('staff.index')->with('success', 'Thêm nhân viên mới thành công.');
-        
+
     }
 
     public function edit(Admin $admin){
@@ -58,7 +58,7 @@ class StaffController extends Controller
 
         DB::beginTransaction();
         try {
-            
+
             if($request->file('image')){
                 $image = $request->file('image');
                 $data['image'] = $this->saveImage($image);
@@ -103,7 +103,7 @@ class StaffController extends Controller
         $res = $image->storeAs('admins', $imageName, 'public');
         if($res){
             $path = 'admins/'. $imageName;
-        } 
+        }
         return $path;
     }
 }

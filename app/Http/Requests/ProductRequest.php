@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'code_id' => 'required',
             'quantity' => 'required|numeric',
             'weight' => 'required|string',
-            'description' =>'required|string',
+            'desc' =>'required|string',
         ];
 
 
@@ -37,7 +37,7 @@ class ProductRequest extends FormRequest
         } else if ($this->isMethod('put')) {
             $rules['image'] = 'nullable|image|array|mimes:jpeg,png,jpg,gif,svg|max:2048';
         }
-    
+
         return $rules;
     }
 
@@ -61,7 +61,7 @@ class ProductRequest extends FormRequest
             'quantity' => 'Số lượng sản phẩm',
             'weight' => 'Khối lượng sản phẩm',
             'images' => 'Hình ảnh sản phẩm',
-            'description' => 'Mô tả sản phẩm',
+            'desc' => 'Mô tả sản phẩm',
             'name' => 'Tên sản phẩm',
             'status' => 'Trạng thái sản phẩm',
         ];

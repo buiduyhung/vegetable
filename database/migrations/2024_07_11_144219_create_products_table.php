@@ -20,16 +20,16 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->integer('quantity');
             $table->integer('sold')->default(0);
-            $table->string('price_import')->nullable();
-            $table->string('price_sale')->nullable();
+            $table->double('price_import')->nullable();
+            $table->double('price_sale')->nullable();
             $table->string('weight');
-            $table->longText('description');
+            $table->longText('desc');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('origin_id')->references('id')->on('origins')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('category_products')->onDelete('cascade');
-            $table->foreign('code_id')->references('id')->on('product_code')->onDelete('cascade');
+            $table->foreign('code_id')->references('id')->on('code_products')->onDelete('cascade');
         });
     }
 

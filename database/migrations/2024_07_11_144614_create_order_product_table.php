@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('price_update', function (Blueprint $table) {
+        Schema::create('order_product', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
-            $table->double('price_sale')->nullable();
-            $table->double('price_import')->nullable();
+            $table->string('name');
+            $table->integer('quantity');
+            $table->double('price');
+            $table->string('feedback')->nullable();
             $table->timestamps();
 
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('price_update');
+        Schema::dropIfExists('order_product');
     }
 };

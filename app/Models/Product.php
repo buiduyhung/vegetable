@@ -19,7 +19,7 @@ class Product extends Model
         'sold',
         'weight',
         'code_id',
-        'description',
+        'desc',
         'status',
         'origin_id',
         'category_id',

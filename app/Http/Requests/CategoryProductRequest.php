@@ -24,15 +24,15 @@ class CategoryProductRequest extends FormRequest
         $rules = [
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'desc' => 'nullable|string',
         ];
-    
+
         if ($this->isMethod('post')) {
             $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
         } else if ($this->isMethod('put')) {
             $rules['image'] = 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
         }
-    
+
         return $rules;
     }
 
@@ -50,7 +50,7 @@ class CategoryProductRequest extends FormRequest
             'name' => 'Tên danh mục sản phẩm',
             'image' => 'Ảnh danh mục sản phẩm',
             'slug' => 'Tên slug danh mục sản phẩm',
-            'description' => 'Mô tả danh mục sản phẩm',
+            'desc' => 'Mô tả danh mục sản phẩm',
         ];
     }
 }

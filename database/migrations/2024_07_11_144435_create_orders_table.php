@@ -20,9 +20,11 @@ return new class extends Migration
             $table->string('address');
             $table->string('note')->nullable();
             $table->double('total_price');
-            $table->tinyInteger('payment')->comment('1: VNPay, 2: COD');
+            $table->tinyInteger('payment')->comment('1: Online, 2: COD');
             $table->tinyInteger('status')->comment('0: Hủy, 1: Trả hàng, 2: Chờ xác nhận, 3: Đang giao, 4: Đã giao');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

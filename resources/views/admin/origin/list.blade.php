@@ -55,7 +55,7 @@
                                             <p class="mb-0 fw-semibold">{{$origin->name}}</p>
                                         </td>
                                         <td class="border-bottom-0" style="max-width: 330px; white-space: normal; text-align: justify;">
-                                            <p class="mb-0 fw-semibold">{!! $origin->description !!}</p>
+                                            <p class="mb-0 fw-semibold">{!! $origin->desc !!}</p>
                                         </td>
                                         <td class="border-bottom-0 text-center">
                                             <span class="text-ellipsis">
@@ -67,13 +67,13 @@
                                             </span>
                                         </td>
                                         <td class="border-bottom-0 text-center">
-                                            
+
                                             <a href="{{route('origin.edit', $origin)}}" class="btn btn-outline-secondary m-1">Sửa</a>
-    
+
                                             <button type="button" name="delete-group" data-id_origin="{{ $origin->id }}" class="btn btn-outline-danger m-1 delete-origin">
                                                 Xóa
                                             </button>
-    
+
                                         </td>
                                     </tr>
                                 </form>

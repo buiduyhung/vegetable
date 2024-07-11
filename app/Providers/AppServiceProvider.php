@@ -25,30 +25,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $categories = CategoryProduct::all();
-        $brands = Origin::all();
+        // $categories = CategoryProduct::all();
+        // $brands = Origin::all();
 
-        $sevenDaysAgo = now()->subDays(7);
-        $topProduct_ids = Product::select('products.id as product_id', DB::raw('SUM(order_product.quantity) as totalSold'))
-                    ->join('order_product', 'products.id', '=', 'order_product.product_id')
-                    ->join('orders', 'order_product.order_id', '=', 'orders.id')
-                    ->where('orders.created_at', '>=', $sevenDaysAgo)
-                    ->groupBy('product_id')
-                    ->orderByDesc('totalSold')
-                    ->limit(3)
-                    ->get();
-        $topProducts = [];
-        foreach ($topProduct_ids as $item) {
-            $product = Product::find($item['product_id']);
+        // $sevenDaysAgo = now()->subDays(7);
+        // $topProduct_ids = Product::select('products.id as product_id', DB::raw('SUM(order_product.quantity) as totalSold'))
+        //             ->join('order_product', 'products.id', '=', 'order_product.product_id')
+        //             ->join('orders', 'order_product.order_id', '=', 'orders.id')
+        //             ->where('orders.created_at', '>=', $sevenDaysAgo)
+        //             ->groupBy('product_id')
+        //             ->orderByDesc('totalSold')
+        //             ->limit(3)
+        //             ->get();
+        // $topProducts = [];
+        // foreach ($topProduct_ids as $item) {
+        //     $product = Product::find($item['product_id']);
 
-            if ($product) {
-                $product->totalSold = $item['totalSold'];
-                $topProducts[] = $product;
-            }
-        }            
-        View::share(compact('categories', 'brands', 'topProducts'));
+        //     if ($product) {
+        //         $product->totalSold = $item['totalSold'];
+        //         $topProducts[] = $product;
+        //     }
+        // }
+        // View::share(compact('categories', 'brands', 'topProducts'));
 
-        Paginator::useBootstrapFive();
-        Paginator::useBootstrapFour();
+        // Paginator::useBootstrapFive();
+        // Paginator::useBootstrapFour();
     }
 }

@@ -14,7 +14,7 @@ class OrderController extends Controller
         $orders = Order::when($order_id, function($query, $order_id){
             $query->where('id', $order_id);
         })->orderByDesc('id');
-        
+
         if(isset($status)){
             $orders = $orders->where('status', $status);
         }
