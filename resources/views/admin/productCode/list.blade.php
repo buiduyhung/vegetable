@@ -58,7 +58,7 @@
                                             <p class="mb-0 fw-semibold">{{$productCode->title}}</p>
                                         </td>
                                         <td class="border-bottom-0" style="max-width: 330px; white-space: normal; text-align: justify;">
-                                            <p class="mb-0 fw-semibold">{!! $productCode->description !!}</p>
+                                            <p class="mb-0 fw-semibold">{!! $productCode->desc !!}</p>
                                         </td>
                                         <td class="border-bottom-0 text-center">
                                             <span class="text-ellipsis">
@@ -71,7 +71,7 @@
                                         </td>
                                         <td class="border-bottom-0 text-end">
                                             <a href="{{route('productCode.edit', $productCode)}}" class="btn btn-outline-warning m-1">Sửa</a>
-    
+
                                             <button type="button" name="delete-productCode" data-id_productCode="{{ $productCode->id }}" class="btn btn-outline-danger m-1 delete-productCode">
                                                 Xóa
                                             </button>
@@ -82,7 +82,9 @@
                         </tbody>
                     </table>
                 </div>
-                
+                <div class="d-flex justify-content-center mt-3">
+                    {{$productCodes->links()}}
+                </div>
             </div>
         </div>
     </div>

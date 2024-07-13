@@ -15,15 +15,15 @@ class ShopController extends Controller
     public function index(){
         $topSellingProducts = Product::orderByDesc('sold')->get()->take(10);
         $latestProducts = Product::orderByDesc('id')->get()->take(12);
-        
-        $posts = Post::orderByDesc('updated_at')->get()->take(3); 
-        
+
+        $posts = Post::orderByDesc('updated_at')->get()->take(3);
+
         return view('frontend.index', compact('topSellingProducts','latestProducts', 'posts'));
     }
 
     public function shop(Request $request){
         $keyword = $request->input('search');
-       
+
         $products = Product::when($keyword, function($query,$keyword){
             return $query->where('name','like',"%$keyword%");
         });
@@ -43,7 +43,7 @@ class ShopController extends Controller
 
     public function getProductByBrand(Request $request, $brand_id = ''){
         if(!empty($brand_id)){
-            $products = Product::where('brand_id', $brand_id);
+            $products = Product::where('origin_id', $brand_id);
         }
         else{
             $products = Product::query();
@@ -53,15 +53,15 @@ class ShopController extends Controller
 
         return view('frontend.shop', compact('products'));
     }
-    
+
     public function product(Product $product){
         $relatedProducts = Product::where('category_id', $product->category_id)->whereNot('id', $product->id)->get();
-        
+
         return view('frontend.product', compact('product','relatedProducts'));
     }
 
     protected function filter($products, $request){
-        
+
         /* xuất xứ */
         $brands = $request->input('brand') ?? [];
         $arr_brands = array_keys($brands);
@@ -74,7 +74,7 @@ class ShopController extends Controller
         // $min_price = $request->input('min_price');
         // $max_price = $request->input('max_price');
 
-        // $products = ($min_price != null && $max_price != null) 
+        // $products = ($min_price != null && $max_price != null)
         //             ? $products->whereBetween('price', [$min_price, $max_price]) : $products;
 
         return $products;
@@ -84,7 +84,7 @@ class ShopController extends Controller
         $sortBy = $request->input('sort_by') ?? 'latest';
 
         // $price = PriceImport::where('product_id', $products->id)->orderBy('update_at', 'DESC')->first();
-        
+
         switch ($sortBy) {
             case 'latest':
                 $products = $products->orderByDesc('id');
@@ -98,7 +98,7 @@ class ShopController extends Controller
             case 'price-desending':
                 $products = $products->orderByDesc('price');
                 break;
-            
+
             default: $products = $products->orderByDesc('id');
         }
 

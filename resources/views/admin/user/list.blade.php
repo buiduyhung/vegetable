@@ -6,7 +6,7 @@
     <h1 class="mt-4">Danh sách khách hàng</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Danh sách khách hàng</li>
-    </ol>   
+    </ol>
 
     <div class="row">
         <div class="card w-100">
@@ -19,7 +19,7 @@
                     </form>
 
                     <a href="{{route('user.create')}}" class="btn btn-primary m-1">Thêm</a>
-                   
+
                 </div>
                 <hr>
                 <div class="table-responsive">
@@ -79,7 +79,7 @@
                                                 <p class="fw-semibold mb-0 text-danger">Bị khóa</p>
                                             @endif
                                         </td>
-                                        
+
                                         <td class="border-bottom-0 text-end">
                                             @if ($user->status === 1)
                                                 <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này không?')"
@@ -88,13 +88,13 @@
                                                 <a href="{{route('user.status', $user)}}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này không?')"
                                                 class="btn btn-outline-success m-1">Mở khóa</a>
                                             @endif
-    
+
                                             <a href="{{route('user.edit', $user)}}" class="btn btn-outline-secondary m-1">Sửa</a>
-                                            
+
                                             <button type="button" name="delete-user" data-id_user="{{ $user->id }}" class="btn btn-outline-danger m-1 delete-user">
                                                 Xóa
                                             </button>
-                                            
+
                                         </td>
                                     </tr>
                                 </form>

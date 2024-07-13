@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         $productCodes = ProductCode::all();
         // $productName = $request->input('product_name');
-        $products = Product::all();
+        $products = Product::OrderBy('created_at', 'desc')->paginate(8);
 
         // json file search
         $productList = Product::all();
@@ -74,12 +74,13 @@ class ProductController extends Controller
         return view('admin.product.show', compact('product', 'dateToday', 'priceUpdate'));
     }
 
-    public function edit(Product $product)
+    public function edit(Request $product)
     {
         $categories = CategoryProduct::all();
         $origins = Origin::all();
+        $codes = ProductCode::all();
 
-        return view('admin.product.edit', compact('product','categories','origins'));
+        return view('admin.product.edit', compact('product','categories','origins', 'codes'));
     }
 
 

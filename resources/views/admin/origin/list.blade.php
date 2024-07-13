@@ -81,6 +81,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="d-flex justify-content-center mt-3">
+                    {{$origins->links()}}
+                </div>
             </div>
         </div>
     </div>

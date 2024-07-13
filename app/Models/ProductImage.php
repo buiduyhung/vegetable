@@ -26,7 +26,9 @@ class ProductImage extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => Storage::url($value),
+            get: fn (string $value) => Storage::url($value)
         );
     }
+
+
 }

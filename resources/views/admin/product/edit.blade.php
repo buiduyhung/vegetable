@@ -42,11 +42,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="product_code" class="form-label">Mã sản phẩm
+                        <label for="code_id" class="form-label">Mã sản phẩm
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control" name="product_code" id="product_code" value="{{old('product_code', $product->product_code)}}">
-                        @error('product_code')
+                        <select class="form-select" name="code_id" id="origin">
+                            <option value="" disabled selected>--- chọn mã sản phẩm ---</option>
+                            @foreach ($codes as $code)
+                                <option value="{{$code->id}}" {{$code->id == $product->code_id ? 'selected' : '' }}>{{$code->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('code_id')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
@@ -56,7 +61,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <select class="form-select" name="origin_id" id="origin">
-                            <option value="" disabled selected>--- Chọn xuất xứ ---</option>
+                            <option value="" disabled selected>--- chọn xuất xứ ---</option>
                             @foreach ($origins as $origin)
                                 <option value="{{$origin->id}}" {{$origin->id == $product->origin_id ? 'selected' : '' }}>{{$origin->name}}</option>
                             @endforeach
@@ -71,7 +76,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <select class="form-select" name="category_id" id="category">
-                            <option value="" disabled selected>--- Chọn loại sản phẩm ---</option>
+                            <option value="" disabled selected>--- chọn loại sản phẩm ---</option>
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}" {{$category->id == $product->category_id ? 'selected' : '' }}>{{$category->name}}</option>
                             @endforeach

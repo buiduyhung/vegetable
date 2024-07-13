@@ -18,7 +18,7 @@ class OriginController extends Controller
 
         $origins = Origin::when($name, function($query, $name){
             $query->where('name', 'LIKE', "%$name%");
-        })->orderByDesc('id')->paginate(5);
+        })->orderByDesc('id')->paginate(8);
 
         return view('admin.origin.list', compact('origins'));
     }

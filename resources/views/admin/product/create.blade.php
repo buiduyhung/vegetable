@@ -37,7 +37,7 @@
                         <select class="form-select" name="code_id" id="code_id">
                             <option value="" disabled selected>--- chon mã sản phẩm ---</option>
                             @foreach ($productCodes as $productCode)
-                                <option value="{{$productCode->id}}">{{$productCode->name}}</option>
+                                <option value="{{$productCode->id}}">{{$productCode->name}} : {{$productCode->title}}</option>
                             @endforeach
                         </select>
                         @error('code_id')

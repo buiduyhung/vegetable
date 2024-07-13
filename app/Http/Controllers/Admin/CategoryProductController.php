@@ -17,10 +17,11 @@ class CategoryProductController extends Controller
     public function index(Request $request)
     {
         $name = $request->input('name');
-        
+
         $categoryProducts = CategoryProduct::when($name, function($query, $name){
             $query->where('name', 'LIKE', "%$name%");
-        })->orderByDesc('id')->get();
+        })->orderByDesc('id')->paginate(8);
+
         return view('admin.categoryProduct.list', compact('categoryProducts'));
     }
 
@@ -32,7 +33,7 @@ class CategoryProductController extends Controller
     public function store(CategoryProductRequest $request)
     {
         $data = $request->all();
-        
+
         DB::beginTransaction();
         try {
             $data['image'] = $this->saveImage($data['image']);
@@ -57,7 +58,7 @@ class CategoryProductController extends Controller
 
         DB::beginTransaction();
         try {
-            
+
             if($request->file('image')){
                 $image = $request->file('image');
                 $data['image'] = $this->saveImage($image);
@@ -94,7 +95,7 @@ class CategoryProductController extends Controller
         $res = $image->storeAs('categories', $imageName, 'public');
         if($res){
             $path = 'categories/'. $imageName;
-        } 
+        }
         return $path;
     }
 
@@ -107,5 +108,5 @@ class CategoryProductController extends Controller
         CategoryProduct::where('id', $id)->update(['status' => '1']);
         return redirect()->route('categoryProduct.index')->with('success', 'Ẩn bài danh mục viết thành công !');
     }
-    
+
 }

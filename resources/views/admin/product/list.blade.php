@@ -64,7 +64,7 @@
                                             <img class="rounded-1" style="width: 80px; border: 1px solid #f7f7f7" src="{{ $product->images->shift()->image }}" alt="">
                                             <div class="m-2">
                                                 <h6 class="fw-semibold mb-1">{{$product->name}}</h6>
-                                                <span class="fw-normal">{{$product->origin->name}}</span> 
+                                                <span class="fw-normal">{{$product->origin->name}}</span>
                                             </div>
                                         </td>
                                         <td class="border-bottom-0 text-center">
@@ -88,7 +88,7 @@
                                         <td class="border-bottom-0 text-end">
                                             <a href="{{route('product.show', $product)}}" class="btn btn-outline-info m-1">Chi tiết</a>
                                             <a href="{{route('product.edit', $product)}}" class="btn btn-outline-warning m-1">Sửa</a>
-    
+
                                             <button type="button" name="delete-product" data-id_product="{{ $product->id }}" class="btn btn-outline-danger m-1 delete-product">
                                                 Xóa
                                             </button>
@@ -99,8 +99,9 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div class="d-flex justify-content-center mt-3">
-                    {{-- {{$products->links()}} --}}
+                    {{$products->links()}}
                 </div>
             </div>
         </div>

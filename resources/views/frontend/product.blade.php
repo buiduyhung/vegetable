@@ -90,10 +90,10 @@
                     </ul>
 
                     <div class="tab-content">
-                        
+
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
                             <div class="product__details__tab__desc">
-                                {!!$product->description!!}
+                                {!!$product->desc!!}
                             </div>
                         </div>
                         <div class="tab-pane" id="tabs-2" role="tabpanel">
@@ -109,8 +109,25 @@
 </section>
 <!-- Product Details Section End -->
 
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form action="" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <textarea class="form-control" name="content" rows="4" placeholder="Nhập bình luận của bạn..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <!-- Related Product Section Begin -->
-<section class="related-product">
+<section class="related-product mt-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -132,6 +149,7 @@
                         </ul>
                     </div>
                     <div class="product__discount__item__text">
+                        <h4>{{ convertPrice($product->price_sale) }}</h4>
                         <h4>
                             <a href="{{route('product',[$product, Str::slug($product->name)])}}">{{$product->name}}</a>
                         </h4>

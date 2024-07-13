@@ -20,7 +20,7 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
-        <aside class="left-sidebar" style="background-color: floralwhite; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"> 
+        <aside class="left-sidebar" style="background-color: floralwhite; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -42,20 +42,20 @@
                                 <span class="hide-menu">Tổng quan</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        {{-- <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('admin.total') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-dashboard"></i>
                                 </span>
                                 <span class="hide-menu">Thống kê</span>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">Quản lý sản phẩm</span>
                         </li>
-                        
+
                        <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('categoryProduct.index')}}" aria-expanded="false">
                                 <span>
@@ -142,7 +142,7 @@
                                 <span class="hide-menu">Phân quyền</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('staff.index')}}" aria-expanded="false">
                                 <span>
@@ -151,13 +151,13 @@
                                 <span class="hide-menu">Nhân viên</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('user.index')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-users"></i>
                                 </span>
-                                <span class="hide-menu">Thành viên</span>
+                                <span class="hide-menu">Khách hàng</span>
                             </a>
                         </li>
 
@@ -174,7 +174,7 @@
                                 </span>
                                 <span class="hide-menu">Thông tin cá nhân</span>
                             </a>
-                        </li>    
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('admin.password')}}" aria-expanded="false">
                                 <span>
@@ -183,7 +183,7 @@
                                 <span class="hide-menu">Đổi mật khẩu</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('admin.logout')}}" aria-expanded="false">
                                 <span>
@@ -226,7 +226,7 @@
                                         class="rounded-circle">
                                     <span class="mx-2">
                                         {{ Auth::user()->name }}
-                                    </span>    
+                                    </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
@@ -266,10 +266,10 @@
             // delete group
             $('.delete-group').click(function(e){
                 e.preventDefault();
-    
+
                 var id = $(this).data('id_group');
                 var _token = $('input[name="_token"]').val();
-    
+
                 Swal.fire({
                     title: "Bạn có chắc chắn?",
                     text: "Bạn sẽ không thể khôi phục lại điều này!",
@@ -315,10 +315,10 @@
             // delete origin
             $('.delete-origin').click(function(e){
                 e.preventDefault();
-    
+
                 var id = $(this).data('id_origin');
                 var _token = $('input[name="_token"]').val();
-    
+
                 Swal.fire({
                     title: "Bạn có chắc chắn?",
                     text: "Bạn sẽ không thể khôi phục lại điều này!",
@@ -702,7 +702,7 @@
                 e.preventDefault();
                 var id = $(this).data('id_productcode');
                 var _token = $('input[name="_token"]').val();
-                
+
                 Swal.fire({
                     title: "Bạn có chắc chắn?",
                     text: "Bạn sẽ không thể khôi phục lại điều này!",
@@ -748,7 +748,7 @@
         })
     </script>
 
-    
+
 
 </body>
 

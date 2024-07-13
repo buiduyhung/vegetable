@@ -13,7 +13,7 @@ use Throwable;
 class ProductCodeController extends Controller
 {
     public function index(){
-        $productCodes = ProductCode::all();
+        $productCodes = ProductCode::OrderBy('created_at', 'desc')->paginate(5);
 
         return view('admin.productCode.list', compact('productCodes'));
     }
@@ -58,7 +58,7 @@ class ProductCodeController extends Controller
     public function destroy(Request $request){
         try {
             $productCode = ProductCode::find($request->input('productCode_id'));
-            
+
             if ($productCode) {
                 $productCode->delete();
                 return response()->json(['success' => true]);

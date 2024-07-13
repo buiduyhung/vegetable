@@ -77,7 +77,7 @@
                                 <label for="exampleInputEmail1" class="form-label">Nhập thông tin</label>
                                 <textarea name="feedback" id="feedback" class="form-control" cols="30" rows="10"></textarea>
                             </div>
-                            
+
                             <button type="submit" class="btn btn-primary">Gửi</button>
                         </form>
                     </div>

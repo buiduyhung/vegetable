@@ -20,7 +20,7 @@
         </div>
     </section>
     <!-- Banner Section End -->
-   
+
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
@@ -43,8 +43,9 @@
                             </div>
                             <div class="featured__item__text">
                                 <span class="text-warning">Đã bán {{$product->sold}}</span>
+                                <h4>{{ number_format($product->price_sale) }} VNĐ</h4>
                                 <h4><a href="{{route('product', [$product,Str::slug($product->name)])}}">{{$product->name}}</a></h4>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -94,6 +95,7 @@
                                 </ul>
                             </div>
                             <div class="featured__item__text">
+                                <h4>{{ number_format($product->price_sale) }} VNĐ</h4>
                                 <h4><a href="{{route('product', [$product,Str::slug($product->name)])}}">{{$product->name}}</a></h4>
                             </div>
                         </div>
@@ -131,7 +133,7 @@
                                 </div>
                             </div>
                         </a>
-                        
+
                     </div>
                 @endforeach
             </div>

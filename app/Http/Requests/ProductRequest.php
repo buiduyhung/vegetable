@@ -26,6 +26,7 @@ class ProductRequest extends FormRequest
             'category_id' => 'required',
             'name' => 'required|string',
             'code_id' => 'required',
+            'price_import' => 'required',
             'quantity' => 'required|numeric',
             'weight' => 'required|string',
             'desc' =>'required|string',

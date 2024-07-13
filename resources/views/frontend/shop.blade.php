@@ -59,7 +59,7 @@
                                 <h4>Xuất xứ</h4>
                                 @foreach($brands as $brand)
                                     <div class="sidebar__item__publisher">
-                                        <input type="checkbox" name="brand[{{$brand->id}}]" id="{{$brand->name}}" 
+                                        <input type="checkbox" name="brand[{{$brand->id}}]" id="{{$brand->name}}"
                                         {{ (request('brand')[$brand->id] ?? '' ) == 'on' ? 'checked' : ''}} onchange="this.form.submit()">
                                         <label for="{{$brand->name}}">
                                             {{$brand->name}}
@@ -132,6 +132,7 @@
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>{{$product->origin->name}}</span>
+                                            <h4>{{convertPrice($product->price_sale) }}</h4>
                                             <h4><a href="{{route('product', [$product, Str::slug($product->name)] )}}">{{$product->name}}</a></h4>
                                             {{-- <div class="product__item__price">{{convertPrice($product->price)}}</div> --}}
                                         </div>
