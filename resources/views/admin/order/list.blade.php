@@ -55,6 +55,9 @@
                                     <h6 class="fw-semibold mb-0">Tổng tiền</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Phản hồi về đơn hàng</h6>
+                                </th>
+                                <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
                                 </th>
                             </tr>
@@ -90,6 +93,9 @@
                                     @endif
                                     <td class="border-bottom-0 text-center">
                                         <p class="fw-semibold mb-0">{{convertPrice($order->total_price)}}</p>
+                                    </td>
+                                    <td class="border-bottom-0 text-center">
+                                        <p class="fw-semibold mb-0">{{ $order->feedback }}</p>
                                     </td>
                                     <td class="border-bottom-0 text-end">
                                         @if ($order->status === 2)

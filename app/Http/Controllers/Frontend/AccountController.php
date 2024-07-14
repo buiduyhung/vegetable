@@ -91,7 +91,14 @@ class AccountController extends Controller
     }
 
     public function feedback(Request $request, Order $order){
-        
+        $request->validate([
+            'feedback' => 'required|string|max:255',
+        ]);
+
+        $order->feedback = $request->input('feedback');
+        $order->save();
+
+        return redirect()->back();
     }
 
 }

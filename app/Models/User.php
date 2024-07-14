@@ -33,7 +33,7 @@ class User extends Authenticatable implements CanResetPassword
             get: fn ($value) => $value != null ? Storage::url($value) : null,
         );
     }
-    
+
 
     public function orders(){
         return $this->hasMany(order::class);
@@ -58,5 +58,9 @@ class User extends Authenticatable implements CanResetPassword
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 
 }

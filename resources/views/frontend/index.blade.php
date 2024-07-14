@@ -122,7 +122,7 @@
                         <a href="{{ route('blogDetail', $post->slug) }}">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="{{ asset('storage/' . $post->image) }}" alt="" width="50px">
+                                    <img src="{{ asset('storage/' . $post->image) }}" alt="" width="50px" height="241px">
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>

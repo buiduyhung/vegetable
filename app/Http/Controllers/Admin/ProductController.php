@@ -46,7 +46,7 @@ class ProductController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $data = $request->all();
         $arrimages = $data['images'];
@@ -74,36 +74,44 @@ class ProductController extends Controller
         return view('admin.product.show', compact('product', 'dateToday', 'priceUpdate'));
     }
 
-    public function edit(Request $product)
+    public function edit($id)
     {
         $categories = CategoryProduct::all();
         $origins = Origin::all();
         $codes = ProductCode::all();
 
+        $product = Product::find($id);
+
         return view('admin.product.edit', compact('product','categories','origins', 'codes'));
     }
 
 
-    public function update(ProductRequest $request, Product $product)
+    public function update(Request $request, $id)
     {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return redirect()->route('product.index')->with('error', 'Sản phẩm không tồn tại.');
+        }
+
         $data = $request->all();
 
         DB::beginTransaction();
         try {
-            unset($data['images']);
-
-            if($request->file('image')){
+            if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $data['image'] = $this->saveImage($image);
             } else {
                 $data['image'] = $product->image;
             }
+
             $product->update($data);
+
             DB::commit();
             return redirect()->route('product.show', $product->id)->with('success', 'Cập nhật sản phẩm thành công!');
         } catch (\Throwable $e) {
             DB::rollback();
-            throw $e;
+            return redirect()->route('product.edit', $product->id)->with('error', 'Cập nhật sản phẩm thất bại. Vui lòng thử lại.');
         }
     }
 

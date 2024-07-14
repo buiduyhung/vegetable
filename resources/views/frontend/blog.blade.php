@@ -36,11 +36,11 @@
                             <ul>
                                 @foreach ($categoryPosts as $item)
                                     <li><a href="#">{{ $item->name }}</a></li>
-                                    
+
                                 @endforeach
                             </ul>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7">
@@ -49,7 +49,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="blog__item">
                                     <div class="blog__item__pic">
-                                        <img src="{{ asset('storage/' . $item->image) }}" alt="">
+                                        <img src="{{ asset('storage/' . $item->image) }}" alt="" height="264px">
                                     </div>
                                     <div class="blog__item__text">
                                         <ul>
@@ -62,8 +62,8 @@
                                 </div>
                             </div>
                         @endforeach
-                        
-                        
+
+
                         {{-- <div class="col-lg-12">
                             <div class="product__pagination blog__pagination">
                                 <a href="#">1</a>
@@ -80,4 +80,4 @@
     <!-- Blog Section End -->
 
 
-@endsection                                                                                                  
+@endsection

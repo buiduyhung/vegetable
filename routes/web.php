@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\OriginController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductCodeController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\AuthUserController;
 use App\Http\Controllers\Frontend\AccountController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\HomeController;
 
 /*
@@ -58,7 +60,7 @@ Route::prefix('admin')->group(function () {
 
 
         //Origin
-        Route::prefix('origin')->name('origin.')->group(function () { //->middleware('can:origins')
+        Route::prefix('origin')->name('origin.')->middleware('can:origins')->group(function () { //->middleware('can:origins')
             Route::get('/', [OriginController::class, 'index'])->name('index');
             Route::get('create', [OriginController::class, 'create'])->name('add');
             Route::post('create', [OriginController::class, 'store'])->name('store');
@@ -71,7 +73,7 @@ Route::prefix('admin')->group(function () {
         });
 
         //Category product
-        Route::prefix('category-product')->name('categoryProduct.')->group(function () {  //->middleware('can:categoryProducts')
+        Route::prefix('category-product')->name('categoryProduct.')->middleware('can:categoryProducts')->group(function () {  //->middleware('can:categoryProducts')
             Route::get('/', [CategoryProductController::class, 'index'])->name('index');
             Route::get('create', [CategoryProductController::class, 'create'])->name('create');
             Route::post('create', [CategoryProductController::class, 'store'])->name('store');
@@ -97,13 +99,13 @@ Route::prefix('admin')->group(function () {
         });
 
         //Product
-        Route::prefix('product')->name('product.')->group(function () { //->middleware('can:products')
+        Route::prefix('product')->name('product.')->middleware('can:products')->group(function () { //->middleware('can:products')
             Route::get('/', [ProductController::class, 'index'])->name('index');
             Route::post('search', [ProductController::class, 'index'])->name('search');
             Route::get('create', [ProductController::class, 'create'])->name('create');
             Route::post('create', [ProductController::class, 'store'])->name('store');
-            Route::get('edit/{product}', [ProductController::class, 'edit'])->name('edit');
-            Route::put('edit/{product}', [ProductController::class, 'update'])->name('update');
+            Route::get('edit/{id}', [ProductController::class, 'edit'])->name('edit');
+            Route::put('edit/{id}', [ProductController::class, 'update'])->name('update');
             Route::get('show/{product}', [ProductController::class, 'show'])->name('show');
             Route::post('delete', [ProductController::class, 'destroy'])->name('destroy');
 
@@ -128,7 +130,7 @@ Route::prefix('admin')->group(function () {
         });
 
         // Category Post
-        Route::prefix('category-post')->name('categoryPost.')->group(function (){ //->middleware('can:categoryPosts')
+        Route::prefix('category-post')->name('categoryPost.')->middleware('can:categoryPosts')->group(function (){ //->middleware('can:categoryPosts')
             Route::get('/', [CategoryPostController::class, 'index'])->name('index');
             Route::get('create', [CategoryPostController::class, 'create'])->name('create');
             Route::post('create', [CategoryPostController::class, 'store'])->name('store');
@@ -142,7 +144,7 @@ Route::prefix('admin')->group(function () {
 
 
         // Post
-        Route::prefix('post')->name('post.')->group(function() {  //->middleware('can:posts')
+        Route::prefix('post')->name('post.')->middleware('can:posts')->group(function() {  //->middleware('can:posts')
             Route::get('/', [PostController::class, 'index'])->name('index');
             Route::get('show/{post}', [PostController::class, 'show'])->name('show');
             Route::get('create', [PostController::class, 'create'])->name('create');
@@ -153,20 +155,20 @@ Route::prefix('admin')->group(function () {
 
             Route::get('active/{post}', [PostController::class, 'active'])->name('active');
             Route::get('hidden/{post}', [PostController::class, 'hidden'])->name('hidden');
-        });         
+        });
 
         //Order
-        Route::prefix('order')->name('order.')->group(function () {
+        Route::prefix('order')->name('order.')->middleware('can:orders')->group(function () {
             Route::get('order', [OrderController::class, 'index'])->name('index');
             Route::get('show/{order}', [OrderController::class, 'show'])->name('show');
             Route::get('confirm/{order}', [OrderController::class, 'confirm'])->name('confirm');
             Route::get('delivered/{order}', [OrderController::class, 'delivered'])->name('delivered');
             Route::get('back/{order}', [OrderController::class, 'back'])->name('back');
         });
-        
+
 
         //User
-        Route::prefix('user')->name('user.')->group(function () {  //->middleware('can:users')
+        Route::prefix('user')->name('user.')->middleware('can:users')->group(function () {  //->middleware('can:users')
             Route::get('/', [UserController::class, 'index'])->name('index');
             Route::get('create', [UserController::class, 'create'])->name('create');
             Route::post('create', [UserController::class, 'store'])->name('store');
@@ -176,10 +178,10 @@ Route::prefix('admin')->group(function () {
 
             Route::get('starus/{user}', [UserController::class, 'handleStatus'])->name('status');
         });
-        
+
 
         //Staff
-        Route::prefix('staff')->name('staff.')->group(function () {  //->middleware('can:saffs')
+        Route::prefix('staff')->name('staff.')->middleware('can:saffs')->group(function () {  //->middleware('can:saffs')
             Route::get('/', [StaffController::class, 'index'])->name('index');
             Route::get('create', [StaffController::class, 'create'])->name('create');
             Route::post('create', [StaffController::class, 'store'])->name('store');
@@ -189,23 +191,33 @@ Route::prefix('admin')->group(function () {
 
             Route::get('profile', [StaffController::class, 'profile'])->name('profile');
         });
-        
+
 
         //Group
-        Route::prefix('group')->name('group.')->group(function () {  //->middleware('can:groups')
+        Route::prefix('group')->name('group.')->middleware('can:groups')->group(function () {  //->middleware('can:groups')
             Route::get('/', [GroupController::class, 'index'])->name('index');
             Route::get('create', [GroupController::class, 'create'])->name('create');
             Route::post('create', [GroupController::class, 'store'])->name('store');
             Route::get('edit/{group}', [GroupController::class, 'edit'])->name('edit');
             Route::post('edit/{group}', [GroupController::class, 'update'])->name('update');
             Route::post('destroy', [GroupController::class, 'destroy'])->name('destroy');
-            
+
             Route::get('permission/{group}', [GroupController::class, 'permission'])->name('permission');
             Route::post('permission/{group}', [GroupController::class, 'store_permission'])->name('storePermission');
         });
-        
+
+        Route::prefix('module')->name('module.')->middleware('can:groups')->group(function () {  //->middleware('can:groups')
+            Route::get('/', [ModuleController::class, 'index'])->name('index');
+            Route::get('create', [ModuleController::class, 'create'])->name('create');
+            Route::post('create', [ModuleController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [ModuleController::class, 'edit'])->name('edit');
+            Route::post('edit/{id}', [ModuleController::class, 'update'])->name('update');
+            Route::post('destroy', [ModuleController::class, 'destroy'])->name('destroy');
+
+        });
+
     });
-    
+
 });
 
 
@@ -244,7 +256,7 @@ Route::middleware(['guest:web'])->group(function () {
 
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/dang-xuat', [AuthUserController::class, 'logout'])->name('logout');
-    
+
     Route::get('/dat-hang', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkoutPost');
     Route::get('/checkout/vnPayCheck', [CheckoutController::class, 'vnPayCheck'])->name('checkout.vnpay');
@@ -259,11 +271,17 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/order-history/receive/{order}', [AccountController::class, 'receive'])->name('order.receive');
     Route::post('/order-history/return/{order}', [AccountController::class, 'return'])->name('order.return');
 
-    Route::post('/phan-hoi-khach-hang/{order}', [AccountController::class, 'feedback'])->name('account.feedback');
+    Route::put('/phan-hoi-khach-hang/{order}', [AccountController::class, 'feedback'])->name('account.feedback');
 
     Route::get('/doi-mat-khau', [AccountController::class, 'changePassword'])->name('account.change-password');
     Route::post('/doi-mat-khau', [AccountController::class, 'updatePassword'])->name('account.update-password');
 
+    Route::get('products/{product}/comments', [CommentController::class, 'index'])->name('comment.index');
+    Route::post('products/{product}/comments', [CommentController::class, 'store'])->name('comment.store');
+
+    Route::get('/product/{product}', function (App\Models\Product $product) {
+        return view('frontend.product', compact('product'));
+    });
 });
 
 

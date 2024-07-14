@@ -49,6 +49,10 @@
                             <p>Ghi chú</p>
                             <input type="text" name="note" value="{{$order->note}}" disabled readonly>
                         </div>
+                        <div class="checkout__input">
+                            <p>Phản hồi về đơn hàng</p>
+                            <input type="text" name="feedback" value="{{$order->feedback}}" disabled readonly>
+                        </div>
                     </div>
                     <div class="col-lg-5 col-md-6">
                         <div class="checkout__order">
@@ -69,10 +73,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-6">
+                    <div class="col-lg-7 col-md-6 mt-6">
                         <h4>Phàn hồi về đơn hàng</h4>
                         <form method="POST" action="{{ route('account.feedback', $order) }}">
                             @csrf
+                            @method("PUT")
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nhập thông tin</label>
                                 <textarea name="feedback" id="feedback" class="form-control" cols="30" rows="10"></textarea>

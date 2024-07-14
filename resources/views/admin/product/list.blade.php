@@ -36,10 +36,10 @@
                                     <h6 class="fw-semibold mb-0">Loại sản phẩm</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">Số lượng</h6>
+                                    <h6 class="fw-semibold mb-0">Số lượng tồn</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">Đã bán</h6>
+                                    <h6 class="fw-semibold mb-0">Số lượng đã bán</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Trạng thái</h6>
@@ -87,7 +87,7 @@
                                         </td>
                                         <td class="border-bottom-0 text-end">
                                             <a href="{{route('product.show', $product)}}" class="btn btn-outline-info m-1">Chi tiết</a>
-                                            <a href="{{route('product.edit', $product)}}" class="btn btn-outline-warning m-1">Sửa</a>
+                                            <a href="{{route('product.edit', $product->id)}}" class="btn btn-outline-warning m-1">Sửa</a>
 
                                             <button type="button" name="delete-product" data-id_product="{{ $product->id }}" class="btn btn-outline-danger m-1 delete-product">
                                                 Xóa

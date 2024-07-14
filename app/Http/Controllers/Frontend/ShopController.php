@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\PriceImport;
 use App\Models\PriceSale;
@@ -56,8 +57,9 @@ class ShopController extends Controller
 
     public function product(Product $product){
         $relatedProducts = Product::where('category_id', $product->category_id)->whereNot('id', $product->id)->get();
+        $comments = Comment::where('product_id', $product->id)->get();
 
-        return view('frontend.product', compact('product','relatedProducts'));
+        return view('frontend.product', compact('product','relatedProducts', 'comments'));
     }
 
     protected function filter($products, $request){

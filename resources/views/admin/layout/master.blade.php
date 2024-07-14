@@ -144,6 +144,15 @@
                         </li>
 
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{route('module.index')}}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-layout"></i>
+                                </span>
+                                <span class="hide-menu">Module</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('staff.index')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-user-plus"></i>

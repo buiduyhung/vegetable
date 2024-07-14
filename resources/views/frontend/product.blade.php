@@ -111,18 +111,27 @@
 
 <section>
     <div class="container">
+        <h4 class="mb-5">Bình luận</h4>
         <div class="row">
             <div class="col-6">
-                <form action="" method="POST">
+                <form action="{{route('comment.store', $product)}}" method="POST" id="commentForm">
                     @csrf
                     <div class="mb-3">
-                        <textarea class="form-control" name="content" rows="4" placeholder="Nhập bình luận của bạn..." required></textarea>
+                        <textarea class="form-control" name="comment" rows="4" placeholder="Nhập bình luận của bạn..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Gửi bình luận</button>
                 </form>
             </div>
-
         </div>
+        <hr>
+        <div class="row mt-5">
+            <div id="comments" class="col-12">
+                @foreach ($comments as $item)
+                    <div class="comment mt-4"><strong>{{$item->user->name}}</strong>: {{$item->content}}</div>
+                @endforeach
+            </div>
+        </div>
+        <hr>
     </div>
 </section>
 
@@ -161,4 +170,5 @@
     </div>
 </section>
 <!-- Related Product Section End -->
+
 @endsection

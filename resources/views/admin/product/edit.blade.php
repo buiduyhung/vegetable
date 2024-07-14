@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
-                <form method="POST" action="{{route('product.update', $product)}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('product.update', $product->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
