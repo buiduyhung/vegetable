@@ -63,14 +63,15 @@
                                 </ul>
                                 {{-- <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div> --}}
                                 <div class="checkout__order__total">Tổng tiền <span>{{convertPrice(session('total_price'))}}</span></div>
+
                                 <div class="checkout__input__checkbox">
                                     <label for="vnpay">
-                                        Thanh toán VNPay
+                                        <img src="{{asset('assets/frontend/img/vnpay.png')}}" alt="" width="100px" style="border-radius: 3px">
                                         <input type="radio" name="payment" id="vnpay" value="1">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                <div class="checkout__input__checkbox">
+                                <div class="checkout__input__checkbox mt-3">
                                     <label for="cod">
                                         Thanh toán khi nhận hàng
                                         <input type="radio" name="payment" id="cod" value="2">

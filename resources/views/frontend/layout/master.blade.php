@@ -60,7 +60,7 @@
                     <ul class="header__menu__dropdown">
                          @foreach ($brands as $brand)
                             <li><a href="{{route('brand', $brand)}}">{{$brand->name}}</a></li>
-                         @endforeach   
+                         @endforeach
                     </ul>
                 </li>
                 <li><a href="{{ route('blog') }}">Bài viết</a></li>
@@ -69,7 +69,7 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="header__top__right__social">
-            
+
         </div>
         <div class="humberger__menu__contact">
             <ul>
@@ -133,7 +133,7 @@
                                 <ul class="header__menu__dropdown">
                                     @foreach ($brands as $brand)
                                        <li><a href="{{route('brand', $brand)}}">{{$brand->name}}</a></li>
-                                    @endforeach   
+                                    @endforeach
                                </ul>
                             </li>
                             <li><a href="{{route('blog')}}">Bài viết</a></li>
@@ -181,10 +181,10 @@
                                 <input type="text" id="search" name="search" placeholder="Tìm kiếm sản phẩm" value="{{ request('search') }}">
                                 <button type="submit" class="site-btn">Tìm kiếm</button>
                             </form>
-                            
+
                             <ul class="list-group" id="result" style="position: absolute; z-index: 1000; background: white; width: 100%;"></ul>
                         </div>
-                        
+
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
@@ -246,7 +246,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </footer>
     <!-- Footer Section End -->
@@ -289,6 +289,54 @@
                 $('#result').html('');
                 $('#result').css('display', 'none');
             });
+
+
+            // delete group
+            $('.delete-discount').click(function(e){
+                e.preventDefault();
+
+                var _token = $('input[name="_token"]').val();
+
+                Swal.fire({
+                    title: "Bạn có chắc chắn?",
+                    text: "Bạn sẽ không thể khôi phục lại mã giảm giá này!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Có, xóa nó đi!",
+                    cancelButtonText: "Hủy"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('deleteDiscount') }}",
+                            method: "GET",
+                            data: {
+                                _token: _token
+                            },
+                            success: function(data) {
+                                Swal.fire({
+                                    title: "Đã xóa!",
+                                    text: "Dữ liệu đã được xóa thành công.",
+                                    icon: "success"
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                Swal.fire({
+                                    title: "Lỗi!",
+                                    text: "Đã xảy ra lỗi. Vui lòng thử lại.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+
         });
     </script>
 

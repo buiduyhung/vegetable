@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function blogDetail($slug) {
         $categoryPosts = CategoryPost::all();
         $post = Post::where('slug', $slug)->first();
-        
+
         return view('frontend.blogDetail', compact('post', 'categoryPosts'));
     }
 }

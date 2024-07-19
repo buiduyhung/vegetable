@@ -71,17 +71,86 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-lg-4">
+                        <div class="shoping__cart__btns">
+                            <h3 href="" class="primary-btn">Nhập mã giảm giá:</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <form action="{{route('discount')}}" method="POST">
+                            @csrf
+                            <div class="d-flex">
+                                <input type="text" class="form-control" name="discount" placeholder="Nhập mã giảm giá">
+                                <input type="submit" class="btn btn-dark mx-2" name="check-discount" value="Tính mã giảm giá">
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-2">
+                        <a href="#" class="btn btn-danger delete-discount">Xóa mã giảm giá</a>
+                    </div>
+                </div>
+                <div class="row mt-5">
                     <div class="col-lg-6">
                         <div class="shoping__cart__btns">
                             <a href="{{route('shop')}}" class="primary-btn">Tiếp tục mua hàng</a>
                         </div>
                     </div>
+
                     <div class="col-lg-6">
                         <div class="shoping__checkout">
                             <h5>Giỏ hàng</h5>
+
                             <ul>
-                                <li>Tổng tiền <span>{{convertPrice(session('total_price'))}}</span></li>
+                                @if (Session::get('discount'))
+                                    @php
+                                        $latestDiscount = Session::get('discount');
+                                        $total = session('total_price');
+                                        // echo '<pre>';
+                                        //     print_r($latestDiscount);
+                                        // echo '</pre>';
+                                    @endphp
+
+                                    @foreach ($latestDiscount as $key => $discount)
+                                        @if ($discount['discount_condition'] == 1)
+                                            <p>Mã giảm giá : <span>{{ $discount['discount_code'] }}</span> </p>
+
+                                            <p>
+                                                @php
+                                                    $totalDiscount = ($total * $discount['discount_value']) / 100;
+                                                @endphp
+                                            </p>
+
+                                            <p>Giá trị mã giảm giá : <span>{{ $discount['discount_value'] }} % (= {{ number_format($totalDiscount,0,',','.') }} VNĐ)</span> </p>
+
+                                            <p>
+                                                @php
+                                                    $total_after_discount = $total - $totalDiscount;
+                                                @endphp
+                                            </p>
+                                            <hr>
+                                            <li>Tổng tiền sau khi áp mã : <span>{{ number_format($total_after_discount,0,',','.') }} VNĐ</span></li>
+                                        @endif
+
+                                        @if ($discount['discount_condition'] == 2)
+                                            <p>Mã giảm giá : <span>{{ $discount['discount_code'] }}</span>  <br></p>
+                                            <p>Giá trị mã giảm giá : <span>{{ number_format($discount['discount_value'],0,',','.') }} VNĐ</span> </p>
+                                            <p>
+                                                @php
+                                                    $total_after_discount = $total - $discount['discount_value'];
+                                                @endphp
+                                            </p>
+                                            <hr>
+                                            <li>Tổng tiền sau khi áp mã: <span>{{ number_format($total_after_discount,0,',','.') }} VNĐ</span> </li>
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    <li>Tổng tiền <span>{{convertPrice(session('total_price'))}}</span></li>
+                                @endif
+
                             </ul>
+
                             <a href="{{route('checkout')}}" class="primary-btn">Thanh toán</a>
                         </div>
                     </div>
@@ -95,7 +164,7 @@
                 </div>
             </div>
         @endif
-        
+
     </section>
     <!-- Shoping Cart Section End -->
 
@@ -119,4 +188,3 @@
     </script>
 
 @endsection
-   

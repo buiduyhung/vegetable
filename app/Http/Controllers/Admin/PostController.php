@@ -49,7 +49,16 @@ class PostController extends Controller
         return view('admin.post.edit', compact('post', 'categoryPosts'));
     }
 
-    public function update(PostRequest $request ,Post $post){
+    public function update(Request $request ,Post $post){
+        $request->validate([
+            'image' => 'nullable|image',
+            'title' => 'required',
+            'content' => 'required',
+            'categoryPost_id' => 'required',
+            'status' => 'required',
+            'desc' => 'required',
+        ]);
+
         $data = $request->all();
 
         DB::beginTransaction();
@@ -65,10 +74,10 @@ class PostController extends Controller
     }
 
     public function destroy(Request $request){
-        
+
         try {
             $post = Post::find($request->input('post_id'));
-            
+
             if ($post) {
                 $post->delete();
                 return response()->json(['success' => true]);
@@ -86,7 +95,7 @@ class PostController extends Controller
         $res = $image->storeAs('posts', $imageName, 'public');
         if($res){
             $path = 'posts/'. $imageName;
-        } 
+        }
         return $path;
     }
 

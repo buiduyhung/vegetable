@@ -86,20 +86,22 @@
             </div>
             <div class="row featured__filter">
                 @foreach ($latestProducts as $product)
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg" data-setbg="{{$product->images->shift()->image}}">
-                                <ul class="featured__item__pic__hover">
-                                    <li><a href="{{route('product', [$product,Str::slug($product->name)])}}"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="{{route('cart.add', $product)}}"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h4>{{ number_format($product->price_sale) }} VNĐ</h4>
-                                <h4><a href="{{route('product', [$product,Str::slug($product->name)])}}">{{$product->name}}</a></h4>
+                    @if ($product->status == 1)
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg" data-setbg="{{$product->images->shift()->image}}">
+                                    <ul class="featured__item__pic__hover">
+                                        <li><a href="{{route('product', [$product,Str::slug($product->name)])}}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{route('cart.add', $product)}}"><i class="fa fa-shopping-cart"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h4>{{ number_format($product->price_sale) }} VNĐ</h4>
+                                    <h4><a href="{{route('product', [$product,Str::slug($product->name)])}}">{{$product->name}}</a></h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>

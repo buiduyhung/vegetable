@@ -17,6 +17,12 @@ class Discount extends Model
         'quantity',
         'condition',
         'value',
-        'status'
+        'status',
+        'code_id'
     ];
+
+    public function discountCode(){
+        return $this->belongsTo(DiscountCode::class);
+    }
+
 }

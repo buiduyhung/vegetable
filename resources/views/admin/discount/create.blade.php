@@ -13,6 +13,19 @@
                 <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
                 <form method="POST" action="{{route('discount.store')}}" enctype="multipart/form-data">
                     @csrf
+
+                    <div class="mb-3">
+                        <label for="code_id" class="form-label">Mã code</label>
+                        <select class="form-select" name="code_id" id="code_id">
+                            <option value="" disabled selected>--- chon mã code ---</option>
+                            @foreach ($codes as $code)
+                                <option value="{{$code->id}}">{{$code->name}} : {{$code->title}}</option>
+                            @endforeach
+                        </select>
+                        @error('code_id')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Tên mã giảm giá</label>
                         <input type="text" name="name" class="form-control" id="name">
@@ -52,7 +65,7 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="status" class="form-label">Trạng thái</label>
                         <select name="status" class="form-control m-bot15">

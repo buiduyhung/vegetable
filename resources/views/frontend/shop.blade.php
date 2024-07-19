@@ -121,23 +121,24 @@
                         </div>
                         <div class="row">
                             @foreach($products as $product)
-                                <div class="col-lg-4 col-md-6 col-sm-6">
-                                    <div class="product__discount__item product__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="{{$product->images->first()->image}}">
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="{{route('product', [$product,Str::slug($product->name)])}}"><i class="fa fa-eye"></i></a></li>
-                                                <li><a href="{{route('cart.add', $product)}}"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>{{$product->origin->name}}</span>
-                                            <h4>{{convertPrice($product->price_sale) }}</h4>
-                                            <h4><a href="{{route('product', [$product, Str::slug($product->name)] )}}">{{$product->name}}</a></h4>
-                                            {{-- <div class="product__item__price">{{convertPrice($product->price)}}</div> --}}
+                                @if ($product->status == 1)
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="product__discount__item product__item">
+                                            <div class="product__discount__item__pic set-bg"
+                                                data-setbg="{{$product->images->first()->image}}">
+                                                <ul class="product__item__pic__hover">
+                                                    <li><a href="{{route('product', [$product,Str::slug($product->name)])}}"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a href="{{route('cart.add', $product)}}"><i class="fa fa-shopping-cart"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product__discount__item__text">
+                                                <span>{{$product->origin->name}}</span>
+                                                <h4>{{convertPrice($product->price_sale) }}</h4>
+                                                <h4><a href="{{route('product', [$product, Str::slug($product->name)] )}}">{{$product->name}}</a></h4>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
                         </div>
                         <div class="d-flex justify-content-center">

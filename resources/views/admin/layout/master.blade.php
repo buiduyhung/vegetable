@@ -89,6 +89,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('discountCode.index') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-zip"></i>
+                                </span>
+                                <span class="hide-menu">Mã code</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('discount.index') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-pin"></i>
@@ -96,6 +104,7 @@
                                 <span class="hide-menu">Mã giảm giá</span>
                             </a>
                         </li>
+
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('order.index')}}" aria-expanded="false">
                                 <span>
@@ -318,8 +327,6 @@
                     }
                 });
             });
-
-
 
             // delete origin
             $('.delete-origin').click(function(e){

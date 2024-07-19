@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DiscountRequest;
 use App\Models\Discount;
+use App\Models\DiscountCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -19,7 +20,9 @@ class DiscountController extends Controller
     }
 
     public function create(){
-        return view('admin.discount.create');
+        $codes = DiscountCode::all();
+
+        return view('admin.discount.create', compact('codes'));
     }
 
     public function store(DiscountRequest $request){
@@ -55,10 +58,10 @@ class DiscountController extends Controller
     }
 
     public function destroy(Request $request){
-        
+
         try {
             $discount = Discount::find($request->input('discount_id'));
-            
+
             if ($discount) {
                 $discount->delete();
                 return response()->json(['success' => true]);

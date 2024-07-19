@@ -11,7 +11,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Thông tin</h5>
-                <form method="POST" action="{{route('post.update', $post)}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('post.update', $post)}}">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
@@ -58,7 +58,7 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>
                         @if ($post->image)

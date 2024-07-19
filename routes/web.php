@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DiscountCodeController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\ModuleController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Frontend\AuthUserController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\HomeController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,6 +116,19 @@ Route::prefix('admin')->group(function () {
 
             Route::get('active/{id}', [ProductController::class, 'active'])->name('active');
             Route::get('hidden/{id}', [ProductController::class, 'hidden'])->name('hidden');
+        });
+
+        // Mã code giảm giá
+        Route::prefix('discount-code')->name('discountCode.')->group(function () {
+            Route::get('/', [DiscountCodeController::class, 'index'])->name('index');
+            Route::get('create', [DiscountCodeController::class, 'create'])->name('create');
+            Route::post('create', [DiscountCodeController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [DiscountCodeController::class, 'edit'])->name('edit');
+            Route::post('edit/{id}', [DiscountCodeController::class, 'update'])->name('update');
+            Route::post('delete', [DiscountCodeController::class, 'destroy'])->name('destroy');
+
+            Route::get('active/{post}', [DiscountCodeController::class, 'active'])->name('active');
+            Route::get('hidden/{post}', [DiscountCodeController::class, 'hidden'])->name('hidden');
         });
 
         // Discount
@@ -223,6 +238,17 @@ Route::prefix('admin')->group(function () {
 
 // ----------------------------------------- Home --------------------------------------------------------
 
+Route::get('chinh-sach-rieng-tu', function (){
+    return '<h1>Chính sách riêng tư</h1>';
+});
+
+Route::get('auth/facebook', function (){
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('auth/facebook/callback', function (){
+    return 'Callback login facebook';
+});
 
 Route::get('/', [ShopController::class, 'index'])->name('home');
 
@@ -241,6 +267,8 @@ Route::get('/cart/increase/{product_id}', [CartController::class, 'increase'])->
 Route::get('/cart/decrease/{product_id}', [CartController::class, 'decrease'])->name('cart.decrease');
 Route::get('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
 
+Route::post('/ma-giam-gia', [CartController::class, 'discount'])->name('discount');
+Route::get('/xoa-ma-giam-gia', [CartController::class, 'deleteDiscount'])->name('deleteDiscount');
 
 Route::middleware(['guest:web'])->group(function () {
     Route::get('/dang-nhap', [AuthUserController::class, 'login'])->name('login');

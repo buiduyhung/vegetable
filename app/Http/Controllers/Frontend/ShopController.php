@@ -72,20 +72,12 @@ class ShopController extends Controller
             return $query->whereIn('origin_id', $arr_brands);
         });
 
-        // /* Lọc giá */
-        // $min_price = $request->input('min_price');
-        // $max_price = $request->input('max_price');
-
-        // $products = ($min_price != null && $max_price != null)
-        //             ? $products->whereBetween('price', [$min_price, $max_price]) : $products;
-
         return $products;
     }
 
     protected function sortByAndPaginate($products,Request $request){
         $sortBy = $request->input('sort_by') ?? 'latest';
 
-        // $price = PriceImport::where('product_id', $products->id)->orderBy('update_at', 'DESC')->first();
 
         switch ($sortBy) {
             case 'latest':
