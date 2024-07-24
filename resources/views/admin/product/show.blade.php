@@ -107,7 +107,7 @@
                                                 <h6 class="fw-semibold mb-0">Ngày nhập sản phẩm</h6>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h6 class="fw-semibold mb-0">Giá nhập</h6>
+                                                <h6 class="fw-semibold mb-0">Giá nhập (VNĐ)</h6>
                                             </th>
                                         </tr>
                                     </thead>
@@ -119,7 +119,7 @@
                                                         <h6 class="fw-semibold mb-0">{{ date_format($price->created_at, 'd/m/Y') }}</h6>
                                                     </td>
                                                     <td class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-0">{{ $price->price_import }}</h6>
+                                                        <h6 class="fw-semibold mb-0">{{ number_format($price->price_import) }}</h6>
                                                     </td>
                                                 @endif
                                             </tr>
@@ -136,7 +136,7 @@
                                                 <h6 class="fw-semibold mb-0">Ngày bán sản phẩm</h6>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h6 class="fw-semibold mb-0">Giá bán</h6>
+                                                <h6 class="fw-semibold mb-0">Giá bán (VNĐ)</h6>
                                             </th>
                                         </tr>
                                     </thead>
@@ -148,7 +148,7 @@
                                                         <h6 class="fw-semibold mb-0">{{ date_format($price->updated_at, 'd/m/Y') }}</h6>
                                                     </td>
                                                     <td class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-0">{{ $price->price_sale }}</h6>
+                                                        <h6 class="fw-semibold mb-0">{{ number_format($price->price_sale) }}</h6>
                                                     </td>
                                                 @endif
                                             </tr>

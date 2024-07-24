@@ -46,7 +46,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 Route::prefix('admin')->group(function () {
 
     //Auth
-    Route::get('login', [AuthController::class, 'login'])->name('admin.login'); //->middleware(['guest:admin'])
+    Route::get('login', [AuthController::class, 'login'])->name('admin.login');
     Route::post('login', [AuthController::class, 'loginPost'])->middleware(['guest:admin'])->name('admin.loginPost');
 
     Route::middleware(['auth:admin'])->group(function () {
@@ -62,7 +62,7 @@ Route::prefix('admin')->group(function () {
 
 
         //Origin
-        Route::prefix('origin')->name('origin.')->middleware('can:origins')->group(function () { //->middleware('can:origins')
+        Route::prefix('origin')->name('origin.')->middleware('can:origins')->group(function () {
             Route::get('/', [OriginController::class, 'index'])->name('index');
             Route::get('create', [OriginController::class, 'create'])->name('add');
             Route::post('create', [OriginController::class, 'store'])->name('store');
@@ -75,7 +75,7 @@ Route::prefix('admin')->group(function () {
         });
 
         //Category product
-        Route::prefix('category-product')->name('categoryProduct.')->middleware('can:categoryProducts')->group(function () {  //->middleware('can:categoryProducts')
+        Route::prefix('category-product')->name('categoryProduct.')->middleware('can:categoryProducts')->group(function () {
             Route::get('/', [CategoryProductController::class, 'index'])->name('index');
             Route::get('create', [CategoryProductController::class, 'create'])->name('create');
             Route::post('create', [CategoryProductController::class, 'store'])->name('store');
@@ -101,7 +101,7 @@ Route::prefix('admin')->group(function () {
         });
 
         //Product
-        Route::prefix('product')->name('product.')->middleware('can:products')->group(function () { //->middleware('can:products')
+        Route::prefix('product')->name('product.')->middleware('can:products')->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('index');
             Route::post('search', [ProductController::class, 'index'])->name('search');
             Route::get('create', [ProductController::class, 'create'])->name('create');
@@ -145,7 +145,7 @@ Route::prefix('admin')->group(function () {
         });
 
         // Category Post
-        Route::prefix('category-post')->name('categoryPost.')->middleware('can:categoryPosts')->group(function (){ //->middleware('can:categoryPosts')
+        Route::prefix('category-post')->name('categoryPost.')->middleware('can:categoryPosts')->group(function (){
             Route::get('/', [CategoryPostController::class, 'index'])->name('index');
             Route::get('create', [CategoryPostController::class, 'create'])->name('create');
             Route::post('create', [CategoryPostController::class, 'store'])->name('store');
@@ -159,7 +159,7 @@ Route::prefix('admin')->group(function () {
 
 
         // Post
-        Route::prefix('post')->name('post.')->middleware('can:posts')->group(function() {  //->middleware('can:posts')
+        Route::prefix('post')->name('post.')->middleware('can:posts')->group(function() {
             Route::get('/', [PostController::class, 'index'])->name('index');
             Route::get('show/{post}', [PostController::class, 'show'])->name('show');
             Route::get('create', [PostController::class, 'create'])->name('create');
@@ -183,7 +183,7 @@ Route::prefix('admin')->group(function () {
 
 
         //User
-        Route::prefix('user')->name('user.')->middleware('can:users')->group(function () {  //->middleware('can:users')
+        Route::prefix('user')->name('user.')->middleware('can:users')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('index');
             Route::get('create', [UserController::class, 'create'])->name('create');
             Route::post('create', [UserController::class, 'store'])->name('store');
@@ -196,7 +196,7 @@ Route::prefix('admin')->group(function () {
 
 
         //Staff
-        Route::prefix('staff')->name('staff.')->middleware('can:saffs')->group(function () {  //->middleware('can:saffs')
+        Route::prefix('staff')->name('staff.')->middleware('can:saffs')->group(function () {
             Route::get('/', [StaffController::class, 'index'])->name('index');
             Route::get('create', [StaffController::class, 'create'])->name('create');
             Route::post('create', [StaffController::class, 'store'])->name('store');
@@ -209,7 +209,7 @@ Route::prefix('admin')->group(function () {
 
 
         //Group
-        Route::prefix('group')->name('group.')->middleware('can:groups')->group(function () {  //->middleware('can:groups')
+        Route::prefix('group')->name('group.')->middleware('can:groups')->group(function () {
             Route::get('/', [GroupController::class, 'index'])->name('index');
             Route::get('create', [GroupController::class, 'create'])->name('create');
             Route::post('create', [GroupController::class, 'store'])->name('store');
@@ -221,7 +221,7 @@ Route::prefix('admin')->group(function () {
             Route::post('permission/{group}', [GroupController::class, 'store_permission'])->name('storePermission');
         });
 
-        Route::prefix('module')->name('module.')->middleware('can:groups')->group(function () {  //->middleware('can:groups')
+        Route::prefix('module')->name('module.')->middleware('can:groups')->group(function () {
             Route::get('/', [ModuleController::class, 'index'])->name('index');
             Route::get('create', [ModuleController::class, 'create'])->name('create');
             Route::post('create', [ModuleController::class, 'store'])->name('store');

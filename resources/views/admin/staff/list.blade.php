@@ -6,7 +6,7 @@
     <h1 class="mt-4">Danh sách nhân viên</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Danh sách nhân viên</li>
-    </ol>        
+    </ol>
 
     <div class="row">
         <div class="card w-100">
@@ -66,13 +66,15 @@
                                         <td class="border-bottom-0 text-center">
                                             <p class="fw-semibold mb-0">{{date_format($staff->created_at, 'd/m/Y')}}</p>
                                         </td>
-                                        
+
                                         <td class="border-bottom-0 text-center">
                                             <a href="{{route('staff.edit', $staff)}}" class="btn btn-outline-secondary m-1">Sửa</a>
-    
-                                            <button type="button" name="delete-staff" data-id_staff="{{ $staff->id }}" class="btn btn-outline-danger m-1 delete-staff">
-                                                Xóa
-                                            </button>
+
+                                            @if ($staff->group_id != 1)
+                                                <button type="button" name="delete-staff" data-id_staff="{{ $staff->id }}" class="btn btn-outline-danger m-1 delete-staff">
+                                                    Xóa
+                                                </button>
+                                            @endif
                                         </td>
                                     </tr>
                                 </form>

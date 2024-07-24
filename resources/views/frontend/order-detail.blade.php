@@ -59,10 +59,43 @@
                             <h4>Chi tiết đơn hàng</h4>
                             <div class="checkout__order__products">Sản phẩm <span>Tổng</span></div>
                             <ul>
-                                @foreach ($order->products as $product)
-                                    <li>{{$product->pivot->name}} x {{$product->pivot->quantity}}<span>{{convertPrice($product->pivot->price * $product->pivot->quantity )}}</span></li>
-                                @endforeach
+                                <li>
+                                    @foreach ($order->products as $product)
+                                        <li>{{$product->pivot->name}} x {{$product->pivot->quantity}}<span>{{convertPrice($product->pivot->price * $product->pivot->quantity )}}</span></li>
+                                    @endforeach
+                                </li>
+                                <hr>
+                                {{-- <li>
+                                    @if (Session::get('discount'))
+                                        @php
+                                            $latestDiscount = Session::get('discount');
+                                            $total = session('total_price');
+                                        @endphp
+
+                                        @foreach ($latestDiscount as $key => $discount)
+                                            @if ($discount['discount_condition'] == 1)
+                                                <p>Mã giảm giá : <span>{{ $discount['discount_code'] }}</span> </p>
+
+                                                <p>
+                                                    @php
+                                                        $totalDiscount = ($total * $discount['discount_value']) / 100;
+                                                    @endphp
+                                                </p>
+
+                                                <p>Giá trị mã giảm giá : <span>{{ $discount['discount_value'] }} % (= {{ number_format($totalDiscount,0,',','.') }} VNĐ)</span> </p>
+
+                                            @endif
+
+                                            @if ($discount['discount_condition'] == 2)
+                                                <p>Mã giảm giá : <span>{{ $discount['discount_code'] }}</span>  <br></p>
+                                                <p>Giá trị mã giảm giá : <span>{{ number_format($discount['discount_value'],0,',','.') }} VNĐ</span> </p>
+
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </li> --}}
                             </ul>
+                            <hr>
                             <div class="checkout__order__total">Tổng tiền <span>{{convertPrice($order->total_price)}}</span></div>
                             <div class="checkout__input__checkbox">
                                 @if ($order->payment === 1)

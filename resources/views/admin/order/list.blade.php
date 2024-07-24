@@ -37,6 +37,9 @@
                                     <h6 class="fw-semibold mb-0">#</h6>
                                 </th>
                                 <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Ngày đặt</h6>
+                                </th>
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Tên khách hàng</h6>
                                 </th>
                                 <th class="border-bottom-0">
@@ -67,6 +70,9 @@
                                 <tr>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">{{$order->id}}</h6>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">{{ date_format($order->created_at, 'd/m/Y') }}</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <p class="fw-semibold mb-0">{{$order->name}}</p>

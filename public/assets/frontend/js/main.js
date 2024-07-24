@@ -15,8 +15,8 @@
         Preloader
     --------------------*/
     $(window).on('load', function () {
-        $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow");
+        // $(".loader").fadeOut();
+        // $("#preloder").delay(200).fadeOut("slow");
 
         /*------------------
             Gallery filter
@@ -251,8 +251,8 @@
 function previewImg(fileInput, showImg){
     if(fileInput.files && fileInput.files[0]){
         const reader = new FileReader();
-        
-        reader.onload = (e) =>{ 
+
+        reader.onload = (e) =>{
             document.getElementById(showImg).setAttribute('src', e.target.result)
         }
         reader.readAsDataURL(fileInput.files[0]);

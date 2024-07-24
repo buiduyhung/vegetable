@@ -9,13 +9,14 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
     static $vnp_TmnCode = "ARNJUIXY";
-    static $vnp_HashSecret = "39F099YN3ZF5H8G1OHLC2C2DDWZ4JVH2"; 
+    static $vnp_HashSecret = "39F099YN3ZF5H8G1OHLC2C2DDWZ4JVH2";
     static $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    static $vnp_Returnurl = "/checkout/vnPayCheck"; 
+    static $vnp_Returnurl = "/checkout/vnPayCheck";
 
     public function index(){
         return view('frontend.checkout');
@@ -31,8 +32,23 @@ class CheckoutController extends Controller
             'payment' => 'required|in:1,2',
         ]);
 
+        if(Session::get('discount')){
+            $latestDiscount = Session::get('discount');
+            $total = session('total_price');
 
-        $data['total_price'] = session('total_price');
+            foreach($latestDiscount as $item){
+                if($item['discount_condition'] == 1){
+                    $total = $total - ($total * $item['discount_value'] / 100);
+                    $data['total_price'] = $total;
+                }else{
+                    $total = $total - $item['discount_value'];
+                    $data['total_price'] = $total;
+                }
+            }
+        }else{
+            $data['total_price'] = session('total_price');
+        }
+
         $data['user_id'] = Auth::id();
         $data['status'] = 2; // trang thai chờ xác nhận
 
@@ -78,7 +94,7 @@ class CheckoutController extends Controller
                 'price' => $item['price'],
             ]);
 
-            $product = product::where('id',$item['product_id'])->first();  
+            $product = product::where('id',$item['product_id'])->first();
             $product->quantity -= $item['quantity'];
             $product->sold += $item['quantity'];
             $product->save();
@@ -100,12 +116,12 @@ class CheckoutController extends Controller
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
         $inputData = array(
-            "vnp_Version" => "2.1.0", 
+            "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => self::$vnp_TmnCode,
             "vnp_Amount" => $vnp_Amount,
             "vnp_Command" => "pay",
             "vnp_CreateDate" => date('YmdHis'),
-            "vnp_CurrCode" => "VND", 
+            "vnp_CurrCode" => "VND",
             "vnp_IpAddr" => $vnp_IpAddr,
             "vnp_Locale" => $vnp_Locale,
             "vnp_OrderInfo" => $vnp_OrderInfo,
@@ -141,12 +157,12 @@ class CheckoutController extends Controller
         }
 
         $returnData = [
-            'code' => '00', 
+            'code' => '00',
             'message' => 'success',
             'data' => $vnp_Url
         ];
 
-        return $returnData['data']; 
+        return $returnData['data'];
     }
 
     public function vnPayCheck(Request $request){
@@ -159,12 +175,12 @@ class CheckoutController extends Controller
         if($vnp_ResponseCode != null){
             $order = Order::find($vnp_TxnRef);
 
-            //00: TH thành công
+            // TH thành công
             if($vnp_ResponseCode == 00){
                 $this->createOrderDetail($order);
                 return redirect()->route('checkout.success');
 
-            }elseif($vnp_ResponseCode == 24){ //24: Hủy thanh toán
+            }elseif($vnp_ResponseCode == 24){ // Hủy thanh toán
                 $order->delete();
                 return redirect()->route('checkout');
             }

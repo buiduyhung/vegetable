@@ -126,6 +126,7 @@
                                             <p>
                                                 @php
                                                     $total_after_discount = $total - $totalDiscount;
+                                                    session(['total_after_discount1' => $total_after_discount]);
                                                 @endphp
                                             </p>
                                             <hr>
@@ -138,6 +139,7 @@
                                             <p>
                                                 @php
                                                     $total_after_discount = $total - $discount['discount_value'];
+                                                    session(['total_after_discount2' => $total_after_discount]);
                                                 @endphp
                                             </p>
                                             <hr>

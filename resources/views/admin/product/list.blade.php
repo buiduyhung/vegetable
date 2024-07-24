@@ -89,9 +89,12 @@
                                             <a href="{{route('product.show', $product)}}" class="btn btn-outline-info m-1">Chi tiết</a>
                                             <a href="{{route('product.edit', $product->id)}}" class="btn btn-outline-warning m-1">Sửa</a>
 
-                                            <button type="button" name="delete-product" data-id_product="{{ $product->id }}" class="btn btn-outline-danger m-1 delete-product">
-                                                Xóa
-                                            </button>
+                                            @if ($product->sold <= 0)
+                                                <button type="button" name="delete-product" data-id_product="{{ $product->id }}" class="btn btn-outline-danger m-1 delete-product">
+                                                    Xóa
+                                                </button>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 </form>

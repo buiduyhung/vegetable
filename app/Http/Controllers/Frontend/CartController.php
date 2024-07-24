@@ -94,6 +94,7 @@ class CartController extends Controller
         $total_price = 0;
         foreach(session('cart') as $item){
             $total_price += $item['quantity'] * $item['price'];
+
         }
         session()->put('total_price', $total_price);
     }
